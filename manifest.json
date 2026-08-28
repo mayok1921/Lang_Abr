@@ -1,7 +1,8 @@
 {
-  "name": "DragoLearn",
-  "short_name": "DragoLearn",
+  "name": "Keon - Japanese & Polish",
+  "short_name": "Keon",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#090914",
   "theme_color": "#090914",
