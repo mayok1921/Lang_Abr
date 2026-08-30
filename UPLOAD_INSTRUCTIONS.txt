@@ -1,0 +1,27 @@
+UPLOAD/REPLACE THESE FILES IN THE ROOT OF https://github.com/mayok1921/Lang_Abr
+
+REPLACE:
+- index.html
+- app.js
+- manifest.json
+- service-worker.js
+- README.md
+- icon-192.png
+- icon-512.png
+
+ADD:
+- keon-qr.png
+
+DELETE:
+- README.txt (old leftover file)
+
+After committing:
+1. Wait roughly 1-2 minutes for GitHub Pages.
+2. Open https://mayok1921.github.io/Lang_Abr/
+3. If an old version appears, refresh once. The new service-worker cache is versioned.
+4. On iPhone: Safari > Share > Add to Home Screen.
+
+NOTE:
+GitHub's repository 'About' description (currently old Hirigana wording) is not controlled by README/code files.
+To change it: repo page > gear icon beside About > change description to something like:
+"Keon — Japanese and Polish language learning PWA"
