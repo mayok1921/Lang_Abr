@@ -532,6 +532,7 @@ function renderStudy(){
     document.getElementById("traceChar").textContent=card[0];
     document.getElementById("traceChar").style.display="none";
     document.getElementById("traceBtn").textContent="Show Trace Guide";
+    resetDrawingScore();
     setTimeout(()=>{setupCanvas();clearCanvas();},30);
   }
   document.getElementById("studyProgress").textContent=`Step ${sessionIndex+1} of ${session.length} • Mastery ${masteryOf(card,selected.subject)}%`;
@@ -640,7 +641,219 @@ function setupCanvas(){
 function clearCanvas(){
   const canvas=document.getElementById("drawCanvas");
   if(drawContext) drawContext.clearRect(0,0,canvas.width,canvas.height);
+  resetDrawingScore();
 }
+
+function resetDrawingScore(){
+  const scoreBox=document.getElementById("drawScore");
+  const checkBtn=document.getElementById("checkDrawingBtn");
+  if(scoreBox){
+    scoreBox.style.display="none";
+    scoreBox.className="drawScore";
+    scoreBox.textContent="";
+  }
+  if(checkBtn){
+    checkBtn.disabled=false;
+    checkBtn.textContent="Check Drawing";
+  }
+}
+
+function getInkBounds(canvas){
+  const ctx=canvas.getContext("2d");
+  const image=ctx.getImageData(0,0,canvas.width,canvas.height);
+  const data=image.data;
+  let minX=canvas.width, minY=canvas.height, maxX=-1, maxY=-1, count=0;
+
+  for(let y=0;y<canvas.height;y++){
+    for(let x=0;x<canvas.width;x++){
+      const a=data[(y*canvas.width+x)*4+3];
+      if(a>20){
+        count++;
+        if(x<minX)minX=x;
+        if(x>maxX)maxX=x;
+        if(y<minY)minY=y;
+        if(y>maxY)maxY=y;
+      }
+    }
+  }
+
+  if(!count) return null;
+  return {minX,minY,maxX,maxY,width:maxX-minX+1,height:maxY-minY+1,count};
+}
+
+function normalizeCanvasSource(sourceCanvas, size=256, padding=30){
+  const bounds=getInkBounds(sourceCanvas);
+  if(!bounds) return null;
+
+  const target=document.createElement("canvas");
+  target.width=size;
+  target.height=size;
+  const tctx=target.getContext("2d");
+
+  const maxDim=size-padding*2;
+  const scale=Math.min(maxDim/bounds.width,maxDim/bounds.height);
+  const drawW=bounds.width*scale;
+  const drawH=bounds.height*scale;
+  const dx=(size-drawW)/2;
+  const dy=(size-drawH)/2;
+
+  tctx.drawImage(
+    sourceCanvas,
+    bounds.minX,bounds.minY,bounds.width,bounds.height,
+    dx,dy,drawW,drawH
+  );
+  return target;
+}
+
+function createReferenceCanvas(character, size=256){
+  const raw=document.createElement("canvas");
+  raw.width=size;
+  raw.height=size;
+  const ctx=raw.getContext("2d");
+  ctx.clearRect(0,0,size,size);
+  ctx.fillStyle="#000";
+  ctx.textAlign="center";
+  ctx.textBaseline="middle";
+  ctx.font=`800 ${Math.round(size*0.72)}px "Hiragino Sans","Yu Gothic","YuGothic","Noto Sans JP",sans-serif`;
+  ctx.fillText(character,size/2,size/2+size*0.015);
+
+  return normalizeCanvasSource(raw,size,28);
+}
+
+function canvasMask(canvas){
+  const ctx=canvas.getContext("2d");
+  const data=ctx.getImageData(0,0,canvas.width,canvas.height).data;
+  const mask=new Uint8Array(canvas.width*canvas.height);
+
+  for(let i=0;i<mask.length;i++){
+    const a=data[i*4+3];
+    if(a>25) mask[i]=1;
+  }
+  return mask;
+}
+
+function buildIntegral(mask,width,height){
+  const stride=width+1;
+  const integral=new Uint32Array((width+1)*(height+1));
+
+  for(let y=1;y<=height;y++){
+    let row=0;
+    for(let x=1;x<=width;x++){
+      row+=mask[(y-1)*width+(x-1)];
+      integral[y*stride+x]=integral[(y-1)*stride+x]+row;
+    }
+  }
+  return integral;
+}
+
+function hasInkNearby(integral,width,height,x,y,radius){
+  const stride=width+1;
+  const x1=Math.max(0,x-radius);
+  const y1=Math.max(0,y-radius);
+  const x2=Math.min(width-1,x+radius);
+  const y2=Math.min(height-1,y+radius);
+
+  const sum=
+    integral[(y2+1)*stride+(x2+1)]
+    -integral[y1*stride+(x2+1)]
+    -integral[(y2+1)*stride+x1]
+    +integral[y1*stride+x1];
+
+  return sum>0;
+}
+
+function tolerantCoverage(sourceMask,targetIntegral,width,height,radius){
+  let sourceCount=0, matched=0;
+
+  for(let y=0;y<height;y++){
+    for(let x=0;x<width;x++){
+      if(!sourceMask[y*width+x]) continue;
+      sourceCount++;
+      if(hasInkNearby(targetIntegral,width,height,x,y,radius)) matched++;
+    }
+  }
+  return sourceCount ? matched/sourceCount : 0;
+}
+
+function scoreDrawing(character){
+  const source=document.getElementById("drawCanvas");
+  const userNormalized=normalizeCanvasSource(source,256,30);
+  if(!userNormalized) return {score:0,empty:true};
+
+  const reference=createReferenceCanvas(character,256);
+  if(!reference) return {score:0,empty:false};
+
+  const userMask=canvasMask(userNormalized);
+  const refMask=canvasMask(reference);
+  const width=256,height=256;
+
+  const userIntegral=buildIntegral(userMask,width,height);
+  const refIntegral=buildIntegral(refMask,width,height);
+
+  // 14px tolerance after normalization is intentionally forgiving for finger input.
+  const tolerance=14;
+
+  // Precision: how much of the user's ink belongs near the target character.
+  const precision=tolerantCoverage(userMask,refIntegral,width,height,tolerance);
+
+  // Recall: how much of the target character is represented by the user's ink.
+  const recall=tolerantCoverage(refMask,userIntegral,width,height,tolerance);
+
+  let f1=(precision+recall)
+    ? (2*precision*recall)/(precision+recall)
+    : 0;
+
+  // Mildly penalize very large scribbles or extremely sparse marks.
+  const userPixels=userMask.reduce((a,b)=>a+b,0);
+  const refPixels=refMask.reduce((a,b)=>a+b,0);
+  const inkRatio=refPixels ? userPixels/refPixels : 1;
+
+  let inkPenalty=1;
+  if(inkRatio>2.1) inkPenalty=Math.max(.72,1-(inkRatio-2.1)*.10);
+  if(inkRatio<.28) inkPenalty=Math.max(.65,inkRatio/.28);
+
+  const score=Math.max(0,Math.min(100,Math.round(f1*inkPenalty*100)));
+
+  return {
+    score,
+    empty:false,
+    precision:Math.round(precision*100),
+    recall:Math.round(recall*100)
+  };
+}
+
+function checkDrawing(){
+  if(currentMode!=="draw" || !session.length) return;
+
+  const card=session[sessionIndex].card;
+  const result=scoreDrawing(card[0]);
+  const scoreBox=document.getElementById("drawScore");
+  const checkBtn=document.getElementById("checkDrawingBtn");
+
+  scoreBox.style.display="block";
+
+  if(result.empty){
+    scoreBox.className="drawScore retry";
+    scoreBox.textContent="Draw the character first.";
+    return;
+  }
+
+  if(result.score>=85){
+    scoreBox.className="drawScore pass";
+    scoreBox.textContent=`${result.score}% — Great! ✓`;
+    checkBtn.disabled=true;
+    checkBtn.textContent="Passed";
+    recordAnswer(card,true);
+    setTimeout(nextCard,1000);
+  }else if(result.score>=70){
+    scoreBox.className="drawScore close";
+    scoreBox.textContent=`${result.score}% — Close. Adjust the shape and try again.`;
+  }else{
+    scoreBox.className="drawScore retry";
+    scoreBox.textContent=`${result.score}% — Try again. Use the trace guide if needed.`;
+  }
+}
+
 function toggleTrace(){
   traceVisible=!traceVisible;
   document.getElementById("traceChar").style.display=traceVisible?"flex":"none";

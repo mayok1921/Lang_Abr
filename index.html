@@ -96,6 +96,10 @@
     .traceChar{position:absolute;inset:0;display:none;align-items:center;justify-content:center;font-size:190px;font-weight:800;color:#111827;opacity:.14;pointer-events:none}
     .drawTarget{font-size:36px;text-align:center;margin:10px}
     .drawAnswer{font-size:25px;text-align:center;color:#ddd6fe;margin:8px}
+    .drawScore{max-width:460px;margin:12px auto;padding:13px;border-radius:13px;border:1px solid var(--border);background:#18182a;text-align:center;font-weight:800}
+    .drawScore.pass{border-color:var(--green);background:#12351f;color:#bbf7d0}
+    .drawScore.close{border-color:var(--amber);background:#3a2c0b;color:#fde68a}
+    .drawScore.retry{border-color:var(--red);background:#3a1020;color:#fecdd3}
     .qr{width:190px;max-width:70%;border-radius:16px;background:white;padding:8px}
     .setupBlock{margin:20px 0}
     .levelGroup{margin:14px 0;padding:12px;border:1px solid var(--border);border-radius:15px}
@@ -237,9 +241,9 @@
     <button class="btn secondary" onclick="clearCanvas()">Clear</button>
     <button id="traceBtn" class="btn secondary" onclick="toggleTrace()">Show Trace Guide</button>
     <button class="btn secondary" onclick="toggleDrawAnswer()">Show Answer</button>
-    <br>
-    <button class="btn good" onclick="grade(true)">Got it</button>
-    <button class="btn bad" onclick="grade(false)">Missed it</button>
+    <div id="drawScore" class="drawScore" style="display:none" aria-live="polite"></div>
+    <button id="checkDrawingBtn" class="btn full" onclick="checkDrawing()">Check Drawing</button>
+    <p class="small">85% or higher passes. Keon allows extra tolerance for finger drawing on a phone.</p>
   </div>
 
   <p id="studyProgress" class="small"></p>

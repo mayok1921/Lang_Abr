@@ -1,0 +1,20 @@
+Keon Japanese drawing accuracy update
+
+Replace/upload these files in the root of Lang_Abr:
+- index.html
+- app.js
+- service-worker.js
+
+You can also upload the other files in this ZIP if you want the complete current Keon package.
+
+Drawing behavior:
+- Japanese writing questions now have Check Drawing.
+- Drawing is normalized for size and position.
+- A tolerance zone is used for finger wobble.
+- 85%+ passes automatically.
+- 70–84% says Close and lets the learner retry.
+- Below 70% asks the learner to try again.
+- Passing automatically records the answer as correct and advances.
+- Trace guide remains available.
+
+This is shape-based checking, not true handwritten stroke-order recognition.
