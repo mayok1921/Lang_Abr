@@ -1,4 +1,4 @@
-const CACHE_NAME = "keon-lang-abr-v21-drawing-score";
+const CACHE_NAME = "keon-lang-abr-v25-three-language-native-first";
 const FILES = [
   "./",
   "./index.html",

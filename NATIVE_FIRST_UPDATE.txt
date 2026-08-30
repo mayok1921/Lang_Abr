@@ -1,0 +1,18 @@
+Keon native-first Japanese learning update
+
+Replace/upload:
+- index.html
+- app.js
+- service-worker.js
+
+New Japanese learning behavior:
+- Native Japanese appears first.
+- The main answer for Japanese phrases is the reading/romaji, not an English translation.
+- Example: こんにちは -> konnichiwa
+- English meaning is hidden behind an optional Meaning button.
+- Multiple choice tests the Japanese reading instead of English translation.
+- Kana lessons continue to use character -> sound/reading.
+- The design intentionally avoids making English translation the core learning mechanism.
+
+Important:
+Romaji is being used as an early pronunciation bridge. As Keon grows, it can gradually hide romaji once the learner's kana mastery improves, which is closer to natural acquisition than relying on romaji forever.
