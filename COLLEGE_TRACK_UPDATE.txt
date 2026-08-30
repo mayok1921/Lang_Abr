@@ -1,0 +1,45 @@
+Keon College Track update
+
+Quick upload:
+- index.html
+- app.js
+- service-worker.js
+
+Major additions
+---------------
+• Japanese college sequence:
+  Japanese I — JLPT N5
+  Japanese II — JLPT N4
+  Japanese III — JLPT N3
+  Japanese IV — JLPT N2
+
+• Polish sequence:
+  Polish I — A1
+  Polish II — A2
+  Polish III — B1
+  Polish IV — B2
+
+• Mexican Spanish sequence:
+  Mexican Spanish I — A1
+  Mexican Spanish II — A2
+  Mexican Spanish III — B1
+  Mexican Spanish IV — B2
+
+• Each course has:
+  - six structured units
+  - expected weekly workload
+  - prerequisite
+  - progress
+  - practice accuracy
+  - standing/grade-style indicator
+  - native-first study flow
+  - reading/context practice
+  - midterm cumulative checkpoint
+  - final cumulative checkpoint
+
+• Added 400+ academic/course learning cards across the three languages.
+• Existing skill library, slang, kana drawing, 85% drawing scoring, progress, glass UI and Home-only QR remain.
+
+Important scope note
+--------------------
+This is a major curriculum expansion and gives Keon a real college-style structure, but a truly exhaustive JLPT N2 program eventually needs thousands of vocabulary items, roughly a thousand kanji-level targets, extensive listening audio, and many long reading passages. The architecture now supports continued expansion toward that depth without redesigning the app.

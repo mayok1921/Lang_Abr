@@ -195,9 +195,30 @@
       border:1px solid var(--border);
       font-size:12px;
     }
+
+    .courseCard{
+      margin:14px 0;padding:18px;border-radius:24px;
+      background:linear-gradient(180deg,rgba(255,255,255,.11),rgba(255,255,255,.055));
+      border:1px solid var(--border);box-shadow:var(--shadow);
+      backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)
+    }
+    .courseTop,.unitHeader{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+    .courseTop h3,.unitHeader h3{margin:4px 0 8px}
+    .courseNumber{font-size:11px;letter-spacing:.12em;color:#cbc5ff;font-weight:800}
+    .courseLevel{font-size:12px;padding:5px 9px;border-radius:999px;background:rgba(139,124,255,.16);border:1px solid rgba(139,124,255,.28);vertical-align:middle;white-space:nowrap}
+    .coursePercent{font-size:24px;font-weight:900}
+    .courseMeta{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+    .courseMeta span{font-size:12px;padding:7px 9px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--muted)}
+    .courseStats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+    .courseStat{padding:13px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid var(--border);text-align:center}
+    .courseStat strong{display:block;font-size:20px}
+    .courseUnit{margin:12px 0;padding:16px;border-radius:22px;background:rgba(255,255,255,.065);border:1px solid var(--border)}
+    .unitActions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .checkpointGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
     @media (max-width:540px){
       .brand{font-size:36px}.heroTitle{font-size:24px}.lessonCard{grid-template-columns:38px 1fr 50px}
-      .panel,.heroCard{padding:16px}.btn{padding:13px 15px}
+      .panel,.heroCard{padding:16px}.btn{padding:13px 15px}.courseStats{grid-template-columns:1fr}.checkpointGrid{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -274,6 +295,48 @@
   <button class="btn secondary full" onclick="editSetup()">Edit Languages & Goals</button>
 </section>
 
+
+<section id="courseCatalog" class="screen">
+  <div class="brand"><span>Keon</span></div>
+  <h2 id="courseCatalogTitle">College Track</h2>
+  <div class="panel">
+    <strong>Structured curriculum</strong>
+    <p id="courseCatalogIntro" class="muted"></p>
+    <p class="small">The goal is mastery, not rushing. A college-style pace means regular study, cumulative review, reading/context work, and checkpoints.</p>
+  </div>
+  <div id="courseCatalogList"></div>
+  <button class="btn secondary full" onclick="show('home')">Home</button>
+</section>
+
+<section id="courseDetail" class="screen">
+  <div class="brand"><span>Keon</span></div>
+  <h2 id="courseDetailTitle"></h2>
+  <p id="courseDetailDesc" class="subtitle"></p>
+
+  <div class="courseStats">
+    <div class="courseStat"><strong id="courseDetailProgress">0%</strong><span class="small">Course progress</span></div>
+    <div class="courseStat"><strong id="courseDetailGrade">—</strong><span class="small">Current standing</span></div>
+    <div class="courseStat"><strong id="courseDetailAccuracy">—</strong><span class="small">Practice accuracy</span></div>
+  </div>
+
+  <div class="panel">
+    <p><strong>Expected workload:</strong> <span id="courseDetailHours"></span></p>
+    <p><strong>Prerequisite:</strong> <span id="coursePrereq"></span></p>
+    <p class="small">Recommended weekly rhythm: 4–5 study days, one cumulative review day, and one lighter reading/context day.</p>
+  </div>
+
+  <div class="sectionLabel">Course Units</div>
+  <div id="courseUnits"></div>
+
+  <div class="sectionLabel">Checkpoints</div>
+  <div class="checkpointGrid">
+    <button class="btn secondary full" onclick="startCourseCheckpoint('midterm')">Midterm — Units 1–3</button>
+    <button class="btn full" onclick="startCourseCheckpoint('final')">Final — Cumulative</button>
+  </div>
+
+  <button class="btn secondary full" onclick="showCourseCatalog()">Back to Courses</button>
+</section>
+
 <section id="subjects" class="screen">
   <div class="brand"><span>Keon</span></div>
   <h2 id="subjectsHeading">Learning Path</h2>
@@ -303,7 +366,7 @@
   <button class="btn full" onclick="startMixedSession()">Start Practice</button>
   <button class="btn secondary full" onclick="startInputSession()">Read Input</button>
   <button class="btn secondary full" onclick="showDashboard()">View Mastery</button>
-  <button class="btn secondary" onclick="show('lessons')">Back</button>
+  <button class="btn secondary" onclick="backFromPreview()">Back</button>
 </section>
 
 <section id="study" class="screen">
