@@ -969,6 +969,61 @@ function setLessonType(type){
   lessonType=type;
   renderLessons();
 }
+
+// Optional target-language voice playback using the device/browser's speech engine.
+function speechLocaleForLanguage(lang){
+  if(lang==="ja") return "ja-JP";
+  if(lang==="pl") return "pl-PL";
+  if(lang==="es") return "es-MX";
+  return "en-US";
+}
+function subjectLanguage(subjectKey){
+  return DATA[subjectKey]?.language || activeLanguage || "en";
+}
+function chooseSpeechVoice(locale){
+  if(!("speechSynthesis" in window)) return null;
+  const voices=window.speechSynthesis.getVoices()||[];
+  const exact=voices.find(v=>(v.lang||"").toLowerCase()===locale.toLowerCase());
+  if(exact) return exact;
+  const base=locale.split("-")[0].toLowerCase();
+  return voices.find(v=>(v.lang||"").toLowerCase().startsWith(base)) || null;
+}
+function speakTargetText(text,subjectKey){
+  if(!("speechSynthesis" in window)) return;
+  const spoken=String(text||"").trim();
+  if(!spoken) return;
+  const locale=speechLocaleForLanguage(subjectLanguage(subjectKey));
+  window.speechSynthesis.cancel();
+  const utterance=new SpeechSynthesisUtterance(spoken);
+  utterance.lang=locale;
+  utterance.rate=0.88;
+  utterance.pitch=1;
+  const voice=chooseSpeechVoice(locale);
+  if(voice) utterance.voice=voice;
+  window.speechSynthesis.speak(utterance);
+}
+function voiceButtonHTML(text,subjectKey,label="Hear pronunciation"){
+  if(!text) return "";
+  const esc=s=>String(s)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#39;");
+  return `<button class="voiceBtn" type="button" data-speech="${esc(text)}" data-speech-subject="${esc(subjectKey||"")}" aria-label="${esc(label)}" title="${esc(label)}">🔊</button>`;
+}
+document.addEventListener("click",(event)=>{
+  const btn=event.target.closest?.(".voiceBtn");
+  if(!btn) return;
+  event.preventDefault();
+  event.stopPropagation();
+  speakTargetText(btn.dataset.speech,btn.dataset.speechSubject);
+});
+if("speechSynthesis" in window){
+  window.speechSynthesis.getVoices();
+  window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices();
+}
+
 function renderLessons(){
   const data=DATA[subject];
   document.getElementById("subjectTitle").textContent=data.name;
@@ -1021,7 +1076,7 @@ function renderLessons(){
           <div>
             <div class="courseNumber">${learned?"USE WHAT YOU KNOW":"UNLOCKS AT 60% MASTERY"}</div>
             <strong>Words from this set</strong>
-            <p>${words.map(w=>w[0]).join(" • ")}</p>
+            <p>${words.map(w=>`${w[0]} ${voiceButtonHTML(w[0],subject)}`).join(" • ")}</p>
             <p class="small">${learned?"Try reading these before revealing pronunciation and meaning.":"Practice the kana set a little more first."}</p>
           </div>
           <button class="btn secondary smartWordsBtn" ${learned?"":"disabled"}>${learned?"Practice Words":"Locked"}</button>`;
@@ -1040,7 +1095,7 @@ function renderLessons(){
           <div>
             <div class="courseNumber">${learned?"USE IT IN CONTEXT":"UNLOCKS AT 60% MASTERY"}</div>
             <strong>Real Polish from this step</strong>
-            <p>${words.map(w=>w[0]).join(" • ")}</p>
+            <p>${words.map(w=>`${w[0]} ${voiceButtonHTML(w[0],subject)}`).join(" • ")}</p>
             <p class="small">${learned?"Try understanding these first, then reveal meaning and context.":"Get a little more comfortable with this lesson first."}</p>
           </div>
           <button class="btn secondary smartPolishBtn" ${learned?"":"disabled"}>${learned?"Practice in Context":"Locked"}</button>`;
@@ -1062,12 +1117,12 @@ function openPreview(){
       const div=document.createElement("div");
       div.className="previewCard";
       div.innerHTML=`
-        <div class="previewMain">${card[0]}</div>
+        <div class="previewMain">${card[0]} ${voiceButtonHTML(card[0],selected.subject)}</div>
         <div class="small">Try to read or understand it first.</div>
         <div class="previewReveal" style="display:none">
           ${cardReading(card)?`<div class="readingLine">${cardReading(card)}</div>`:""}
           ${cardMeaning(card)?`<div class="small meaningHint">${cardMeaning(card)}</div>`:""}
-          ${cardExample(card)?`<div class="exampleBox"><strong>${cardExample(card)}</strong>${cardExampleMeaning(card)?`<div class="small">${cardExampleMeaning(card)}</div>`:""}</div>`:""}
+          ${cardExample(card)?`<div class="exampleBox"><strong>${cardExample(card)} ${voiceButtonHTML(cardExample(card),selected.subject,"Hear example")}</strong>${cardExampleMeaning(card)?`<div class="small">${cardExampleMeaning(card)}</div>`:""}</div>`:""}
         </div>
       `;
       const reveal=document.createElement("button");
@@ -1215,7 +1270,7 @@ function renderStudy(){
   document.getElementById("drawArea").style.display=currentMode==="draw"?"block":"none";
 
   if(currentMode==="flash"){
-    document.getElementById("front").textContent=card[0];
+    document.getElementById("front").innerHTML=`${card[0]} ${voiceButtonHTML(card[0],selected.subject)}`;
     const back=document.getElementById("back");
     back.textContent=cardReading(card) || cardMeaning(card);
     back.style.display=revealed?"block":"none";
@@ -1236,7 +1291,7 @@ function renderStudy(){
     }
 
     if(cardExample(card)){
-      exampleBox.innerHTML=`<strong>${cardExample(card)}</strong>${cardExampleMeaning(card)?`<div class="small">${cardExampleMeaning(card)}</div>`:""}`;
+      exampleBox.innerHTML=`<strong>${cardExample(card)} ${voiceButtonHTML(cardExample(card),selected.subject,"Hear example")}</strong>${cardExampleMeaning(card)?`<div class="small">${cardExampleMeaning(card)}</div>`:""}`;
       exampleBox.style.display="none";
       exampleBtn.style.display=revealed?"inline-block":"none";
     }else{

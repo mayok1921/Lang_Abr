@@ -222,6 +222,18 @@
     .pathStep{display:grid;grid-template-columns:38px 1fr 52px;gap:10px;align-items:center;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.08)}
     .pathIndex{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:rgba(139,124,255,.18);border:1px solid rgba(139,124,255,.32);font-weight:800}
 
+
+    .voiceBtn{
+      width:34px;height:34px;min-width:34px;padding:0;margin-left:7px;
+      border-radius:999px;border:1px solid var(--border);
+      background:rgba(255,255,255,.07);color:inherit;
+      display:inline-grid;place-items:center;vertical-align:middle;
+      cursor:pointer;font-size:15px;line-height:1;
+      transition:transform .15s ease,background .15s ease;
+    }
+    .voiceBtn:hover{background:rgba(255,255,255,.12);transform:scale(1.04)}
+    .voiceBtn:active{transform:scale(.96)}
+
     @media (max-width:540px){
       .brand{font-size:36px}.heroTitle{font-size:24px}.lessonCard{grid-template-columns:38px 1fr 50px}
       .panel,.heroCard{padding:16px}.btn{padding:13px 15px}.courseStats{grid-template-columns:1fr}.checkpointGrid{grid-template-columns:1fr}.smartWordCard{margin-left:0;grid-template-columns:1fr}
@@ -327,7 +339,7 @@
   </div>
 
   <div class="panel">
-    <h3>How Keon sequences Polish</h3>
+    <h3>How Keon sequences Polish</h3><p class="small">🔊 Audio is optional. Tap a speaker whenever you want to hear the Polish word or example.</p>
     <p class="small">Learn how Polish sounds → immediately use those sounds in real words → build useful everyday phrases → learn simple sentence patterns and cases gradually → begin Polish I / A1 → continue toward B2.</p>
     <p class="small">Cases are introduced through sentences first. Keon should not dump large declension tables on you before the patterns make sense in context.</p>
   </div>
