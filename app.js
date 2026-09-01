@@ -11,7 +11,22 @@ const DATA = {
       {title:"M Row",cards:[["ま","ma"],["み","mi"],["む","mu"],["め","me"],["も","mo"]]},
       {title:"Y Row",cards:[["や","ya"],["ゆ","yu"],["よ","yo"]]},
       {title:"R Row",cards:[["ら","ra"],["り","ri"],["る","ru"],["れ","re"],["ろ","ro"]]},
-      {title:"W + N",cards:[["わ","wa"],["を","wo / o"],["ん","n"]]}
+      {title:"W + N",cards:[["わ","wa"],["を","wo / o"],["ん","n"]]},
+
+      {title:"Dakuten — G Row",cards:[["が","ga"],["ぎ","gi"],["ぐ","gu"],["げ","ge"],["ご","go"]]},
+      {title:"Dakuten — Z Row",cards:[["ざ","za"],["じ","ji"],["ず","zu"],["ぜ","ze"],["ぞ","zo"]]},
+      {title:"Dakuten — D Row",cards:[["だ","da"],["ぢ","ji / di"],["づ","zu / du"],["で","de"],["ど","do"]]},
+      {title:"Dakuten — B Row",cards:[["ば","ba"],["び","bi"],["ぶ","bu"],["べ","be"],["ぼ","bo"]]},
+      {title:"Handakuten — P Row",cards:[["ぱ","pa"],["ぴ","pi"],["ぷ","pu"],["ぺ","pe"],["ぽ","po"]]},
+
+      {title:"Yōon — K / G",cards:[["きゃ","kya"],["きゅ","kyu"],["きょ","kyo"],["ぎゃ","gya"],["ぎゅ","gyu"],["ぎょ","gyo"]]},
+      {title:"Yōon — S / J",cards:[["しゃ","sha"],["しゅ","shu"],["しょ","sho"],["じゃ","ja"],["じゅ","ju"],["じょ","jo"]]},
+      {title:"Yōon — C / N",cards:[["ちゃ","cha"],["ちゅ","chu"],["ちょ","cho"],["にゃ","nya"],["にゅ","nyu"],["にょ","nyo"]]},
+      {title:"Yōon — H / B / P",cards:[["ひゃ","hya"],["ひゅ","hyu"],["ひょ","hyo"],["びゃ","bya"],["びゅ","byu"],["びょ","byo"],["ぴゃ","pya"],["ぴゅ","pyu"],["ぴょ","pyo"]]},
+      {title:"Yōon — M / R",cards:[["みゃ","mya"],["みゅ","myu"],["みょ","myo"],["りゃ","rya"],["りゅ","ryu"],["りょ","ryo"]]},
+
+      {title:"Small っ — Double Consonants",cards:[["かった","katta"],["きって","kitte"],["ちょっと","chotto"],["まって","matte"],["がっこう","gakkou"]]},
+      {title:"Long Vowel Patterns",cards:[["おかあさん","okaasan"],["おにいさん","oniisan"],["せんせい","sensei"],["こうこう","koukou"],["きょう","kyou"]]}
     ]
   },
   katakana: {
@@ -20,7 +35,32 @@ const DATA = {
       {title:"A Row",cards:[["ア","a"],["イ","i"],["ウ","u"],["エ","e"],["オ","o"]]},
       {title:"K Row",cards:[["カ","ka"],["キ","ki"],["ク","ku"],["ケ","ke"],["コ","ko"]]},
       {title:"S Row",cards:[["サ","sa"],["シ","shi"],["ス","su"],["セ","se"],["ソ","so"]]},
-      {title:"T Row",cards:[["タ","ta"],["チ","chi"],["ツ","tsu"],["テ","te"],["ト","to"]]}
+      {title:"T Row",cards:[["タ","ta"],["チ","chi"],["ツ","tsu"],["テ","te"],["ト","to"]]},
+      {title:"N Row",cards:[["ナ","na"],["ニ","ni"],["ヌ","nu"],["ネ","ne"],["ノ","no"]]},
+      {title:"H Row",cards:[["ハ","ha"],["ヒ","hi"],["フ","fu"],["ヘ","he"],["ホ","ho"]]},
+      {title:"M Row",cards:[["マ","ma"],["ミ","mi"],["ム","mu"],["メ","me"],["モ","mo"]]},
+      {title:"Y Row",cards:[["ヤ","ya"],["ユ","yu"],["ヨ","yo"]]},
+      {title:"R Row",cards:[["ラ","ra"],["リ","ri"],["ル","ru"],["レ","re"],["ロ","ro"]]},
+      {title:"W + N",cards:[["ワ","wa"],["ヲ","wo / o"],["ン","n"]]},
+
+      {title:"Dakuten — G Row",cards:[["ガ","ga"],["ギ","gi"],["グ","gu"],["ゲ","ge"],["ゴ","go"]]},
+      {title:"Dakuten — Z Row",cards:[["ザ","za"],["ジ","ji"],["ズ","zu"],["ゼ","ze"],["ゾ","zo"]]},
+      {title:"Dakuten — D Row",cards:[["ダ","da"],["ヂ","ji / di"],["ヅ","zu / du"],["デ","de"],["ド","do"]]},
+      {title:"Dakuten — B Row",cards:[["バ","ba"],["ビ","bi"],["ブ","bu"],["ベ","be"],["ボ","bo"]]},
+      {title:"Handakuten — P Row",cards:[["パ","pa"],["ピ","pi"],["プ","pu"],["ペ","pe"],["ポ","po"]]},
+
+      {title:"Yōon — K / G",cards:[["キャ","kya"],["キュ","kyu"],["キョ","kyo"],["ギャ","gya"],["ギュ","gyu"],["ギョ","gyo"]]},
+      {title:"Yōon — S / J",cards:[["シャ","sha"],["シュ","shu"],["ショ","sho"],["ジャ","ja"],["ジュ","ju"],["ジョ","jo"]]},
+      {title:"Yōon — C / N",cards:[["チャ","cha"],["チュ","chu"],["チョ","cho"],["ニャ","nya"],["ニュ","nyu"],["ニョ","nyo"]]},
+      {title:"Yōon — H / B / P",cards:[["ヒャ","hya"],["ヒュ","hyu"],["ヒョ","hyo"],["ビャ","bya"],["ビュ","byu"],["ビョ","byo"],["ピャ","pya"],["ピュ","pyu"],["ピョ","pyo"]]},
+      {title:"Yōon — M / R",cards:[["ミャ","mya"],["ミュ","myu"],["ミョ","myo"],["リャ","rya"],["リュ","ryu"],["リョ","ryo"]]},
+
+      {title:"Small ッ — Double Consonants",cards:[["カット","katto"],["ベッド","beddo"],["チケット","chiketto"],["バッグ","baggu"],["サッカー","sakkaa"]]},
+      {title:"Long Vowel Mark ー",cards:[["コーヒー","koohii"],["ケーキ","keeki"],["スーパー","suupaa"],["ゲーム","geemu"],["メール","meeru"]]},
+
+      {title:"Foreign Sounds — F / V",cards:[["ファ","fa"],["フィ","fi"],["フェ","fe"],["フォ","fo"],["ヴァ","va"],["ヴィ","vi"],["ヴ","vu"],["ヴェ","ve"],["ヴォ","vo"]]},
+      {title:"Foreign Sounds — T / D / W",cards:[["ティ","ti"],["ディ","di"],["トゥ","tu"],["ドゥ","du"],["ウィ","wi"],["ウェ","we"],["ウォ","wo"]]},
+      {title:"Foreign Sounds — SH / CH / J",cards:[["シェ","she"],["チェ","che"],["ジェ","je"],["ツァ","tsa"],["ツィ","tsi"],["ツェ","tse"],["ツォ","tso"]]}
     ]
   },
   japanese_basics: {
@@ -260,8 +300,17 @@ const INPUT = {
   spanish_natural:[["¿Qué onda, güey? ¿Todo bien?","What is up, dude? Everything good?"],["¡No manches! Está bien chido.","No way! It is really cool."],["Chale, ni modo.","Dang. Oh well."]],
   spanish_travel:[["¿Me da dos tacos al pastor, por favor?","Can I get two tacos al pastor, please?"],["¿Qué camión me lleva al centro?","Which bus takes me downtown?"],["Aquí está bien, gracias.","Here is fine, thanks."]],
   spanish_foundations:[["Tengo que estudiar hoy.","I have to study today."],["Voy a salir al rato.","I am going out later."],["Creo que sí, pero no sé.","I think so, but I do not know."]],
-  hiragana:[["あお","blue"],["ここ","here"],["すし","sushi"],["ねこ","cat"],["そら","sky"]],
-  katakana:[["アイス","ice cream"],["コーヒー","coffee"],["ホテル","hotel"],["バス","bus"]],
+  hiragana:[
+    ["あお","blue"],["ここ","here"],["すし","sushi"],["ねこ","cat"],["そら","sky"],
+    ["ごはん","gohan — meal / cooked rice"],["がっこう","gakkou — school"],["でんわ","denwa — telephone"],
+    ["だいじょうぶ","daijoubu — okay / all right"],["じかん","jikan — time"],["べんきょう","benkyou — study"],
+    ["ちょっと","chotto — a little / wait a moment"],["きょう","kyou — today"],["りょこう","ryokou — travel / trip"]
+  ],
+  katakana:[
+    ["アイス","aisu — ice cream"],["コーヒー","koohii — coffee"],["ホテル","hoteru — hotel"],["バス","basu — bus"],
+    ["ゲーム","geemu — game"],["バッグ","baggu — bag"],["ベッド","beddo — bed"],["チケット","chiketto — ticket"],
+    ["コンピューター","konpyuutaa — computer"],["フィルム","firumu — film"],["パーティー","paatii — party"],["ジャケット","jaketto — jacket"]
+  ],
   japanese_basics:[["こんにちは。わたしは学生です。","Hello. I am a student."],["すみません。もういちどおねがいします。","Excuse me. One more time, please."],["はじめまして。よろしくおねがいします。","Nice to meet you."]],
   japanese_natural:[["このラーメン、やばい！","This ramen is insanely good!"],["まじで？知らなかった。","Seriously? I did not know."],["今日、めっちゃ暑い。","It is super hot today."]],
   kanji:[["日 月 火 水 木","sun/day, moon/month, fire, water, tree"],["人 口 目","person, mouth, eye"]],
