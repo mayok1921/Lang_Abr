@@ -216,9 +216,15 @@
     .unitActions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
     .checkpointGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 
+
+    .smartWordCard{margin:-4px 0 14px 52px;padding:13px;border-radius:18px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:rgba(255,255,255,.045);border:1px solid var(--border)}
+    .smartWordCard p{margin:4px 0;color:var(--muted);overflow-wrap:anywhere}
+    .pathStep{display:grid;grid-template-columns:38px 1fr 52px;gap:10px;align-items:center;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+    .pathIndex{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:rgba(139,124,255,.18);border:1px solid rgba(139,124,255,.32);font-weight:800}
+
     @media (max-width:540px){
       .brand{font-size:36px}.heroTitle{font-size:24px}.lessonCard{grid-template-columns:38px 1fr 50px}
-      .panel,.heroCard{padding:16px}.btn{padding:13px 15px}.courseStats{grid-template-columns:1fr}.checkpointGrid{grid-template-columns:1fr}
+      .panel,.heroCard{padding:16px}.btn{padding:13px 15px}.courseStats{grid-template-columns:1fr}.checkpointGrid{grid-template-columns:1fr}.smartWordCard{margin-left:0;grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -295,6 +301,61 @@
   <button class="btn secondary full" onclick="editSetup()">Edit Languages & Goals</button>
 </section>
 
+
+
+
+<section id="polishPath" class="screen">
+  <div class="brand"><span>Keon</span></div>
+  <h2>Polish Learning Path</h2>
+
+  <div class="heroCard">
+    <div class="small">Recommended now</div>
+    <div id="plPathNow" class="heroTitle"></div>
+    <p id="plPathReason" class="heroSub"></p>
+    <button id="plPathStart" class="btn full">Continue Recommended Step</button>
+  </div>
+
+  <div class="statsGrid">
+    <div class="statCard"><strong id="plPronPct">0%</strong><span class="small">Pronunciation comfort</span></div>
+    <div class="statCard"><strong id="plBasicsPct">0%</strong><span class="small">Core Polish mastery</span></div>
+    <div class="statCard"><strong id="plFoundPct">0%</strong><span class="small">Grammar foundation</span></div>
+  </div>
+
+  <div class="panel">
+    <h3>Roadmap</h3>
+    <div id="plRoadmap"></div>
+  </div>
+
+  <div class="panel">
+    <h3>How Keon sequences Polish</h3>
+    <p class="small">Learn how Polish sounds → immediately use those sounds in real words → build useful everyday phrases → learn simple sentence patterns and cases gradually → begin Polish I / A1 → continue toward B2.</p>
+    <p class="small">Cases are introduced through sentences first. Keon should not dump large declension tables on you before the patterns make sense in context.</p>
+  </div>
+
+  <button class="btn secondary full" onclick="show('home')">Home</button>
+</section>
+
+<section id="japanesePath" class="screen">
+  <div class="brand"><span>Keon</span></div>
+  <h2>Japanese Learning Path</h2>
+  <div class="heroCard">
+    <div class="small">Recommended now</div>
+    <div id="jpPathNow" class="heroTitle"></div>
+    <p id="jpPathReason" class="heroSub"></p>
+    <button id="jpPathStart" class="btn full">Continue Recommended Step</button>
+  </div>
+  <div class="statsGrid">
+    <div class="statCard"><strong id="jpHiraPct">0%</strong><span class="small">Hiragana comfort</span></div>
+    <div class="statCard"><strong id="jpKataPct">0%</strong><span class="small">Katakana comfort</span></div>
+    <div class="statCard"><strong id="jpKanjiPct">0%</strong><span class="small">Intro kanji mastery</span></div>
+  </div>
+  <div class="panel"><h3>Roadmap</h3><div id="jpRoadmap"></div></div>
+  <div class="panel">
+    <h3>How to use the path</h3>
+    <p class="small">Learn a kana set → practice it → unlock words made from what you know → review cumulatively. Once Hiragana and Katakana feel comfortable, learn a small Intro Kanji set, then begin Japanese I / N5.</p>
+  </div>
+  <button class="btn secondary full" onclick="show('home')">Home</button>
+</section>
 
 <section id="courseCatalog" class="screen">
   <div class="brand"><span>Keon</span></div>

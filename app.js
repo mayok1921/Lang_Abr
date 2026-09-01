@@ -89,6 +89,39 @@ const DATA = {
       ]}
     ]
   },
+  intro_kanji: {
+    language:"ja", name:"Intro Kanji", category:"reading",
+    lessons:[
+      {title:"Set 1 — People & Size",cards:[
+        ["人","ひと / じん / にん","person","あの人は先生です。","That person is a teacher."],
+        ["大","だい / おお","big","大きい犬です。","It is a big dog."],
+        ["小","しょう / ちい","small","小さい店です。","It is a small shop."],
+        ["中","ちゅう / なか","middle / inside","かばんの中に本があります。","There is a book inside the bag."],
+        ["子","こ","child","子どもが公園にいます。","There are children in the park."]
+      ]},
+      {title:"Set 2 — School & Study",cards:[
+        ["学","がく / まな","study / learning","日本語を学びます。","I study Japanese."],
+        ["生","せい / しょう / い","life / student component","わたしは学生です。","I am a student."],
+        ["先","せん / さき","previous / ahead","先生に聞きます。","I ask the teacher."],
+        ["本","ほん / もと","book / origin","この本を読みます。","I read this book."],
+        ["語","ご / かた","language / word","日本語を勉強しています。","I am studying Japanese."]
+      ]},
+      {title:"Set 3 — Time & Nature",cards:[
+        ["日","にち / ひ","day / sun","今日は日曜日です。","Today is Sunday."],
+        ["月","げつ / つき","month / moon","月がきれいです。","The moon is beautiful."],
+        ["年","ねん / とし","year","来年、日本へ行きます。","I will go to Japan next year."],
+        ["山","やま / さん","mountain","山に行きます。","I am going to the mountain."],
+        ["川","かわ / がわ","river","川の近くを歩きます。","I walk near the river."]
+      ]},
+      {title:"Set 4 — Position & Direction",cards:[
+        ["上","うえ / じょう","above / up","机の上にあります。","It is on the desk."],
+        ["下","した / か","below / down","いすの下にあります。","It is under the chair."],
+        ["左","ひだり / さ","left","左に曲がってください。","Please turn left."],
+        ["右","みぎ / う","right","右に駅があります。","The station is on the right."],
+        ["前","まえ / ぜん","front / before","駅の前で会います。","We will meet in front of the station."]
+      ]}
+    ]
+  },
   japanese_natural: {
     language:"ja", name:"Natural Japanese & Slang", category:"conversation",
     lessons:[
@@ -146,6 +179,51 @@ const DATA = {
       {title:"Simple Sentences",cards:[["Mam kawę","","I have coffee","Mam kawę, ale nie mam mleka.","I have coffee, but I do not have milk."],["Chcę wodę","","I want water","Chcę wodę bez gazu.","I want still water."],["Lubię Kraków","","I like Kraków","Bardzo lubię Kraków.","I really like Kraków."],["Mówię trochę po polsku","","I speak a little Polish","Mówię trochę po polsku, ale jeszcze się uczę.","I speak a little Polish, but I am still learning."],["Nie wiem","","I do not know","Nie wiem, może jutro.","I do not know, maybe tomorrow."]]},
       {title:"Gender Patterns",cards:[["kobieta","woman — usually feminine"],["miasto","city — neuter"],["student","student — masculine"],["książka","book — feminine"],["okno","window — neuter"]]},
       {title:"Accusative Patterns",cards:[["Mam kawę","","I have coffee","Mam kawę, ale nie mam mleka.","I have coffee, but I do not have milk."],["Czytam książkę","I am reading a book"],["Lubię Warszawę","I like Warsaw"],["Widzę kobietę","I see a woman"],["Mam bilet","I have a ticket"]]}
+    ]
+  },
+  polish_pre_a1: {
+    language:"pl", name:"Polish Foundations Before A1", category:"grammar",
+    lessons:[
+      {title:"Step 1 — Core Sentence Patterns",cards:[
+        ["Jestem...","","I am...","Jestem studentem.","I am a student."],
+        ["Mam...","","I have...","Mam dzisiaj zajęcia.","I have class today."],
+        ["Chcę...","","I want...","Chcę kawę.","I want coffee."],
+        ["Lubię...","","I like...","Lubię Kraków.","I like Kraków."],
+        ["Idę...","","I am going...","Idę do sklepu.","I am going to the store."],
+        ["Nie mam...","","I do not have...","Nie mam czasu.","I do not have time."]
+      ]},
+      {title:"Step 2 — Gender & Agreement",cards:[
+        ["dobry / dobra / dobre","","good; masculine / feminine / neuter","To jest dobra kawa.","This is good coffee."],
+        ["nowy / nowa / nowe","","new; masculine / feminine / neuter","Mam nowy telefon.","I have a new phone."],
+        ["mały / mała / małe","","small; masculine / feminine / neuter","To jest małe mieszkanie.","This is a small apartment."],
+        ["zmęczony / zmęczona","","tired; male / female speaker","Jestem zmęczony.","I am tired."],
+        ["gotowy / gotowa","","ready; male / female speaker","Jestem gotowy.","I am ready."],
+        ["Polak / Polka","","Polish man / Polish woman","Ona jest Polką.","She is Polish."]
+      ]},
+      {title:"Step 3 — Accusative Basics",cards:[
+        ["Mam kawę.","","I have coffee.","Mam dużą kawę.","I have a large coffee."],
+        ["Lubię muzykę.","","I like music.","Lubię polską muzykę.","I like Polish music."],
+        ["Widzę kolegę.","","I see my male friend/classmate.","Widzę kolegę przed biblioteką.","I see my friend in front of the library."],
+        ["Kupuję bilet.","","I am buying a ticket.","Kupuję bilet do Krakowa.","I am buying a ticket to Kraków."],
+        ["Czytam książkę.","","I am reading a book.","Czytam nową książkę.","I am reading a new book."],
+        ["Mam pytanie.","","I have a question.","Mam jedno pytanie.","I have one question."]
+      ]},
+      {title:"Step 4 — Genitive Basics",cards:[
+        ["Nie mam czasu.","","I do not have time.","Dzisiaj nie mam czasu.","I do not have time today."],
+        ["Nie ma wody.","","there is no water.","W pokoju nie ma wody.","There is no water in the room."],
+        ["Szukam sklepu.","","I am looking for a store.","Szukam małego sklepu.","I am looking for a small store."],
+        ["Potrzebuję pomocy.","","I need help.","Potrzebuję twojej pomocy.","I need your help."],
+        ["dużo pracy","","a lot of work","Mam dużo pracy.","I have a lot of work."],
+        ["trochę czasu","","a little time","Mam trochę czasu.","I have a little time."]
+      ]},
+      {title:"Step 5 — Locative & Instrumental Preview",cards:[
+        ["w Polsce","","in Poland","Studiuję w Polsce.","I study in Poland."],
+        ["w Krakowie","","in Kraków","Mieszkam w Krakowie.","I live in Kraków."],
+        ["na uczelni","","at university","Jestem na uczelni.","I am at university."],
+        ["Jestem studentem.","","I am a student; instrumental after być","Jestem studentem inżynierii.","I am an engineering student."],
+        ["z kolegą","","with a male friend","Pracuję z kolegą.","I work with a friend."],
+        ["z rodziną","","with family","Jestem z rodziną.","I am with family."]
+      ]}
     ]
   },
   polish_natural: {
@@ -328,6 +406,7 @@ const SUBJECTS = {
   ja:[
     ["hiragana","あ Hiragana","Learn and trace the basic Japanese syllabary."],
     ["katakana","カ Katakana","Learn the script used heavily for loanwords."],
+    ["intro_kanji","漢 Intro Kanji","Build a small kanji foundation before Japanese I / N5."],
     ["japanese_basics","💬 Japanese Basics","Greetings, introductions, and useful phrases."],
     ["japanese_natural","🗣️ Natural Japanese","Everyday expressions, reactions, and slang in context."],
     ["kanji","日 Kanji","Build reading, recognition, meaning, and context."]
@@ -461,6 +540,7 @@ const HOME_ACTIONS = {
     { key: "recommended", eyebrow: "Not sure?", title: "Recommend for me", desc: "Let Keon choose your next lesson." }
   ],
   ja: [
+    { key: "japanese_path", eyebrow: "Recommended", title: "Japanese Learning Path", desc: "Hiragana → Katakana → Intro Kanji → N5 → N2." },
     { key: "courses", eyebrow: "College track", title: "Course Catalog", desc: "Follow a structured semester-by-semester path with units, midterms, and finals." },
     { key: "hiragana", eyebrow: "Recommended for beginners", title: "Start with Hiragana", desc: "Learn the main Japanese characters first." },
     { key: "katakana", eyebrow: "Writing system", title: "Start with Katakana", desc: "Good for loanwords and signs." },
@@ -468,6 +548,7 @@ const HOME_ACTIONS = {
     { key: "recommended", eyebrow: "Not sure?", title: "Recommend for me", desc: "Let Keon choose your next lesson." }
   ],
   pl: [
+    { key: "polish_path", eyebrow: "Recommended", title: "Polish Learning Path", desc: "Pronunciation → Core Polish → Foundations → A1 → B2." },
     { key: "courses", eyebrow: "College track", title: "Course Catalog", desc: "Follow a structured semester-by-semester path with units, midterms, and finals." },
     { key: "polish_pronunciation", eyebrow: "Recommended for beginners", title: "Pronunciation First", desc: "Start with letters and sound patterns." },
     { key: "polish_basics", eyebrow: "Useful Polish", title: "Basic Phrases", desc: "Greetings and everyday words." },
@@ -493,6 +574,8 @@ function getLanguageStats(lang){
 function openHomeAction(actionKey){
   if(actionKey === "recommended"){ startRecommended(); return; }
   if(actionKey === "courses"){ showCourseCatalog(); return; }
+  if(actionKey === "japanese_path"){ showJapanesePath(); return; }
+  if(actionKey === "polish_path"){ showPolishPath(); return; }
   openSubject(actionKey);
 }
 
@@ -928,6 +1011,43 @@ function renderLessons(){
       openPreview();
     };
     list.appendChild(row);
+    if((subject==="hiragana" || subject==="katakana") && lessonType==="new"){
+      const words=kanaWords(subject,i);
+      if(words.length){
+        const learned=kanaLessonMastery(subject,i)>=60;
+        const practice=document.createElement("div");
+        practice.className="smartWordCard";
+        practice.innerHTML=`
+          <div>
+            <div class="courseNumber">${learned?"USE WHAT YOU KNOW":"UNLOCKS AT 60% MASTERY"}</div>
+            <strong>Words from this set</strong>
+            <p>${words.map(w=>w[0]).join(" • ")}</p>
+            <p class="small">${learned?"Try reading these before revealing pronunciation and meaning.":"Practice the kana set a little more first."}</p>
+          </div>
+          <button class="btn secondary smartWordsBtn" ${learned?"":"disabled"}>${learned?"Practice Words":"Locked"}</button>`;
+        if(learned) practice.querySelector(".smartWordsBtn").onclick=()=>openKanaWordPractice(subject,i);
+        list.appendChild(practice);
+      }
+    }
+
+    if((subject==="polish_pronunciation" || subject==="polish_basics") && lessonType==="new"){
+      const words=polishWords(subject,i);
+      if(words.length){
+        const learned=polishLessonMastery(subject,i)>=60;
+        const practice=document.createElement("div");
+        practice.className="smartWordCard";
+        practice.innerHTML=`
+          <div>
+            <div class="courseNumber">${learned?"USE IT IN CONTEXT":"UNLOCKS AT 60% MASTERY"}</div>
+            <strong>Real Polish from this step</strong>
+            <p>${words.map(w=>w[0]).join(" • ")}</p>
+            <p class="small">${learned?"Try understanding these first, then reveal meaning and context.":"Get a little more comfortable with this lesson first."}</p>
+          </div>
+          <button class="btn secondary smartPolishBtn" ${learned?"":"disabled"}>${learned?"Practice in Context":"Locked"}</button>`;
+        if(learned) practice.querySelector(".smartPolishBtn").onclick=()=>openPolishWordPractice(subject,i);
+        list.appendChild(practice);
+      }
+    }
   });
 }
 function openPreview(){
@@ -968,6 +1088,31 @@ function openPreview(){
 }
 
 function getRecommendation(){
+  if(activeLanguage==="ja"){
+    const path=japanesePathStatus();
+    if(path.stage==="hiragana" || path.stage==="katakana"){
+      const i=currentKanaStep(path.stage);
+      return {subject:path.stage,lessonIndex:i,title:`${DATA[path.stage].name}: ${DATA[path.stage].lessons[i].title}`,reason:path.reason};
+    }
+    if(path.stage==="intro_kanji"){
+      let i=0;
+      for(let n=0;n<DATA.intro_kanji.lessons.length;n++){
+        if(averageMastery(DATA.intro_kanji.lessons[n].cards,"intro_kanji")<75){i=n;break;}
+      }
+      return {subject:"intro_kanji",lessonIndex:i,title:`Intro Kanji: ${DATA.intro_kanji.lessons[i].title}`,reason:path.reason};
+    }
+  }
+  if(activeLanguage==="pl"){
+    const path=polishPathStatus();
+    if(path.stage==="polish_pronunciation" || path.stage==="polish_basics" || path.stage==="polish_pre_a1"){
+      const s=path.stage;
+      let i=0;
+      for(let n=0;n<DATA[s].lessons.length;n++){
+        if(averageMastery(DATA[s].lessons[n].cards,s)<75){i=n;break;}
+      }
+      return {subject:s,lessonIndex:i,title:`${DATA[s].name}: ${DATA[s].lessons[i].title}`,reason:path.reason};
+    }
+  }
   const level=settings.levels?.[activeLanguage] || "none";
   const goals=settings.goals || ["conversation"];
   const options=SUBJECTS[activeLanguage].map(([key])=>key);
