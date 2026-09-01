@@ -1,5 +1,142 @@
 const DATA = {
 
+  mandarin_pronunciation: {
+    language:"zh", name:"Mandarin Pinyin & Tones", category:"pronunciation",
+    lessons:[
+      {title:"Four Tones + Neutral",cards:[
+        ["mā","mā","mother; 1st tone","妈妈 māma","mom"],
+        ["má","má","hemp; 2nd tone","麻 má","hemp"],
+        ["mǎ","mǎ","horse; 3rd tone","马 mǎ","horse"],
+        ["mà","mà","scold; 4th tone","骂 mà","to scold"],
+        ["ma","ma","neutral tone particle","好吗？ hǎo ma?","okay? / is it good?"]
+      ]},
+      {title:"High-Value Initials",cards:[
+        ["j / q / x","","palatal consonants","谢谢 xièxie","thank you"],
+        ["zh / ch / sh","","retroflex consonants","中国 Zhōngguó","China"],
+        ["z / c / s","","dental-alveolar sounds","再见 zàijiàn","goodbye"],
+        ["r","","Mandarin r sound","人 rén","person"]
+      ]},
+      {title:"Finals & Common Vowels",cards:[
+        ["-an / -ang","","nasal final contrast","三 sān / 桑 sāng","three / mulberry"],
+        ["-en / -eng","","nasal final contrast","人 rén / 冷 lěng","person / cold"],
+        ["ü","","front rounded vowel","女 nǚ","woman"],
+        ["-iao / -ian","","common finals","小 xiǎo / 先 xiān","small / first"]
+      ]}
+    ]
+  },
+  mandarin_core: {
+    language:"zh", name:"Core Mandarin", category:"conversation",
+    lessons:[
+      {title:"Greetings & Essentials",cards:[
+        ["你好","nǐ hǎo","hello","你好！很高兴认识你。","Hello! Nice to meet you."],
+        ["谢谢","xièxie","thank you","谢谢你的帮助。","Thank you for your help."],
+        ["对不起","duìbuqǐ","sorry","对不起，我不明白。","Sorry, I don't understand."],
+        ["没关系","méiguānxi","it's okay / no problem","没关系。","No problem."]
+      ]},
+      {title:"Useful Questions",cards:[
+        ["这是什么？","zhè shì shénme?","what is this?","这是什么？","What is this?"],
+        ["在哪里？","zài nǎlǐ?","where is it?","洗手间在哪里？","Where is the bathroom?"],
+        ["多少钱？","duōshao qián?","how much?","这个多少钱？","How much is this?"],
+        ["我不明白。","wǒ bù míngbai","I don't understand.","对不起，我不明白。","Sorry, I don't understand."],
+        ["请说慢一点。","qǐng shuō màn yìdiǎn","please speak more slowly.","请说慢一点。","Please speak more slowly."]
+      ]},
+      {title:"Simple Sentence Building",cards:[
+        ["我是学生。","wǒ shì xuésheng","I am a student.","我是工程学生。","I am an engineering student."],
+        ["我喜欢...","wǒ xǐhuan...","I like...","我喜欢咖啡。","I like coffee."],
+        ["我想要...","wǒ xiǎng yào...","I want...","我想要一杯咖啡。","I want a cup of coffee."],
+        ["我在学中文。","wǒ zài xué Zhōngwén","I am studying Chinese.","我每天都学中文。","I study Chinese every day."]
+      ]}
+    ]
+  },
+  mandarin_characters: {
+    language:"zh", name:"Mandarin Character Foundations", category:"reading",
+    lessons:[
+      {title:"High-Frequency Characters 1",cards:[
+        ["人","rén","person","一个人","one person"],
+        ["大","dà","big","很大","very big"],
+        ["小","xiǎo","small","很小","very small"],
+        ["中","zhōng","middle / China component","中国","China"],
+        ["国","guó","country","中国","China"]
+      ]},
+      {title:"High-Frequency Characters 2",cards:[
+        ["我","wǒ","I / me","我是学生。","I am a student."],
+        ["你","nǐ","you","你好吗？","How are you?"],
+        ["他","tā","he","他是老师。","He is a teacher."],
+        ["她","tā","she","她是学生。","She is a student."],
+        ["们","men","plural marker for people","我们","we / us"]
+      ]}
+    ]
+  },
+
+  cantonese_pronunciation: {
+    language:"yue", name:"Cantonese Jyutping & Tones", category:"pronunciation",
+    lessons:[
+      {title:"Six Tone Categories",cards:[
+        ["si1","si1","high level","詩 si1","poem"],
+        ["si2","si2","high rising","史 si2","history"],
+        ["si3","si3","mid level","試 si3","to try / test"],
+        ["si4","si4","low falling","時 si4","time"],
+        ["si5","si5","low rising","市 si5","city / market"],
+        ["si6","si6","low level","事 si6","matter / thing"]
+      ]},
+      {title:"Useful Initials & Finals",cards:[
+        ["gw / kw","","common Cantonese initials","廣東 gwong2 dung1","Guangdong"],
+        ["ng","","can begin a syllable","我 ngo5","I / me"],
+        ["-aa / -oe / -eoi","","important vowel finals","佢 keoi5","he / she"],
+        ["-p / -t / -k","","checked final consonants","食 sik6","to eat"]
+      ]},
+      {title:"Common Sound Patterns",cards:[
+        ["nei5","","you","你好 nei5 hou2","hello"],
+        ["m4","","not","唔該 m4 goi1","please / thank you"],
+        ["hou2","","good","好好 hou2 hou2","very good"],
+        ["ge3","","possessive / descriptive particle","我嘅 ngo5 ge3","mine / my"]
+      ]}
+    ]
+  },
+  cantonese_core: {
+    language:"yue", name:"Core Cantonese", category:"conversation",
+    lessons:[
+      {title:"Greetings & Essentials",cards:[
+        ["你好","nei5 hou2","hello","你好！","Hello!"],
+        ["唔該","m4 goi1","please / thank you for a service","唔該晒。","Thanks a lot."],
+        ["多謝","do1 ze6","thank you for a gift / favor","多謝你。","Thank you."],
+        ["對唔住","deoi3 m4 zyu6","sorry","對唔住，我唔明。","Sorry, I don't understand."]
+      ]},
+      {title:"Useful Questions",cards:[
+        ["呢個係咩？","ni1 go3 hai6 me1?","what is this?","呢個係咩？","What is this?"],
+        ["喺邊度？","hai2 bin1 dou6?","where is it?","洗手間喺邊度？","Where is the bathroom?"],
+        ["幾多錢？","gei2 do1 cin2?","how much?","呢個幾多錢？","How much is this?"],
+        ["我唔明。","ngo5 m4 ming4","I don't understand.","對唔住，我唔明。","Sorry, I don't understand."],
+        ["可唔可以講慢啲？","ho2 m4 ho2 ji5 gong2 maan6 di1?","can you speak more slowly?","可唔可以講慢啲？","Can you speak more slowly?"]
+      ]},
+      {title:"Simple Sentence Building",cards:[
+        ["我係學生。","ngo5 hai6 hok6 saang1","I am a student.","我係工程學生。","I am an engineering student."],
+        ["我鍾意...","ngo5 zung1 ji3...","I like...","我鍾意咖啡。","I like coffee."],
+        ["我想要...","ngo5 soeng2 jiu3...","I want...","我想要杯咖啡。","I want a cup of coffee."],
+        ["我學緊廣東話。","ngo5 hok6 gan2 gwong2 dung1 waa2","I am studying Cantonese.","我每日都學廣東話。","I study Cantonese every day."]
+      ]}
+    ]
+  },
+  cantonese_characters: {
+    language:"yue", name:"Cantonese Character Foundations", category:"reading",
+    lessons:[
+      {title:"High-Frequency Characters",cards:[
+        ["我","ngo5","I / me","我係學生。","I am a student."],
+        ["你","nei5","you","你好。","Hello."],
+        ["好","hou2","good","好好。","Very good."],
+        ["人","jan4","person","香港人","Hong Kong person"],
+        ["食","sik6","eat","食飯","eat a meal"]
+      ]},
+      {title:"Cantonese-Specific Everyday Characters",cards:[
+        ["唔","m4","not","我唔明。","I don't understand."],
+        ["嘅","ge3","possessive / descriptive particle","我嘅朋友","my friend"],
+        ["喺","hai2","at / located at","喺香港","in Hong Kong"],
+        ["佢","keoi5","he / she / they singular","佢係學生。","He/She is a student."],
+        ["啲","di1","some / plural-ish classifier","慢啲","a little slower"]
+      ]}
+    ]
+  },
+
   korean_hangul: {
     language:"ko", name:"Hangul Foundations", category:"reading",
     lessons:[
@@ -469,7 +606,13 @@ const INPUT = {
   vietnamese_core:[["Tôi là sinh viên.","I am a student."],["Tôi muốn ăn phở.","I want to eat phở."]],
   filipino_pronunciation:[["Salamat po.","Thank you, politely."],["Kumusta ka?","How are you?"]],
   filipino_core:[["Estudyante ako.","I am a student."],["Gusto ko ng kape.","I want coffee."]],
-  filipino_grammar:[["Pupunta ako sa paaralan.","I am going to school."],["Kumain ako.","I ate."]]
+  filipino_grammar:[["Pupunta ako sa paaralan.","I am going to school."],["Kumain ako.","I ate."]],
+  mandarin_pronunciation:[["你好","Hello"],["谢谢","Thank you"],["多少钱？","How much?"]],
+  mandarin_core:[["我是学生。","I am a student."],["我在学中文。","I am studying Chinese."]],
+  mandarin_characters:[["中国人","Chinese person"],["我们","we / us"]],
+  cantonese_pronunciation:[["你好","Hello"],["唔該","Please / thank you"],["幾多錢？","How much?"]],
+  cantonese_core:[["我係學生。","I am a student."],["我學緊廣東話。","I am studying Cantonese."]],
+  cantonese_characters:[["我唔明。","I don't understand."],["喺香港","in Hong Kong"]]
 };
 
 Object.assign(INPUT, {"ja_n5_course":[["今日は大学へ行きます。九時から日本語の授業があります。","Today I am going to university. I have Japanese class from nine."],["昨日、友達とラーメンを食べました。とてもおいしかったです。","Yesterday I ate ramen with a friend. It was very delicious."]],"ja_n4_course":[["時間があったら、駅の近くの本屋へ行くつもりです。","If I have time, I plan to go to the bookstore near the station."],["先生に作文を直してもらったので、間違いがよく分かりました。","I had my teacher correct my essay, so I understood my mistakes well."]],"ja_n3_course":[["最近、日本語のニュースが少し分かるようになりました。一方で、速い会話はまだ難しいです。","Recently I have become able to understand some Japanese news. On the other hand, fast conversation is still difficult."],["天気予報によると、明日は雨らしいです。そのため、イベントは中止になるかもしれません。","According to the forecast, apparently it will rain tomorrow. Therefore, the event may be canceled."]],"ja_n2_course":[["技術の発展に伴って働き方も変化している。しかし、便利になったからといって、すべての問題が解決するわけではない。","As technology develops, ways of working are also changing. However, becoming more convenient does not mean every problem is solved."],["調査結果に基づいて判断する必要があるものの、数字だけでは分からない要因も考慮すべきだ。","Although decisions need to be based on survey results, factors that numbers alone cannot reveal should also be considered."]],"pl_a1_course":[["Mam dziś zajęcia o dziewiątej. Po zajęciach idę do biblioteki.","I have class at nine today. After class I am going to the library."],["Poproszę kawę i wodę. Ile to kosztuje?","I would like coffee and water. How much does it cost?"]],"pl_a2_course":[["Wczoraj byłem na uczelni do późna, bo musiałem skończyć projekt.","Yesterday I was at university until late because I had to finish a project."],["W weekend pojadę do Warszawy i spotkam się z kolegą.","On the weekend I will go to Warsaw and meet a friend."]],"pl_b1_course":[["Mimo że projekt był trudny, udało nam się skończyć go przed terminem.","Although the project was difficult, we managed to finish it before the deadline."],["Moim zdaniem to rozwiązanie jest dobre, ale nie do końca zgadzam się z założeniami.","In my opinion this solution is good, but I do not entirely agree with the assumptions."]],"pl_b2_course":[["Biorąc pod uwagę wyniki badań, można zauważyć, że nowe podejście poprawiło efektywność.","Taking the research results into account, one can observe that the new approach improved efficiency."],["Należy podkreślić, że są to wyniki wstępne; niemniej jednak wskazują one wyraźny trend.","It should be emphasized that these are preliminary results; nevertheless, they indicate a clear trend."]],"es_a1_course":[["Hoy tengo clase a las nueve. Después voy por unos tacos con un amigo.","Today I have class at nine. Afterwards I am going to get some tacos with a friend."],["¿Me da una botella de agua, por favor? Es para llevar.","Can I get a bottle of water, please? It is to go."]],"es_a2_course":[["Ayer fui al centro y compré un boleto. Había mucha gente y hacía calor.","Yesterday I went downtown and bought a ticket. There were many people and it was hot."],["Al rato voy a estudiar. Ahorita estoy terminando de comer.","Later I am going to study. Right now I am finishing eating."]],"es_b1_course":[["Aunque estaba cansado, terminé el reporte para que mi equipo pudiera revisarlo.","Although I was tired, I finished the report so my team could review it."],["La neta, pensé que el examen iba a estar más fácil, pero estuvo cañón.","Honestly, I thought the exam was going to be easier, but it was really tough."]],"es_b2_course":[["Tomando en cuenta el costo y el desempeño, se puede concluir que la segunda opción es más viable.","Taking cost and performance into account, it can be concluded that the second option is more feasible."],["A pesar de que los resultados son prometedores, cabe señalar que todavía falta validar el método.","Although the results are promising, it is worth noting that the method still needs to be validated."]]});
@@ -512,6 +655,16 @@ const SUBJECTS = {
     ["filipino_pronunciation","🔊 Filipino Pronunciation","Core sound patterns and politeness markers."],
     ["filipino_core","💬 Core Filipino (Tagalog)","Useful everyday phrases and sentence building."],
     ["filipino_grammar","🧩 Tagalog Grammar Foundations","Learn ang/ng/sa and verb focus gently through context."]
+  ],
+  zh:[
+    ["mandarin_pronunciation","🔊 Mandarin Pinyin & Tones","Learn Pinyin, tones, and high-value sound contrasts."],
+    ["mandarin_core","💬 Core Mandarin","Useful phrases, questions, and simple sentence building."],
+    ["mandarin_characters","字 Character Foundations","Build recognition of high-frequency Chinese characters."]
+  ],
+  yue:[
+    ["cantonese_pronunciation","🔊 Cantonese Jyutping & Tones","Learn Jyutping and the six main tone categories."],
+    ["cantonese_core","💬 Core Cantonese","Useful Cantonese phrases and sentence building."],
+    ["cantonese_characters","字 Cantonese Character Foundations","Learn high-frequency and Cantonese-specific characters."]
   ]
 };
 
@@ -557,6 +710,20 @@ const PLACEMENT = {
     {q:"What does Hindi ko alam mean?",choices:["I don't know","I like it","I am here","Let's eat"],answer:"I don't know"},
     {q:"What does Magkano ito? mean?",choices:["How much is this?","Where is this?","Who is this?","What is this?"],answer:"How much is this?"},
     {q:"What is po commonly used for?",choices:["Politeness / respect","Past tense","Plural only","Negation"],answer:"Politeness / respect"}
+  ],
+  zh:[
+    {q:"What does 你好 mean?",choices:["Hello","Thank you","Goodbye","Water"],answer:"Hello"},
+    {q:"What does 谢谢 mean?",choices:["Thank you","Sorry","Yes","Where?"],answer:"Thank you"},
+    {q:"How many main lexical tones does standard Mandarin usually teach?",choices:["4 plus neutral","2","6","9"],answer:"4 plus neutral"},
+    {q:"What does 多少钱？ mean?",choices:["How much?","Where is it?","Who is it?","What time?"],answer:"How much?"},
+    {q:"What does 我不明白 mean?",choices:["I don't understand","I am hungry","I am tired","I agree"],answer:"I don't understand"}
+  ],
+  yue:[
+    {q:"What does 你好 mean in Cantonese?",choices:["Hello","Thank you","Goodbye","Water"],answer:"Hello"},
+    {q:"What does 唔該 commonly mean?",choices:["Please / thanks for a service","Good night","How much?","No"],answer:"Please / thanks for a service"},
+    {q:"What romanization system does Keon use for Cantonese?",choices:["Jyutping","Pinyin","Romaji","Hangul"],answer:"Jyutping"},
+    {q:"What does 幾多錢？ mean?",choices:["How much?","Where is it?","Who is it?","What time?"],answer:"How much?"},
+    {q:"What does 我唔明 mean?",choices:["I don't understand","I like it","I am here","Let's eat"],answer:"I don't understand"}
   ]
 };
 
@@ -569,7 +736,9 @@ const LANGUAGE_META = {
   es:{label:"Mexican Spanish",home:"🇲🇽 Mexican Spanish",defaultSubject:"spanish_basics"},
   ko:{label:"Korean",home:"🇰🇷 Korean",defaultSubject:"korean_hangul"},
   vi:{label:"Vietnamese",home:"🇻🇳 Vietnamese",defaultSubject:"vietnamese_pronunciation"},
-  tl:{label:"Filipino (Tagalog)",home:"🇵🇭 Filipino (Tagalog)",defaultSubject:"filipino_core"}
+  tl:{label:"Filipino (Tagalog)",home:"🇵🇭 Filipino (Tagalog)",defaultSubject:"filipino_core"},
+  zh:{label:"Mandarin Chinese",home:"🇨🇳 Mandarin",defaultSubject:"mandarin_pronunciation"},
+  yue:{label:"Cantonese",home:"🇭🇰 Cantonese",defaultSubject:"cantonese_pronunciation"}
 };
 function languageLabel(lang){ return LANGUAGE_META[lang]?.label || lang; }
 function languageHomeLabel(lang){ return LANGUAGE_META[lang]?.home || lang; }
@@ -682,6 +851,18 @@ const HOME_ACTIONS = {
     { key:"filipino_core", eyebrow:"Start communicating", title:"Core Filipino", desc:"Useful everyday phrases from the beginning." },
     { key:"filipino_grammar", eyebrow:"Grammar", title:"Tagalog Foundations", desc:"Learn ang/ng/sa and verb focus gradually." },
     { key:"recommended", eyebrow:"Not sure?", title:"Recommend for me", desc:"Let Keon choose your next lesson." }
+  ],
+  zh:[
+    {key:"mandarin_path",eyebrow:"Recommended",title:"Mandarin Learning Path",desc:"Pinyin & tones → core Mandarin → characters → beginner expansion."},
+    {key:"mandarin_pronunciation",eyebrow:"Start here",title:"Pinyin & Tones",desc:"Build accurate pronunciation before heavy character study."},
+    {key:"mandarin_core",eyebrow:"Useful Mandarin",title:"Core Phrases",desc:"Greetings, questions, and simple sentences."},
+    {key:"recommended",eyebrow:"Not sure?",title:"Recommend for me",desc:"Let Keon choose your next lesson."}
+  ],
+  yue:[
+    {key:"cantonese_path",eyebrow:"Recommended",title:"Cantonese Learning Path",desc:"Jyutping & tones → core Cantonese → characters → beginner expansion."},
+    {key:"cantonese_pronunciation",eyebrow:"Start here",title:"Jyutping & Tones",desc:"Train Cantonese sounds and tone categories first."},
+    {key:"cantonese_core",eyebrow:"Useful Cantonese",title:"Core Phrases",desc:"Greetings, questions, and simple sentences."},
+    {key:"recommended",eyebrow:"Not sure?",title:"Recommend for me",desc:"Let Keon choose your next lesson."}
   ]
 };
 
@@ -707,6 +888,8 @@ function openHomeAction(actionKey){
   if(actionKey === "korean_path"){ showNewLanguagePath("ko"); return; }
   if(actionKey === "vietnamese_path"){ showNewLanguagePath("vi"); return; }
   if(actionKey === "filipino_path"){ showNewLanguagePath("tl"); return; }
+  if(actionKey === "mandarin_path"){ showNewLanguagePath("zh"); return; }
+  if(actionKey === "cantonese_path"){ showNewLanguagePath("yue"); return; }
   openSubject(actionKey);
 }
 
@@ -797,6 +980,8 @@ function renderSetup(){
   document.getElementById("langKo").classList.toggle("selected",setupLanguages.includes("ko"));
   document.getElementById("langVi").classList.toggle("selected",setupLanguages.includes("vi"));
   document.getElementById("langTl").classList.toggle("selected",setupLanguages.includes("tl"));
+  document.getElementById("langZh").classList.toggle("selected",setupLanguages.includes("zh"));
+  document.getElementById("langYue").classList.toggle("selected",setupLanguages.includes("yue"));
 
   document.querySelectorAll(".goalChip").forEach(btn=>{
     btn.classList.toggle("active",setupGoals.includes(btn.dataset.goal));
@@ -1112,6 +1297,8 @@ function speechLocaleForLanguage(lang){
   if(lang==="ko") return "ko-KR";
   if(lang==="vi") return "vi-VN";
   if(lang==="tl") return "fil-PH";
+  if(lang==="zh") return "zh-CN";
+  if(lang==="yue") return "yue-HK";
   return "en-US";
 }
 function subjectLanguage(subjectKey){
@@ -1373,6 +1560,20 @@ function simpleSubjectComfort(subjectKey){
   return Math.round(lessons.reduce((s,l)=>s+averageMastery(l.cards,subjectKey),0)/lessons.length);
 }
 function newLanguagePathStatus(lang){
+  if(lang==="zh"){
+    const a=simpleSubjectComfort("mandarin_pronunciation"),b=simpleSubjectComfort("mandarin_core"),c=simpleSubjectComfort("mandarin_characters");
+    if(a<75) return {stage:"mandarin_pronunciation",label:"Mandarin Pinyin & Tones",reason:"Build tone and Pinyin accuracy first while hearing real Mandarin."};
+    if(b<70) return {stage:"mandarin_core",label:"Core Mandarin",reason:"Use the sound system immediately in useful phrases and simple sentences."};
+    if(c<65) return {stage:"mandarin_characters",label:"Character Foundations",reason:"Now add a small high-frequency character foundation without abandoning pronunciation."};
+    return {stage:"mandarin_core",label:"Beginner Mandarin Expansion",reason:"Your beginner foundation is ready for broader vocabulary, grammar, listening, and characters."};
+  }
+  if(lang==="yue"){
+    const a=simpleSubjectComfort("cantonese_pronunciation"),b=simpleSubjectComfort("cantonese_core"),c=simpleSubjectComfort("cantonese_characters");
+    if(a<75) return {stage:"cantonese_pronunciation",label:"Cantonese Jyutping & Tones",reason:"Build Jyutping and tone awareness first because sound distinctions carry meaning."};
+    if(b<70) return {stage:"cantonese_core",label:"Core Cantonese",reason:"Use those sounds in practical phrases and simple sentences."};
+    if(c<65) return {stage:"cantonese_characters",label:"Cantonese Character Foundations",reason:"Now learn high-frequency and Cantonese-specific characters used in everyday writing."};
+    return {stage:"cantonese_core",label:"Beginner Cantonese Expansion",reason:"Your beginner foundation is ready for broader vocabulary, listening, and grammar."};
+  }
   if(lang==="ko"){
     const a=simpleSubjectComfort("korean_hangul"),b=simpleSubjectComfort("korean_core"),c=simpleSubjectComfort("korean_pronunciation");
     if(a<80) return {stage:"korean_hangul",label:"Hangul Foundations",reason:"Learn Hangul through syllable blocks and real words before relying on romanization."};
@@ -1401,6 +1602,8 @@ function showNewLanguagePath(lang){
   document.getElementById("newPathReason").textContent=s.reason;
   document.getElementById("newPathStart").onclick=()=>openSubject(s.stage);
   let steps=[];
+  if(lang==="zh") steps=[["Pinyin & tones",simpleSubjectComfort("mandarin_pronunciation"),75],["Core Mandarin",simpleSubjectComfort("mandarin_core"),70],["Character foundations",simpleSubjectComfort("mandarin_characters"),65],["Beginner Mandarin",0,101],["Intermediate Mandarin",0,101],["Advanced Mandarin",0,101]];
+  if(lang==="yue") steps=[["Jyutping & tones",simpleSubjectComfort("cantonese_pronunciation"),75],["Core Cantonese",simpleSubjectComfort("cantonese_core"),70],["Character foundations",simpleSubjectComfort("cantonese_characters"),65],["Beginner Cantonese",0,101],["Intermediate Cantonese",0,101],["Advanced Cantonese",0,101]];
   if(lang==="ko") steps=[["Hangul + real words",simpleSubjectComfort("korean_hangul"),80],["Core Korean",simpleSubjectComfort("korean_core"),70],["Pronunciation rules",simpleSubjectComfort("korean_pronunciation"),65],["Beginner Korean",0,101],["Intermediate Korean",0,101],["Advanced Korean",0,101]];
   if(lang==="vi") steps=[["Sounds & tones",simpleSubjectComfort("vietnamese_pronunciation"),75],["Core Vietnamese",simpleSubjectComfort("vietnamese_core"),75],["Beginner Vietnamese",0,101],["Intermediate Vietnamese",0,101],["Advanced Vietnamese",0,101]];
   if(lang==="tl") steps=[["Core Filipino",simpleSubjectComfort("filipino_core"),70],["Pronunciation",simpleSubjectComfort("filipino_pronunciation"),65],["Tagalog grammar foundations",simpleSubjectComfort("filipino_grammar"),65],["Beginner Filipino",0,101],["Intermediate Filipino",0,101],["Advanced Filipino",0,101]];
@@ -1435,7 +1638,7 @@ function getRecommendation(){
       return {subject:s,lessonIndex:i,title:`${DATA[s].name}: ${DATA[s].lessons[i].title}`,reason:path.reason};
     }
   }
-  if(["ko","vi","tl"].includes(activeLanguage)){
+  if(["ko","vi","tl","zh","yue"].includes(activeLanguage)){
     const path=newLanguagePathStatus(activeLanguage),s=path.stage;
     let i=0;
     for(let n=0;n<DATA[s].lessons.length;n++){ if(averageMastery(DATA[s].lessons[n].cards,s)<75){i=n;break;} }
