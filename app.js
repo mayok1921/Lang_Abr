@@ -1,4 +1,68 @@
 const DATA = {
+
+  korean_hangul: {
+    language:"ko", name:"Hangul Foundations", category:"reading",
+    lessons:[
+      {title:"Basic Vowels",cards:[["ㅏ","a","a sound","아","a syllable"],["ㅓ","eo","eo sound","어","eo syllable"],["ㅗ","o","o sound","오","o syllable"],["ㅜ","u","u sound","우","u syllable"],["ㅡ","eu","eu sound","으","eu syllable"],["ㅣ","i","i sound","이","i syllable"]]},
+      {title:"Core Consonants",cards:[["ㄱ","g/k","g or k-like sound","가","ga"],["ㄴ","n","n sound","나","na"],["ㄷ","d/t","d or t-like sound","다","da"],["ㄹ","r/l","r/l-like sound","라","ra"],["ㅁ","m","m sound","마","ma"],["ㅂ","b/p","b or p-like sound","바","ba"],["ㅅ","s","s sound","사","sa"],["ㅇ","silent/ng","silent initially; ng finally","아 / 강","a / gang"]]},
+      {title:"More Consonants",cards:[["ㅈ","j","j sound","자","ja"],["ㅊ","ch","ch sound","차","cha"],["ㅋ","k","strong k","카","ka"],["ㅌ","t","strong t","타","ta"],["ㅍ","p","strong p","파","pa"],["ㅎ","h","h sound","하","ha"]]},
+      {title:"Syllable Blocks",cards:[["가","ga","ga","가다","to go"],["나","na","na","나라","country"],["마","ma","ma","마음","heart / mind"],["한","han","han","한국","Korea"],["국","guk","guk","한국","Korea"]]},
+      {title:"Batchim Preview",cards:[["한","han","final ㄴ","한국","Korea"],["밥","bap","final ㅂ","밥","rice / meal"],["집","jip","final ㅂ","집","house"],["물","mul","final ㄹ","물","water"],["한국","hanguk","final ㄱ","한국","Korea"]]}
+    ]
+  },
+  korean_core: {
+    language:"ko", name:"Core Korean", category:"conversation",
+    lessons:[
+      {title:"Greetings & Politeness",cards:[["안녕하세요","annyeonghaseyo","hello","안녕하세요! 처음 뵙겠습니다.","Hello! Nice to meet you."],["감사합니다","gamsahamnida","thank you","감사합니다. 정말 도움이 됐어요.","Thank you. That really helped."],["죄송합니다","joesonghamnida","I'm sorry","죄송합니다, 잘 모르겠어요.","I'm sorry, I'm not sure."],["괜찮아요","gwaenchanayo","it's okay / I'm okay","네, 괜찮아요.","Yes, I'm okay."]]},
+      {title:"Useful Everyday Korean",cards:[["네","ne","yes","네, 맞아요.","Yes, that's right."],["아니요","aniyo","no","아니요, 괜찮아요.","No, it's okay."],["뭐예요?","mwoyeyo?","what is it?","이거 뭐예요?","What is this?"],["어디예요?","eodiyeyo?","where is it?","화장실이 어디예요?","Where is the bathroom?"],["주세요","juseyo","please give me...","물 주세요.","Water, please."]]},
+      {title:"Simple Sentence Patterns",cards:[["저는 학생이에요.","jeoneun haksaeng-ieyo","I am a student.","저는 미국에서 온 학생이에요.","I'm a student from the U.S."],["이거 좋아해요.","igeo joahaeyo","I like this.","저는 한국 음식을 좋아해요.","I like Korean food."],["한국어를 공부해요.","hangugeoreul gongbuhaeyo","I study Korean.","매일 한국어를 조금 공부해요.","I study a little Korean every day."],["잘 모르겠어요.","jal moreugesseoyo","I'm not sure / I don't really know.","미안해요, 잘 모르겠어요.","Sorry, I'm not sure."]]}
+    ]
+  },
+  korean_pronunciation: {
+    language:"ko", name:"Korean Pronunciation Rules", category:"pronunciation",
+    lessons:[
+      {title:"Sound Changes You Hear Early",cards:[["한국","hanguk","Korea","한국에 가고 싶어요.","I want to go to Korea."],["같이","gachi","together","같이 가요.","Let's go together."],["먹어요","meogeoyo","eat","같이 먹어요.","Let's eat together."],["좋아요","joayo","good / I like it","좋아요!","Sounds good!"]]},
+      {title:"Polite Ending Rhythm",cards:[["-아요 / -어요","-ayo / -eoyo","common polite ending","먹어요.","I eat / Let's eat."],["-이에요 / -예요","-ieyo / -yeyo","to be; polite","학생이에요.","I am a student."],["-세요","-seyo","polite request / command","앉으세요.","Please sit."]]}
+    ]
+  },
+  vietnamese_pronunciation: {
+    language:"vi", name:"Vietnamese Sounds & Tones", category:"pronunciation",
+    lessons:[
+      {title:"Six Tone Patterns",cards:[["ma","ma","ghost; level tone","ma","ghost"],["má","má","mother; rising tone","má tôi","my mother"],["mà","mà","but / that; falling tone","nhưng mà","but"],["mả","mả","grave; dipping-rising tone","ngôi mả","grave"],["mã","mã","code; broken-rising tone","mã số","code number"],["mạ","mạ","rice seedling; heavy tone","cây mạ","rice seedling"]]},
+      {title:"High-Value Vowel Contrasts",cards:[["a / ă / â","","different central vowel qualities","ba / băn / bân","sound contrast practice"],["o / ô / ơ","","different rounded/central vowels","to / tô / tơ","sound contrast practice"],["u / ư","","u versus unrounded ư","thu / thư","collect / letter"]]},
+      {title:"Common Consonant Patterns",cards:[["ng / ngh","","ng sound can begin a word","người","person"],["nh","","palatal ny-like sound","nhà","house"],["ph","","f sound","phở","phở"],["tr / ch","","important regional contrast","trà / cha","tea / father"]]}
+    ]
+  },
+  vietnamese_core: {
+    language:"vi", name:"Core Vietnamese", category:"conversation",
+    lessons:[
+      {title:"Greetings & Essentials",cards:[["Xin chào","","hello","Xin chào! Rất vui được gặp bạn.","Hello! Nice to meet you."],["Cảm ơn","","thank you","Cảm ơn bạn.","Thank you."],["Xin lỗi","","sorry / excuse me","Xin lỗi, tôi không hiểu.","Sorry, I don't understand."],["Không sao","","it's okay / no problem","Không sao đâu.","It's okay."]]},
+      {title:"Useful Questions",cards:[["Cái này là gì?","","what is this?","Cái này là gì?","What is this?"],["Ở đâu?","","where?","Nhà ga ở đâu?","Where is the station?"],["Bao nhiêu tiền?","","how much?","Cái này bao nhiêu tiền?","How much is this?"],["Tôi không hiểu.","","I don't understand.","Xin lỗi, tôi không hiểu.","Sorry, I don't understand."],["Nói chậm hơn được không?","","could you speak more slowly?","Bạn nói chậm hơn được không?","Could you speak more slowly?"]]},
+      {title:"Simple Sentence Building",cards:[["Tôi là sinh viên.","","I am a student.","Tôi là sinh viên kỹ thuật.","I am an engineering student."],["Tôi thích...","","I like...","Tôi thích cà phê.","I like coffee."],["Tôi muốn...","","I want...","Tôi muốn ăn phở.","I want to eat phở."],["Tôi đang học tiếng Việt.","","I am studying Vietnamese.","Tôi đang học tiếng Việt mỗi ngày.","I am studying Vietnamese every day."]]}
+    ]
+  },
+  filipino_pronunciation: {
+    language:"tl", name:"Filipino (Tagalog) Pronunciation", category:"pronunciation",
+    lessons:[
+      {title:"Vowels & Stress Awareness",cards:[["a","a","open a sound","salamat","thank you"],["e","e","e sound","pero","but"],["i","i","i sound","sige","okay / go ahead"],["o","o","o sound","oo","yes"],["u","u","u sound","gusto","want / like"]]},
+      {title:"Common Sound Patterns",cards:[["ng","ng","ng sound","ngayon","now"],["mga","mga","plural marker","mga kaibigan","friends"],["ay","ay","linking/inversion marker","Ako ay estudyante.","I am a student."],["po","po","politeness marker","Salamat po.","Thank you (polite)."]]}
+    ]
+  },
+  filipino_core: {
+    language:"tl", name:"Core Filipino (Tagalog)", category:"conversation",
+    lessons:[
+      {title:"Greetings & Essentials",cards:[["Kumusta?","","how are you? / hello","Kumusta ka?","How are you?"],["Salamat.","","thank you","Maraming salamat.","Thank you very much."],["Oo.","","yes","Oo, gusto ko.","Yes, I like/want it."],["Hindi.","","no / not","Hindi ko alam.","I don't know."],["Ingat.","","take care","Sige, ingat!","Okay, take care!"]]},
+      {title:"Useful Everyday Phrases",cards:[["Hindi ko alam.","","I don't know.","Pasensya na, hindi ko alam.","Sorry, I don't know."],["Hindi ko maintindihan.","","I don't understand.","Hindi ko maintindihan. Pakiulit?","I don't understand. Please repeat?"],["Magkano ito?","","how much is this?","Magkano ito?","How much is this?"],["Nasaan ang banyo?","","where is the bathroom?","Excuse me, nasaan ang banyo?","Excuse me, where is the bathroom?"],["Gusto ko ito.","","I like / want this.","Gusto ko ito, salamat.","I want this, thank you."]]},
+      {title:"Simple Sentence Building",cards:[["Ako si...","","I am / my name is...","Ako si Kevin.","I'm Kevin."],["Estudyante ako.","","I am a student.","Estudyante ako sa unibersidad.","I'm a university student."],["Gusto ko ng...","","I want / like...","Gusto ko ng kape.","I want coffee."],["Pupunta ako sa...","","I will go to...","Pupunta ako sa Maynila.","I will go to Manila."]]}
+    ]
+  },
+  filipino_grammar: {
+    language:"tl", name:"Tagalog Grammar Foundations", category:"grammar",
+    lessons:[
+      {title:"Ang / Ng / Sa Preview",cards:[["ang","","marks a focused/topic-like noun phrase","Masarap ang pagkain.","The food is delicious."],["ng","","marks non-focused objects / possession in many patterns","Gusto ko ng kape.","I want coffee."],["sa","","location / direction / indirect relation","Pupunta ako sa paaralan.","I am going to school."]]},
+      {title:"Verb Focus — Gentle Introduction",cards:[["kumain","","ate; actor-focus form","Kumain ako.","I ate."],["kinain","","object-focused pattern","Kinain ko ang adobo.","I ate the adobo."],["pumunta","","went","Pumunta ako sa tindahan.","I went to the store."],["mag-aaral","","will study","Mag-aaral ako bukas.","I will study tomorrow."]]}
+    ]
+  },
   hiragana: {
     language:"ja", name:"Hiragana", category:"writing",
     lessons:[
@@ -397,7 +461,15 @@ const INPUT = {
   polish_travel:[["Poproszę kawę i wodę.","I would like coffee and water."],["Gdzie jest dworzec?","Where is the train station?"],["Rachunek, proszę.","The bill, please."]],
   polish_foundations:[["Mam kawę.","I have coffee."],["Chcę wodę.","I want water."],["Mówię trochę po polsku.","I speak a little Polish."]],
   polish_natural:[["Hej, co tam?","Hey, what is up?"],["Spoko, nie ma problemu.","Cool, no problem."],["Nie ogarniam tego zadania.","I do not get this assignment."]],
-  polish_school:[["Jestem studentem.","I am a student."],["Mam zajęcia dzisiaj.","I have class today."],["To jest mój projekt.","This is my project."]]
+  polish_school:[["Jestem studentem.","I am a student."],["Mam zajęcia dzisiaj.","I have class today."],["To jest mój projekt.","This is my project."]],
+  korean_hangul:[["한국 사람","Korean person"],["물 주세요","Water, please"],["같이 가요","Let's go together"]],
+  korean_core:[["안녕하세요. 저는 학생이에요.","Hello. I am a student."],["한국어를 공부해요.","I study Korean."]],
+  korean_pronunciation:[["같이 가요.","Let's go together."],["좋아요!","Sounds good!"]],
+  vietnamese_pronunciation:[["Xin chào","Hello"],["Cảm ơn bạn","Thank you"],["Tôi không hiểu","I don't understand"]],
+  vietnamese_core:[["Tôi là sinh viên.","I am a student."],["Tôi muốn ăn phở.","I want to eat phở."]],
+  filipino_pronunciation:[["Salamat po.","Thank you, politely."],["Kumusta ka?","How are you?"]],
+  filipino_core:[["Estudyante ako.","I am a student."],["Gusto ko ng kape.","I want coffee."]],
+  filipino_grammar:[["Pupunta ako sa paaralan.","I am going to school."],["Kumain ako.","I ate."]]
 };
 
 Object.assign(INPUT, {"ja_n5_course":[["今日は大学へ行きます。九時から日本語の授業があります。","Today I am going to university. I have Japanese class from nine."],["昨日、友達とラーメンを食べました。とてもおいしかったです。","Yesterday I ate ramen with a friend. It was very delicious."]],"ja_n4_course":[["時間があったら、駅の近くの本屋へ行くつもりです。","If I have time, I plan to go to the bookstore near the station."],["先生に作文を直してもらったので、間違いがよく分かりました。","I had my teacher correct my essay, so I understood my mistakes well."]],"ja_n3_course":[["最近、日本語のニュースが少し分かるようになりました。一方で、速い会話はまだ難しいです。","Recently I have become able to understand some Japanese news. On the other hand, fast conversation is still difficult."],["天気予報によると、明日は雨らしいです。そのため、イベントは中止になるかもしれません。","According to the forecast, apparently it will rain tomorrow. Therefore, the event may be canceled."]],"ja_n2_course":[["技術の発展に伴って働き方も変化している。しかし、便利になったからといって、すべての問題が解決するわけではない。","As technology develops, ways of working are also changing. However, becoming more convenient does not mean every problem is solved."],["調査結果に基づいて判断する必要があるものの、数字だけでは分からない要因も考慮すべきだ。","Although decisions need to be based on survey results, factors that numbers alone cannot reveal should also be considered."]],"pl_a1_course":[["Mam dziś zajęcia o dziewiątej. Po zajęciach idę do biblioteki.","I have class at nine today. After class I am going to the library."],["Poproszę kawę i wodę. Ile to kosztuje?","I would like coffee and water. How much does it cost?"]],"pl_a2_course":[["Wczoraj byłem na uczelni do późna, bo musiałem skończyć projekt.","Yesterday I was at university until late because I had to finish a project."],["W weekend pojadę do Warszawy i spotkam się z kolegą.","On the weekend I will go to Warsaw and meet a friend."]],"pl_b1_course":[["Mimo że projekt był trudny, udało nam się skończyć go przed terminem.","Although the project was difficult, we managed to finish it before the deadline."],["Moim zdaniem to rozwiązanie jest dobre, ale nie do końca zgadzam się z założeniami.","In my opinion this solution is good, but I do not entirely agree with the assumptions."]],"pl_b2_course":[["Biorąc pod uwagę wyniki badań, można zauważyć, że nowe podejście poprawiło efektywność.","Taking the research results into account, one can observe that the new approach improved efficiency."],["Należy podkreślić, że są to wyniki wstępne; niemniej jednak wskazują one wyraźny trend.","It should be emphasized that these are preliminary results; nevertheless, they indicate a clear trend."]],"es_a1_course":[["Hoy tengo clase a las nueve. Después voy por unos tacos con un amigo.","Today I have class at nine. Afterwards I am going to get some tacos with a friend."],["¿Me da una botella de agua, por favor? Es para llevar.","Can I get a bottle of water, please? It is to go."]],"es_a2_course":[["Ayer fui al centro y compré un boleto. Había mucha gente y hacía calor.","Yesterday I went downtown and bought a ticket. There were many people and it was hot."],["Al rato voy a estudiar. Ahorita estoy terminando de comer.","Later I am going to study. Right now I am finishing eating."]],"es_b1_course":[["Aunque estaba cansado, terminé el reporte para que mi equipo pudiera revisarlo.","Although I was tired, I finished the report so my team could review it."],["La neta, pensé que el examen iba a estar más fácil, pero estuvo cañón.","Honestly, I thought the exam was going to be easier, but it was really tough."]],"es_b2_course":[["Tomando en cuenta el costo y el desempeño, se puede concluir que la segunda opción es más viable.","Taking cost and performance into account, it can be concluded that the second option is more feasible."],["A pesar de que los resultados son prometedores, cabe señalar que todavía falta validar el método.","Although the results are promising, it is worth noting that the method still needs to be validated."]]});
@@ -426,6 +498,20 @@ const SUBJECTS = {
     ["spanish_natural","🗣️ Mexican Slang","Common Mexican wording, reactions, and slang in context."],
     ["spanish_travel","🌮 Mexico Travel & Real Life","Food, transportation, ordering, and getting around."],
     ["spanish_foundations","📘 Spanish Foundations","Core verbs and natural sentence building."]
+  ],
+  ko:[
+    ["korean_hangul","한 Hangul Foundations","Learn Hangul through syllable blocks and real Korean words."],
+    ["korean_core","💬 Core Korean","Greetings, useful phrases, and beginner sentence patterns."],
+    ["korean_pronunciation","🔊 Korean Pronunciation","Common sound changes and polite-ending rhythm."]
+  ],
+  vi:[
+    ["vietnamese_pronunciation","🔊 Vietnamese Sounds & Tones","Build tone and vowel awareness before heavier vocabulary."],
+    ["vietnamese_core","💬 Core Vietnamese","High-frequency phrases, questions, and simple sentences."]
+  ],
+  tl:[
+    ["filipino_pronunciation","🔊 Filipino Pronunciation","Core sound patterns and politeness markers."],
+    ["filipino_core","💬 Core Filipino (Tagalog)","Useful everyday phrases and sentence building."],
+    ["filipino_grammar","🧩 Tagalog Grammar Foundations","Learn ang/ng/sa and verb focus gently through context."]
   ]
 };
 
@@ -450,6 +536,27 @@ const PLACEMENT = {
     {q:"What does ahorita mean?",choices:["Only right this second","Only tomorrow","Right now or in a bit, depending on context","Never"],answer:"Right now or in a bit, depending on context"},
     {q:"What does ¿Me da dos tacos? mean?",choices:["Can I get two tacos?","Where are the tacos?","I made two tacos","The tacos are bad"],answer:"Can I get two tacos?"},
     {q:"What does me avisas mean?",choices:["Let me know","Leave now","Help me","Call the police"],answer:"Let me know"}
+  ],
+  ko:[
+    {q:"What is 한글?",choices:["Hangul","Thank you","Food","Goodbye"],answer:"Hangul"},
+    {q:"What does 안녕하세요 mean?",choices:["Hello","No","Water","Where?"],answer:"Hello"},
+    {q:"What does 감사합니다 mean?",choices:["Thank you","Sorry","Yes","Student"],answer:"Thank you"},
+    {q:"What does 어디예요? mean?",choices:["Where is it?","How much?","Who is it?","What time?"],answer:"Where is it?"},
+    {q:"What does 주세요 mean?",choices:["Please give me...","I don't know","Good night","Let's go"],answer:"Please give me..."}
+  ],
+  vi:[
+    {q:"What does Xin chào mean?",choices:["Hello","Thank you","Goodbye","How much?"],answer:"Hello"},
+    {q:"What does Cảm ơn mean?",choices:["Thank you","Sorry","Water","Food"],answer:"Thank you"},
+    {q:"What does Ở đâu? mean?",choices:["Where?","Who?","When?","Why?"],answer:"Where?"},
+    {q:"What does Tôi không hiểu mean?",choices:["I don't understand","I am hungry","I am tired","I agree"],answer:"I don't understand"},
+    {q:"Vietnamese meaning can change with what?",choices:["Tone","Capitalization only","Word length only","Punctuation only"],answer:"Tone"}
+  ],
+  tl:[
+    {q:"What does Kumusta? mean?",choices:["Hello / How are you?","Thank you","How much?","Goodbye"],answer:"Hello / How are you?"},
+    {q:"What does Salamat mean?",choices:["Thank you","Sorry","Yes","Food"],answer:"Thank you"},
+    {q:"What does Hindi ko alam mean?",choices:["I don't know","I like it","I am here","Let's eat"],answer:"I don't know"},
+    {q:"What does Magkano ito? mean?",choices:["How much is this?","Where is this?","Who is this?","What is this?"],answer:"How much is this?"},
+    {q:"What is po commonly used for?",choices:["Politeness / respect","Past tense","Plural only","Negation"],answer:"Politeness / respect"}
   ]
 };
 
@@ -459,7 +566,10 @@ const COURSE_CATALOG = {"ja":[{"id":"ja1","subject":"ja_n5_course","title":"Japa
 const LANGUAGE_META = {
   ja:{label:"Japanese",home:"🇯🇵 Japanese",defaultSubject:"hiragana"},
   pl:{label:"Polish",home:"🇵🇱 Polish",defaultSubject:"polish_pronunciation"},
-  es:{label:"Mexican Spanish",home:"🇲🇽 Mexican Spanish",defaultSubject:"spanish_basics"}
+  es:{label:"Mexican Spanish",home:"🇲🇽 Mexican Spanish",defaultSubject:"spanish_basics"},
+  ko:{label:"Korean",home:"🇰🇷 Korean",defaultSubject:"korean_hangul"},
+  vi:{label:"Vietnamese",home:"🇻🇳 Vietnamese",defaultSubject:"vietnamese_pronunciation"},
+  tl:{label:"Filipino (Tagalog)",home:"🇵🇭 Filipino (Tagalog)",defaultSubject:"filipino_core"}
 };
 function languageLabel(lang){ return LANGUAGE_META[lang]?.label || lang; }
 function languageHomeLabel(lang){ return LANGUAGE_META[lang]?.home || lang; }
@@ -554,6 +664,24 @@ const HOME_ACTIONS = {
     { key: "polish_basics", eyebrow: "Useful Polish", title: "Basic Phrases", desc: "Greetings and everyday words." },
     { key: "polish_travel", eyebrow: "Travel", title: "Travel Polish", desc: "Food, stations, tickets, and getting around." },
     { key: "recommended", eyebrow: "Not sure?", title: "Recommend for me", desc: "Let Keon choose your next lesson." }
+  ],
+  ko:[
+    { key:"korean_path", eyebrow:"Recommended", title:"Korean Learning Path", desc:"Hangul → Core Korean → Pronunciation rules → Beginner Korean." },
+    { key:"korean_hangul", eyebrow:"Start here", title:"Learn Hangul", desc:"Build syllable blocks and read real Korean early." },
+    { key:"korean_core", eyebrow:"Useful Korean", title:"Core Phrases", desc:"Greetings, questions, and simple sentences." },
+    { key:"recommended", eyebrow:"Not sure?", title:"Recommend for me", desc:"Let Keon choose your next lesson." }
+  ],
+  vi:[
+    { key:"vietnamese_path", eyebrow:"Recommended", title:"Vietnamese Learning Path", desc:"Sounds & tones → useful phrases → sentence building." },
+    { key:"vietnamese_pronunciation", eyebrow:"Start here", title:"Sounds & Tones", desc:"Train the distinctions that change meaning." },
+    { key:"vietnamese_core", eyebrow:"Useful Vietnamese", title:"Core Phrases", desc:"Greetings, questions, and simple sentences." },
+    { key:"recommended", eyebrow:"Not sure?", title:"Recommend for me", desc:"Let Keon choose your next lesson." }
+  ],
+  tl:[
+    { key:"filipino_path", eyebrow:"Recommended", title:"Filipino Learning Path", desc:"Core phrases → pronunciation → Tagalog grammar." },
+    { key:"filipino_core", eyebrow:"Start communicating", title:"Core Filipino", desc:"Useful everyday phrases from the beginning." },
+    { key:"filipino_grammar", eyebrow:"Grammar", title:"Tagalog Foundations", desc:"Learn ang/ng/sa and verb focus gradually." },
+    { key:"recommended", eyebrow:"Not sure?", title:"Recommend for me", desc:"Let Keon choose your next lesson." }
   ]
 };
 
@@ -576,6 +704,9 @@ function openHomeAction(actionKey){
   if(actionKey === "courses"){ showCourseCatalog(); return; }
   if(actionKey === "japanese_path"){ showJapanesePath(); return; }
   if(actionKey === "polish_path"){ showPolishPath(); return; }
+  if(actionKey === "korean_path"){ showNewLanguagePath("ko"); return; }
+  if(actionKey === "vietnamese_path"){ showNewLanguagePath("vi"); return; }
+  if(actionKey === "filipino_path"){ showNewLanguagePath("tl"); return; }
   openSubject(actionKey);
 }
 
@@ -663,6 +794,9 @@ function renderSetup(){
   document.getElementById("langJa").classList.toggle("selected",setupLanguages.includes("ja"));
   document.getElementById("langPl").classList.toggle("selected",setupLanguages.includes("pl"));
   document.getElementById("langEs").classList.toggle("selected",setupLanguages.includes("es"));
+  document.getElementById("langKo").classList.toggle("selected",setupLanguages.includes("ko"));
+  document.getElementById("langVi").classList.toggle("selected",setupLanguages.includes("vi"));
+  document.getElementById("langTl").classList.toggle("selected",setupLanguages.includes("tl"));
 
   document.querySelectorAll(".goalChip").forEach(btn=>{
     btn.classList.toggle("active",setupGoals.includes(btn.dataset.goal));
@@ -975,6 +1109,9 @@ function speechLocaleForLanguage(lang){
   if(lang==="ja") return "ja-JP";
   if(lang==="pl") return "pl-PL";
   if(lang==="es") return "es-MX";
+  if(lang==="ko") return "ko-KR";
+  if(lang==="vi") return "vi-VN";
+  if(lang==="tl") return "fil-PH";
   return "en-US";
 }
 function subjectLanguage(subjectKey){
@@ -1022,6 +1159,93 @@ document.addEventListener("click",(event)=>{
 if("speechSynthesis" in window){
   window.speechSynthesis.getVoices();
   window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices();
+}
+
+
+const SMART_KANA_WORDS = {"hiragana":{"0":[["あい","ai","love"],["あお","ao","blue"],["いえ","ie","house"]],"1":[["あか","aka","red"],["いか","ika","squid"],["ここ","koko","here"]],"2":[["すし","sushi","sushi"],["あさ","asa","morning"],["そこ","soko","there"]],"3":[["した","shita","below"],["つき","tsuki","moon"],["とき","toki","time / when"]],"4":[["ねこ","neko","cat"],["いぬ","inu","dog"],["なに","nani","what"]],"5":[["はな","hana","flower / nose"],["ひと","hito","person"],["ほし","hoshi","star"]],"6":[["みみ","mimi","ear"],["まち","machi","town"],["もの","mono","thing"]],"7":[["やま","yama","mountain"],["ゆき","yuki","snow"],["よる","yoru","night"]],"8":[["そら","sora","sky"],["くるま","kuruma","car"],["さくら","sakura","cherry blossom"]],"9":[["わたし","watashi","I / me"],["これ","kore","this"],["ほん","hon","book"]],"10":[["ごはん","gohan","meal / cooked rice"],["かぎ","kagi","key"],["がくせい","gakusei","student"]],"11":[["じかん","jikan","time"],["みず","mizu","water"],["ぜんぶ","zenbu","all"]],"12":[["でんわ","denwa","telephone"],["だいじょうぶ","daijoubu","okay"],["どこ","doko","where"]],"13":[["べんきょう","benkyou","study"],["ばんごう","bangou","number"],["びょういん","byouin","hospital"]],"14":[["ぱん","pan","bread"],["ぺこぺこ","pekopeko","very hungry"],["ぽかぽか","pokapoka","pleasantly warm"]],"15":[["きょう","kyou","today"],["きゃく","kyaku","guest"],["ぎゅうにく","gyuuniku","beef"]],"16":[["しゃしん","shashin","photo"],["しゅみ","shumi","hobby"],["じょうず","jouzu","skillful"]],"17":[["ちゃ","cha","tea"],["ちょっと","chotto","a little / wait a moment"],["にゅうがく","nyuugaku","school admission"]],"18":[["ひゃく","hyaku","hundred"],["びょうき","byouki","illness"],["びょういん","byouin","hospital"]],"19":[["りょこう","ryokou","trip / travel"],["りょうり","ryouri","cooking / cuisine"],["りゅうがく","ryuugaku","study abroad"]],"20":[["がっこう","gakkou","school"],["きって","kitte","stamp"],["まって","matte","wait"]],"21":[["おかあさん","okaasan","mother"],["せんせい","sensei","teacher"],["こうこう","koukou","high school"]]},"katakana":{"0":[["アイス","aisu","ice cream"],["エア","ea","air"]],"1":[["ココア","kokoa","cocoa"],["ケーキ","keeki","cake"]],"2":[["ソース","soosu","sauce"],["ケース","keesu","case"]],"3":[["タクシー","takushii","taxi"],["テスト","tesuto","test"]],"4":[["ノート","nooto","notebook"],["ニュース","nyuusu","news"]],"5":[["ホテル","hoteru","hotel"],["ハウス","hausu","house"]],"6":[["メモ","memo","memo"],["ミルク","miruku","milk"]],"7":[["ヨガ","yoga","yoga"],["ユーロ","yuuro","euro"]],"8":[["レストラン","resutoran","restaurant"],["ラジオ","rajio","radio"]],"9":[["ワイン","wain","wine"],["コンビニ","konbini","convenience store"]],"10":[["ゲーム","geemu","game"],["ゴール","gooru","goal"]],"11":[["サイズ","saizu","size"],["ジム","jimu","gym"]],"12":[["データ","deeta","data"],["ドア","doa","door"]],"13":[["バス","basu","bus"],["ベッド","beddo","bed"]],"14":[["パン","pan","bread"],["ペン","pen","pen"]],"15":[["キャリア","kyaria","career"],["ギャップ","gyappu","gap"]],"16":[["シャツ","shatsu","shirt"],["ジュース","juusu","juice"]],"17":[["チャンス","chansu","chance"],["ニュース","nyuusu","news"]],"18":[["ヒューマン","hyuuman","human"],["ピュア","pyua","pure"]],"19":[["ミュージック","myuujikku","music"],["リュック","ryukku","backpack"]],"20":[["チケット","chiketto","ticket"],["バッグ","baggu","bag"]],"21":[["コーヒー","koohii","coffee"],["スーパー","suupaa","supermarket"]],"22":[["フィルム","firumu","film"],["フォーク","fooku","fork"]],"23":[["ティー","tii","tea"],["ウェブ","webu","web"]],"24":[["シェア","shea","share"],["チェス","chesu","chess"]]}};
+const SMART_POLISH_WORDS = {"polish_pronunciation":{"0":[["cześć","","hi / hello","Cześć! Co tam?","Hi! What's up?"],["dziękuję","","thank you","Dziękuję za pomoc.","Thank you for the help."]],"1":[["szkoła","","school","Idę do szkoły.","I'm going to school."],["czekam","","I am waiting","Czekam na autobus.","I'm waiting for the bus."]],"2":[["łódź","","boat / Łódź","To jest mała łódź.","This is a small boat."],["książka","","book","Czytam książkę.","I'm reading a book."]]},"polish_basics":{"0":[["Cześć","","hi / hello","Cześć! Jak się masz?","Hi! How are you?"],["Dziękuję","","thank you","Dziękuję bardzo.","Thank you very much."]],"1":[["Mam na imię...","","my name is...","Mam na imię Kevin.","My name is Kevin."],["Nie rozumiem.","","I don't understand.","Przepraszam, nie rozumiem.","Sorry, I don't understand."]]}};
+
+function kanaLessonMastery(subjectKey,lessonIndex){
+  const lesson=DATA[subjectKey]?.lessons?.[lessonIndex];
+  return lesson?averageMastery(lesson.cards,subjectKey):0;
+}
+function kanaComfort(subjectKey){
+  const lessons=DATA[subjectKey]?.lessons||[];
+  if(!lessons.length) return 0;
+  return Math.round(lessons.reduce((s,_,i)=>s+kanaLessonMastery(subjectKey,i),0)/lessons.length);
+}
+function kanaWords(subjectKey,lessonIndex){ return SMART_KANA_WORDS[subjectKey]?.[lessonIndex]||[]; }
+function currentKanaStep(subjectKey){
+  const lessons=DATA[subjectKey]?.lessons||[];
+  for(let i=0;i<lessons.length;i++) if(kanaLessonMastery(subjectKey,i)<85) return i;
+  return Math.max(0,lessons.length-1);
+}
+function openKanaWordPractice(subjectKey,lessonIndex){
+  const cards=kanaWords(subjectKey,lessonIndex).map(w=>[w[0],w[1],w[2],w[0],w[2]]);
+  if(!cards.length) return;
+  subject=subjectKey; selected={subject:subjectKey,title:`${DATA[subjectKey].lessons[lessonIndex].title} — Words You Can Read`,cards};
+  openPreview();
+}
+function introKanjiComfort(){
+  const cards=allCards("intro_kanji");
+  return cards.length?averageMastery(cards,"intro_kanji"):0;
+}
+function japanesePathStatus(){
+  const h=kanaComfort("hiragana"),k=kanaComfort("katakana"),j=introKanjiComfort();
+  if(h<85) return {stage:"hiragana",label:"Hiragana",reason:"Build comfortable Hiragana recognition while reading simple words."};
+  if(k<80) return {stage:"katakana",label:"Katakana",reason:"Now build comfortable Katakana reading with real words."};
+  if(j<70) return {stage:"intro_kanji",label:"Intro Kanji",reason:"Learn a small kanji foundation before Japanese I / N5."};
+  return {stage:"ja_n5_course",label:"Japanese I — JLPT N5",reason:"Your kana and intro-kanji foundation are ready for structured N5 study."};
+}
+function showJapanesePath(){
+  const h=kanaComfort("hiragana"),k=kanaComfort("katakana"),j=introKanjiComfort(),s=japanesePathStatus();
+  document.getElementById("jpPathNow").textContent=`Current focus: ${s.label}`;
+  document.getElementById("jpPathReason").textContent=s.reason;
+  document.getElementById("jpHiraPct").textContent=h+"%";
+  document.getElementById("jpKataPct").textContent=k+"%";
+  document.getElementById("jpKanjiPct").textContent=j+"%";
+  document.getElementById("jpPathStart").onclick=()=>s.stage==="ja_n5_course"?openCourse("ja1"):openSubject(s.stage);
+  const items=[["Hiragana + words",h,h>=85],["Katakana + words",k,k>=80],["Intro Kanji",j,j>=70],["Japanese I — N5",normalizedCourseProgress("ja_n5_course"),false],["Japanese II — N4",normalizedCourseProgress("ja_n4_course"),false],["Japanese III — N3",normalizedCourseProgress("ja_n3_course"),false],["Japanese IV — N2",normalizedCourseProgress("ja_n2_course"),false]];
+  const box=document.getElementById("jpRoadmap"); box.innerHTML="";
+  items.forEach((x,i)=>{const r=document.createElement("div");r.className="pathStep";r.innerHTML=`<div class="pathIndex">${x[2]?"✓":i+1}</div><div><strong>${x[0]}</strong><div class="bar"><div class="fill" style="width:${Math.min(100,x[1])}%"></div></div></div><div>${x[1]}%</div>`;box.appendChild(r);});
+  show("japanesePath");
+}
+
+function polishLessonMastery(subjectKey,lessonIndex){
+  const lesson=DATA[subjectKey]?.lessons?.[lessonIndex];
+  return lesson?averageMastery(lesson.cards,subjectKey):0;
+}
+function polishSubjectComfort(subjectKey){
+  const lessons=DATA[subjectKey]?.lessons||[];
+  if(!lessons.length) return 0;
+  return Math.round(lessons.reduce((s,_,i)=>s+polishLessonMastery(subjectKey,i),0)/lessons.length);
+}
+function polishWords(subjectKey,lessonIndex){ return SMART_POLISH_WORDS[subjectKey]?.[lessonIndex]||[]; }
+function openPolishWordPractice(subjectKey,lessonIndex){
+  const cards=polishWords(subjectKey,lessonIndex);
+  if(!cards.length) return;
+  subject=subjectKey; selected={subject:subjectKey,title:`${DATA[subjectKey].lessons[lessonIndex].title} — Use It in Context`,cards};
+  openPreview();
+}
+function polishPathStatus(){
+  const p=polishSubjectComfort("polish_pronunciation"),b=polishSubjectComfort("polish_basics"),f=polishSubjectComfort("polish_pre_a1");
+  if(p<75) return {stage:"polish_pronunciation",label:"Polish Pronunciation",reason:"Get comfortable with Polish sounds while learning real words."};
+  if(b<75) return {stage:"polish_basics",label:"Core Polish",reason:"Build high-frequency everyday Polish before heavier grammar."};
+  if(f<70) return {stage:"polish_pre_a1",label:"Polish Foundations",reason:"Build sentence patterns and a gentle case foundation before Polish I."};
+  return {stage:"pl_a1_course",label:"Polish I — A1",reason:"Your pronunciation, core phrases, and grammar foundation are ready for Polish I."};
+}
+function showPolishPath(){
+  const p=polishSubjectComfort("polish_pronunciation"),b=polishSubjectComfort("polish_basics"),f=polishSubjectComfort("polish_pre_a1"),s=polishPathStatus();
+  document.getElementById("plPathNow").textContent=`Current focus: ${s.label}`;
+  document.getElementById("plPathReason").textContent=s.reason;
+  document.getElementById("plPronPct").textContent=p+"%";
+  document.getElementById("plBasicsPct").textContent=b+"%";
+  document.getElementById("plFoundPct").textContent=f+"%";
+  document.getElementById("plPathStart").onclick=()=>s.stage==="pl_a1_course"?openCourse("pl1"):openSubject(s.stage);
+  const items=[["Pronunciation + real words",p,p>=75],["Core everyday Polish",b,b>=75],["Sentence & case foundations",f,f>=70],["Polish I — A1",normalizedCourseProgress("pl_a1_course"),false],["Polish II — A2",normalizedCourseProgress("pl_a2_course"),false],["Polish III — B1",normalizedCourseProgress("pl_b1_course"),false],["Polish IV — B2",normalizedCourseProgress("pl_b2_course"),false]];
+  const box=document.getElementById("plRoadmap"); box.innerHTML="";
+  items.forEach((x,i)=>{const r=document.createElement("div");r.className="pathStep";r.innerHTML=`<div class="pathIndex">${x[2]?"✓":i+1}</div><div><strong>${x[0]}</strong><div class="bar"><div class="fill" style="width:${Math.min(100,x[1])}%"></div></div></div><div>${x[1]}%</div>`;box.appendChild(r);});
+  show("polishPath");
 }
 
 function renderLessons(){
@@ -1142,6 +1366,49 @@ function openPreview(){
   show("preview");
 }
 
+
+function simpleSubjectComfort(subjectKey){
+  const lessons=DATA[subjectKey]?.lessons||[];
+  if(!lessons.length) return 0;
+  return Math.round(lessons.reduce((s,l)=>s+averageMastery(l.cards,subjectKey),0)/lessons.length);
+}
+function newLanguagePathStatus(lang){
+  if(lang==="ko"){
+    const a=simpleSubjectComfort("korean_hangul"),b=simpleSubjectComfort("korean_core"),c=simpleSubjectComfort("korean_pronunciation");
+    if(a<80) return {stage:"korean_hangul",label:"Hangul Foundations",reason:"Learn Hangul through syllable blocks and real words before relying on romanization."};
+    if(b<70) return {stage:"korean_core",label:"Core Korean",reason:"Use your Hangul in high-frequency phrases and simple sentences."};
+    if(c<65) return {stage:"korean_pronunciation",label:"Korean Pronunciation Rules",reason:"Now connect spelling to sound changes you actually hear."};
+    return {stage:"korean_core",label:"Beginner Korean Expansion",reason:"Your beginner foundation is ready for broader vocabulary, grammar, listening, and conversation."};
+  }
+  if(lang==="vi"){
+    const a=simpleSubjectComfort("vietnamese_pronunciation"),b=simpleSubjectComfort("vietnamese_core");
+    if(a<75) return {stage:"vietnamese_pronunciation",label:"Vietnamese Sounds & Tones",reason:"Tone and vowel distinctions change meaning, so build that foundation first while hearing real language."};
+    if(b<75) return {stage:"vietnamese_core",label:"Core Vietnamese",reason:"Use the sound system in useful phrases, questions, and simple sentences."};
+    return {stage:"vietnamese_core",label:"Beginner Vietnamese Expansion",reason:"Your beginner sound and phrase foundation is ready for broader vocabulary, listening, and grammar."};
+  }
+  if(lang==="tl"){
+    const a=simpleSubjectComfort("filipino_core"),b=simpleSubjectComfort("filipino_pronunciation"),c=simpleSubjectComfort("filipino_grammar");
+    if(a<70) return {stage:"filipino_core",label:"Core Filipino (Tagalog)",reason:"Start communicating immediately with useful phrases and simple sentences."};
+    if(b<65) return {stage:"filipino_pronunciation",label:"Filipino Pronunciation",reason:"Strengthen sound patterns, stress awareness, and politeness markers."};
+    if(c<65) return {stage:"filipino_grammar",label:"Tagalog Grammar Foundations",reason:"Now introduce ang/ng/sa and verb focus gradually through real sentences."};
+    return {stage:"filipino_core",label:"Beginner Filipino Expansion",reason:"Your beginner foundation is ready for broader vocabulary, verb patterns, listening, and conversation."};
+  }
+}
+function showNewLanguagePath(lang){
+  const s=newLanguagePathStatus(lang),meta=LANGUAGE_META[lang];
+  document.getElementById("newPathTitle").textContent=meta.label+" Learning Path";
+  document.getElementById("newPathNow").textContent="Current focus: "+s.label;
+  document.getElementById("newPathReason").textContent=s.reason;
+  document.getElementById("newPathStart").onclick=()=>openSubject(s.stage);
+  let steps=[];
+  if(lang==="ko") steps=[["Hangul + real words",simpleSubjectComfort("korean_hangul"),80],["Core Korean",simpleSubjectComfort("korean_core"),70],["Pronunciation rules",simpleSubjectComfort("korean_pronunciation"),65],["Beginner Korean",0,101],["Intermediate Korean",0,101],["Advanced Korean",0,101]];
+  if(lang==="vi") steps=[["Sounds & tones",simpleSubjectComfort("vietnamese_pronunciation"),75],["Core Vietnamese",simpleSubjectComfort("vietnamese_core"),75],["Beginner Vietnamese",0,101],["Intermediate Vietnamese",0,101],["Advanced Vietnamese",0,101]];
+  if(lang==="tl") steps=[["Core Filipino",simpleSubjectComfort("filipino_core"),70],["Pronunciation",simpleSubjectComfort("filipino_pronunciation"),65],["Tagalog grammar foundations",simpleSubjectComfort("filipino_grammar"),65],["Beginner Filipino",0,101],["Intermediate Filipino",0,101],["Advanced Filipino",0,101]];
+  const box=document.getElementById("newPathRoadmap");box.innerHTML="";
+  steps.forEach((x,i)=>{const done=x[2]<=100&&x[1]>=x[2];const r=document.createElement("div");r.className="pathStep";r.innerHTML=`<div class="pathIndex">${done?"✓":i+1}</div><div><strong>${x[0]}</strong><div class="bar"><div class="fill" style="width:${Math.min(100,x[1])}%"></div></div></div><div>${x[1]}%</div>`;box.appendChild(r);});
+  show("newLanguagePath");
+}
+
 function getRecommendation(){
   if(activeLanguage==="ja"){
     const path=japanesePathStatus();
@@ -1168,6 +1435,12 @@ function getRecommendation(){
       return {subject:s,lessonIndex:i,title:`${DATA[s].name}: ${DATA[s].lessons[i].title}`,reason:path.reason};
     }
   }
+  if(["ko","vi","tl"].includes(activeLanguage)){
+    const path=newLanguagePathStatus(activeLanguage),s=path.stage;
+    let i=0;
+    for(let n=0;n<DATA[s].lessons.length;n++){ if(averageMastery(DATA[s].lessons[n].cards,s)<75){i=n;break;} }
+    return {subject:s,lessonIndex:i,title:`${DATA[s].name}: ${DATA[s].lessons[i].title}`,reason:path.reason};
+  }
   const level=settings.levels?.[activeLanguage] || "none";
   const goals=settings.goals || ["conversation"];
   const options=SUBJECTS[activeLanguage].map(([key])=>key);
@@ -1186,13 +1459,15 @@ function getRecommendation(){
     if(goals.includes("travel")) priority=["polish_travel","polish_basics",...priority.filter(x=>!["polish_travel","polish_basics"].includes(x))];
     if(goals.includes("school_work")) priority=["polish_school","polish_foundations",...priority.filter(x=>!["polish_school","polish_foundations"].includes(x))];
     if(goals.includes("conversation")) priority=["polish_basics","polish_natural","polish_foundations",...priority.filter(x=>!["polish_basics","polish_natural","polish_foundations"].includes(x))];
-  }else{
+  }else if(activeLanguage==="es"){
     if(level==="none"||level==="very_little") priority=["spanish_basics","spanish_everyday","spanish_pronunciation","spanish_natural","spanish_travel","spanish_foundations"];
     else if(level==="beginner") priority=["spanish_everyday","spanish_basics","spanish_natural","spanish_foundations","spanish_travel","spanish_pronunciation"];
     else priority=["spanish_natural","spanish_everyday","spanish_foundations","spanish_travel","spanish_basics","spanish_pronunciation"];
     if(goals.includes("travel")) priority=["spanish_travel","spanish_everyday",...priority.filter(x=>!["spanish_travel","spanish_everyday"].includes(x))];
     if(goals.includes("conversation")) priority=["spanish_everyday","spanish_natural","spanish_basics",...priority.filter(x=>!["spanish_everyday","spanish_natural","spanish_basics"].includes(x))];
     if(goals.includes("school_work")) priority=["spanish_foundations","spanish_everyday",...priority.filter(x=>!["spanish_foundations","spanish_everyday"].includes(x))];
+  }else{
+    priority=[defaultSubjectForLanguage(activeLanguage)];
   }
 
   priority=priority.filter((x,i,a)=>a.indexOf(x)===i && options.includes(x));

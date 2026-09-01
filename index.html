@@ -248,10 +248,13 @@
   <div class="panel center">
     <div class="setupBlock">
       <h2>What do you want to learn?</h2>
-      <p class="muted">Choose one or both.</p>
+      <p class="muted">Choose any languages you want to study.</p>
       <button id="langJa" class="choice" onclick="toggleSetupLanguage('ja')">🇯🇵 Japanese</button>
       <button id="langPl" class="choice" onclick="toggleSetupLanguage('pl')">🇵🇱 Polish</button>
       <button id="langEs" class="choice" onclick="toggleSetupLanguage('es')">🇲🇽 Mexican Spanish</button>
+      <button id="langKo" class="choice" onclick="toggleSetupLanguage('ko')">🇰🇷 Korean</button>
+      <button id="langVi" class="choice" onclick="toggleSetupLanguage('vi')">🇻🇳 Vietnamese</button>
+      <button id="langTl" class="choice" onclick="toggleSetupLanguage('tl')">🇵🇭 Filipino (Tagalog)</button>
     </div>
     <div id="levelSetup"></div>
     <div class="setupBlock">
@@ -315,6 +318,24 @@
 
 
 
+
+
+<section id="newLanguagePath" class="screen">
+  <div class="brand"><span>Keon</span></div>
+  <h2 id="newPathTitle">Learning Path</h2>
+  <div class="heroCard">
+    <div class="small">Recommended now</div>
+    <div id="newPathNow" class="heroTitle"></div>
+    <p id="newPathReason" class="heroSub"></p>
+    <button id="newPathStart" class="btn full">Continue Recommended Step</button>
+  </div>
+  <div class="panel"><h3>Roadmap</h3><div id="newPathRoadmap"></div></div>
+  <div class="panel">
+    <h3>How this path works</h3>
+    <p class="small">Keon teaches the highest-value beginner foundation first, immediately connects it to real language, and only then adds heavier grammar. 🔊 Speaker buttons remain optional whenever you want pronunciation support.</p>
+  </div>
+  <button class="btn secondary full" onclick="show('home')">Home</button>
+</section>
 
 <section id="polishPath" class="screen">
   <div class="brand"><span>Keon</span></div>
