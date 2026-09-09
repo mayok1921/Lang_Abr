@@ -1,8 +1,10 @@
-const CACHE_NAME = "keon-lang-abr-v32-mandarin-cantonese";
+const CACHE_NAME = "keon-v41-google-auth";
 const FILES = [
   "./",
   "./index.html",
   "./app.js",
+  "./auth-config.js",
+  "./auth.js",
   "./manifest.json",
   "./service-worker.js",
   "./icon-192.png",

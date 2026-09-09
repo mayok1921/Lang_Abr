@@ -783,6 +783,56 @@ function courseLetterGrade(subjectKey){
 }
 
 
+// Keon Adaptive Learning Engine v3
+// Tracks what a learner can recognize, understand, recall, produce, and retain.
+const COMPETENCY_KEY = "keonCompetenciesV3";
+const SKILL_DIMENSIONS = ["recognition","listening","recall","production","grammar","reading","writing"];
+const FRAMEWORKS = {
+  ja:{name:"JLPT",levels:["N5","N4","N3","N2"],target:"N2"},
+  pl:{name:"CEFR",levels:["A1","A2","B1","B2"],target:"B2"},
+  es:{name:"CEFR",levels:["A1","A2","B1","B2"],target:"B2"},
+  ko:{name:"CEFR/TOPIK-aligned",levels:["A1","A2","B1","B2"],target:"B2"},
+  vi:{name:"CEFR-aligned",levels:["A1","A2","B1","B2"],target:"B2"},
+  tl:{name:"CEFR-aligned",levels:["A1","A2","B1","B2"],target:"B2"},
+  zh:{name:"CEFR/HSK-aligned",levels:["A1","A2","B1","B2"],target:"B2"},
+  yue:{name:"CEFR-aligned",levels:["A1","A2","B1","B2"],target:"B2"}
+};
+let competencies = JSON.parse(localStorage.getItem(COMPETENCY_KEY) || "{}");
+function defaultCompetency(){
+  return {recognition:30,listening:20,recall:20,production:15,grammar:20,reading:20,writing:10,streak:0,interval:0,dueAt:0,lastSeen:0};
+}
+function competencyFor(card,s=selected.subject){
+  const k=cardKey(card,s); return competencies[k] || (competencies[k]=defaultCompetency());
+}
+function dimensionsForMode(mode,subjectKey){
+  if(mode==="draw") return ["writing","production","recognition"];
+  if(mode==="multi") return ["recognition","recall"];
+  if(mode==="flash") return DATA[subjectKey]?.category==="grammar" ? ["grammar","recall","recognition"] : ["recall","recognition"];
+  return ["recognition"];
+}
+function updateCompetency(card,correct,s=selected.subject,mode=currentMode){
+  const c=competencyFor(card,s), dims=dimensionsForMode(mode,s), now=Date.now();
+  dims.forEach(d=>c[d]=Math.max(0,Math.min(100,(c[d]??20)+(correct?8:-16))));
+  if(correct){ c.streak=(c.streak||0)+1; c.interval=Math.min(30, c.streak<=1?1:c.streak===2?3:c.streak===3?7:Math.max(10,(c.interval||7)*1.7)); }
+  else { c.streak=0; c.interval=0.2; }
+  c.lastSeen=now; c.dueAt=now+c.interval*86400000;
+  competencies[cardKey(card,s)]=c;
+}
+function competencyMastery(card,s=selected.subject){
+  const c=competencies[cardKey(card,s)];
+  if(!c) return mastery[cardKey(card,s)] ?? 30;
+  const weights={recognition:.18,listening:.12,recall:.18,production:.18,grammar:.12,reading:.12,writing:.10};
+  return Math.round(SKILL_DIMENSIONS.reduce((sum,d)=>sum+(c[d]??20)*weights[d],0));
+}
+function dueForReview(card,s){ const c=competencies[cardKey(card,s)]; return !!c?.lastSeen && (c.dueAt||0)<=Date.now(); }
+function languageSkillProfile(lang){
+  const cards=getLanguageCards(lang); const out={};
+  SKILL_DIMENSIONS.forEach(d=>{ const vals=cards.map(({card,subject})=>competencyFor(card,subject)[d]); out[d]=vals.length?Math.round(vals.reduce((a,b)=>a+b,0)/vals.length):0; });
+  return out;
+}
+function weakestDimension(lang){ const p=languageSkillProfile(lang); return Object.entries(p).sort((a,b)=>a[1]-b[1])[0]||["recognition",0]; }
+function frameworkLabel(lang){ const f=FRAMEWORKS[lang]; return f?`${f.name} • target ${f.target}`:"Adaptive path"; }
+
 const SETTINGS_KEY = "keonSettingsV2";
 const STATS_KEY = "keonStatsV2";
 const MASTERY_KEY = "keonMasteryV2";
@@ -898,6 +948,7 @@ function save(){
   localStorage.setItem(STATS_KEY, JSON.stringify(stats));
   localStorage.setItem(MASTERY_KEY, JSON.stringify(mastery));
   localStorage.setItem(MISSED_KEY, JSON.stringify(missed));
+  localStorage.setItem(COMPETENCY_KEY, JSON.stringify(competencies));
 }
 
 function show(id){
@@ -931,7 +982,7 @@ function cardKey(card, s=selected.subject){
   return `${s}|${card[0]}|${card[1]||""}|${card[2]||""}|${card[3]||""}|${card[4]||""}`;
 }
 function masteryOf(card, s=selected.subject){
-  return mastery[cardKey(card,s)] ?? 30;
+  return competencyMastery(card,s);
 }
 function updateMastery(card, correct){
   const k=cardKey(card);
@@ -1713,7 +1764,8 @@ function buildSession(cards){
   const result=[];
   cards.forEach(card=>{
     const m=masteryOf(card,selected.subject);
-    const repeats=m<50?3:m<80?2:1;
+    const due=dueForReview(card,selected.subject);
+    const repeats=due?3:m<50?3:m<80?2:1;
     const modes=isJapaneseWriting()?["flash","multi","draw"]:["flash","multi"];
     for(let i=0;i<repeats;i++) result.push({card,mode:modes[i%modes.length]});
   });
@@ -1846,6 +1898,7 @@ function recordAnswer(card, correct){
   else stats[k].missed++;
 
   updateMastery(card,correct);
+  updateCompetency(card,correct,selected.subject,currentMode);
 
   if(!correct && !missed.some(x=>x.key===k)){
     missed.push({key:k,front:card[0],back:card[1]||"",meaning:card[2]||"",example:card[3]||"",exampleMeaning:card[4]||"",subject:selected.subject});
@@ -2193,6 +2246,15 @@ function showDashboard(){
       ? `Your weakest items are being kept in review. Recommended next: ${rec.title}.`
       : `No major weak areas yet. Recommended next: ${rec.title}.`;
 
+  const skillBox=document.getElementById("skillProfile");
+  if(skillBox){
+    const profile=languageSkillProfile(activeLanguage);
+    skillBox.innerHTML=SKILL_DIMENSIONS.map(d=>`<div class="masteryItem"><strong>${d[0].toUpperCase()+d.slice(1)}</strong><div class="bar"><div class="fill" style="width:${profile[d]}%"></div></div><span>${profile[d]}%</span></div>`).join("");
+    const weakest=weakestDimension(activeLanguage);
+    const fw=document.getElementById("frameworkProgress");
+    if(fw) fw.textContent=`${frameworkLabel(activeLanguage)} • Current weakest skill: ${weakest[0]} (${weakest[1]}%)`;
+  }
+
   const weakBox=document.getElementById("weakCards");
   weakBox.innerHTML="";
   weak.slice(0,10).forEach(x=>{
@@ -2215,21 +2277,34 @@ function showDashboard(){
 }
 function resetProgress(){
   if(!confirm("Reset all Keon progress? Your language and goal settings will stay.")) return;
-  stats={};mastery={};missed=[];
+  stats={};mastery={};missed=[];competencies={};
   save();
   showDashboard();
 }
 
-renderSetup();
-renderSubjects();
-if(localStorage.getItem(SETTINGS_KEY)){
-  activeLanguage=settings.activeLanguage || settings.languages[0];
-  renderSubjects();
-  show("home");
-}else{
-  show("setup");
-}
+let keonAppStarted=false;
 
-if("serviceWorker" in navigator){
-  navigator.serviceWorker.register("service-worker.js");
-}
+window.startKeonApp=function(){
+  if(keonAppStarted) return;
+  keonAppStarted=true;
+  renderSetup();
+  renderSubjects();
+  if(localStorage.getItem(SETTINGS_KEY)){
+    activeLanguage=settings.activeLanguage || settings.languages[0];
+    renderSubjects();
+    show("home");
+  }else{
+    show("setup");
+  }
+
+  if("serviceWorker" in navigator){
+    navigator.serviceWorker.register("service-worker.js");
+  }
+};
+
+window.lockKeonApp=function(){
+  keonAppStarted=false;
+  document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));
+  const authScreen=document.getElementById("auth");
+  if(authScreen) authScreen.classList.add("active");
+};

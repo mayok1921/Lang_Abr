@@ -1,7 +1,7 @@
 {
   "name": "Keon",
   "short_name": "Keon",
-  "description": "A mobile-first Japanese and Polish learning app.",
+  "description": "Keon — authenticated adaptive language learning for Japanese, Polish, Mexican Spanish, Korean, Vietnamese, Filipino, Mandarin, and Cantonese.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

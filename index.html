@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Keon">
   <meta name="theme-color" content="#0b1020">
-  <meta name="description" content="Keon — a mobile-first Japanese and Polish learning app.">
+  <meta name="description" content="Keon — adaptive language learning from foundations to advanced proficiency.">
   <title>Keon</title>
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -234,6 +234,15 @@
     .voiceBtn:hover{background:rgba(255,255,255,.12);transform:scale(1.04)}
     .voiceBtn:active{transform:scale(.96)}
 
+    .authShell{min-height:calc(100vh - 44px);display:grid;place-items:center;max-width:520px;margin:0 auto}
+    .authLogo{width:92px;height:92px;border-radius:28px;background:linear-gradient(135deg,var(--accent2),#7628e8);display:grid;place-items:center;margin:0 auto 18px;font-size:54px;font-weight:900;box-shadow:0 18px 45px rgba(88,54,220,.32)}
+    .googleBtn{display:flex;align-items:center;justify-content:center;gap:10px;background:white;color:#202124;box-shadow:none}
+    .googleMark{font-weight:900;font-size:20px;color:#4285f4}
+    .authError{display:none;margin-top:12px;padding:12px 14px;border-radius:16px;background:rgba(255,141,161,.12);border:1px solid rgba(255,141,161,.4);color:#ffe0e6}
+    .accountBadge{display:flex;align-items:center;gap:9px;padding:7px 10px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,.06)}
+    .accountAvatar{width:28px;height:28px;border-radius:50%;object-fit:cover;background:rgba(255,255,255,.12)}
+    .accountText{font-size:12px;max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
     @media (max-width:540px){
       .brand{font-size:36px}.heroTitle{font-size:24px}.lessonCard{grid-template-columns:38px 1fr 50px}
       .panel,.heroCard{padding:16px}.btn{padding:13px 15px}.courseStats{grid-template-columns:1fr}.checkpointGrid{grid-template-columns:1fr}.smartWordCard{margin-left:0;grid-template-columns:1fr}
@@ -241,6 +250,21 @@
   </style>
 </head>
 <body>
+
+<section id="auth" class="screen active">
+  <div class="authShell">
+    <div class="panel center" style="width:100%">
+      <div class="authLogo">K</div>
+      <div class="brand"><span>Keon</span></div>
+      <p class="subtitle">Your adaptive language-learning workspace.</p>
+      <button id="googleSignInBtn" class="btn googleBtn full" onclick="keonGoogleSignIn()">
+        <span class="googleMark">G</span> Continue with Google
+      </button>
+      <div id="authStatus" class="small" style="margin-top:10px">Sign in with an approved Google account.</div>
+      <div id="authError" class="authError" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
 
 <section id="setup" class="screen">
   <div class="brand"><span>Keon</span></div>
@@ -289,6 +313,11 @@
     <div>
       <div class="brand"><span>Keon</span></div>
       <p class="subtitle" style="margin:0">Learn what matters next.</p>
+    </div>
+    <div id="accountBadge" class="accountBadge" style="display:none">
+      <img id="accountAvatar" class="accountAvatar" alt="">
+      <span id="accountName" class="accountText"></span>
+      <button class="chip" style="padding:6px 9px" onclick="keonSignOut()">Sign out</button>
     </div>
   </div>
   <div id="homeLanguages" class="languageRow"></div>
@@ -540,7 +569,12 @@
     <div id="weakCards"></div>
   </div>
   <div class="panel">
-    <h3>Mastery</h3>
+    <h3>Skill Profile</h3>
+    <p id="frameworkProgress" class="small"></p>
+    <div id="skillProfile"></div>
+  </div>
+  <div class="panel">
+    <h3>Item Mastery</h3>
     <div id="masteryList"></div>
   </div>
   <button class="btn full" onclick="show('subjects')">Study</button>
@@ -548,6 +582,8 @@
   <button class="btn bad full" onclick="resetProgress()">Reset Progress</button>
 </section>
 
+<script src="auth-config.js"></script>
 <script src="app.js"></script>
+<script type="module" src="auth.js"></script>
 </body>
 </html>
