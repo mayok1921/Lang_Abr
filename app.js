@@ -706,6 +706,83 @@ Object.entries(VISUAL_OBJECT_LESSONS).forEach(([subjectKey, lessons])=>{
   if(DATA[subjectKey]) DATA[subjectKey].lessons.push(...lessons);
 });
 
+const EXTENDED_VISUAL_LESSONS = {
+  korean_core:[
+    {title:"색깔 — 먼저 보기",cards:[
+      ["파란색","paransaek","blue","하늘이 파란색이에요.","The sky is blue.",{type:"color",value:"#2f7de1",label:"blue"}],
+      ["빨간색","ppalgansaek","red","빨간색 가방이에요.","It is a red bag.",{type:"color",value:"#df4b57",label:"red"}],
+      ["초록색","choroksaek","green","신호등이 초록색이에요.","The traffic light is green.",{type:"color",value:"#31a66a",label:"green"}]
+    ]},
+    {title:"동물과 물건 — 먼저 보기",cards:[
+      ["고양이","goyangi","cat","고양이가 자고 있어요.","The cat is sleeping.",{type:"emoji",value:"🐈",label:"a cat"}],
+      ["개","gae","dog","개와 산책해요.","I walk with the dog.",{type:"emoji",value:"🐕",label:"a dog"}],
+      ["책","chaek","book","이 책을 읽어요.","I read this book.",{type:"emoji",value:"📕",label:"a book"}],
+      ["열쇠","yeolsoe","key","열쇠가 어디 있어요?","Where is the key?",{type:"emoji",value:"🔑",label:"a key"}],
+      ["휴대폰","hyudaepon","cellphone","휴대폰을 집에 두고 왔어요.","I left my cellphone at home.",{type:"emoji",value:"📱",label:"a cellphone"}]
+    ]}
+  ],
+  vietnamese_core:[
+    {title:"Màu sắc — Nhìn trước",cards:[
+      ["màu xanh dương","","blue","Bầu trời hôm nay rất xanh.","The sky is very blue today.",{type:"color",value:"#2f7de1",label:"blue"}],
+      ["màu đỏ","","red","Tôi có một cái túi màu đỏ.","I have a red bag.",{type:"color",value:"#df4b57",label:"red"}],
+      ["màu xanh lá cây","","green","Đèn đã chuyển sang màu xanh.","The light turned green.",{type:"color",value:"#31a66a",label:"green"}]
+    ]},
+    {title:"Động vật và đồ vật — Nhìn trước",cards:[
+      ["con mèo","","cat","Con mèo đang ngủ.","The cat is sleeping.",{type:"emoji",value:"🐈",label:"a cat"}],
+      ["con chó","","dog","Tôi dắt chó đi dạo.","I take the dog for a walk.",{type:"emoji",value:"🐕",label:"a dog"}],
+      ["quyển sách","","book","Tôi đang đọc quyển sách này.","I am reading this book.",{type:"emoji",value:"📕",label:"a book"}],
+      ["chìa khóa","","key","Chìa khóa ở đâu?","Where is the key?",{type:"emoji",value:"🔑",label:"a key"}],
+      ["điện thoại","","phone","Điện thoại ở trong túi.","The phone is in the bag.",{type:"emoji",value:"📱",label:"a phone"}]
+    ]}
+  ],
+  filipino_core:[
+    {title:"Mga Kulay — Tingnan Muna",cards:[
+      ["asul","","blue","Asul ang langit ngayon.","The sky is blue today.",{type:"color",value:"#2f7de1",label:"blue"}],
+      ["pula","","red","Pula ang bag ko.","My bag is red.",{type:"color",value:"#df4b57",label:"red"}],
+      ["berde","","green","Berde na ang ilaw.","The light is green now.",{type:"color",value:"#31a66a",label:"green"}]
+    ]},
+    {title:"Mga Hayop at Bagay — Tingnan Muna",cards:[
+      ["pusa","","cat","Natutulog ang pusa.","The cat is sleeping.",{type:"emoji",value:"🐈",label:"a cat"}],
+      ["aso","","dog","Ilalakad ko ang aso.","I will walk the dog.",{type:"emoji",value:"🐕",label:"a dog"}],
+      ["libro","","book","Binabasa ko ang librong ito.","I am reading this book.",{type:"emoji",value:"📕",label:"a book"}],
+      ["susi","","key","Nasaan ang susi?","Where is the key?",{type:"emoji",value:"🔑",label:"a key"}],
+      ["cellphone","","cellphone","Nasa bag ang cellphone ko.","My cellphone is in the bag.",{type:"emoji",value:"📱",label:"a cellphone"}]
+    ]}
+  ],
+  mandarin_core:[
+    {title:"颜色 — 先看再说",cards:[
+      ["蓝色","lánsè","blue","今天的天空很蓝。","The sky is very blue today.",{type:"color",value:"#2f7de1",label:"blue"}],
+      ["红色","hóngsè","red","这是一个红色的包。","This is a red bag.",{type:"color",value:"#df4b57",label:"red"}],
+      ["绿色","lǜsè","green","现在是绿灯。","The light is green now.",{type:"color",value:"#31a66a",label:"green"}]
+    ]},
+    {title:"动物和物品 — 先看再说",cards:[
+      ["猫","māo","cat","猫在睡觉。","The cat is sleeping.",{type:"emoji",value:"🐈",label:"a cat"}],
+      ["狗","gǒu","dog","我带狗去散步。","I take the dog for a walk.",{type:"emoji",value:"🐕",label:"a dog"}],
+      ["书","shū","book","我在看这本书。","I am reading this book.",{type:"emoji",value:"📕",label:"a book"}],
+      ["钥匙","yàoshi","key","钥匙在哪里？","Where is the key?",{type:"emoji",value:"🔑",label:"a key"}],
+      ["手机","shǒujī","cellphone","手机在包里。","The cellphone is in the bag.",{type:"emoji",value:"📱",label:"a cellphone"}]
+    ]}
+  ],
+  cantonese_core:[
+    {title:"顏色 — 先睇後講",cards:[
+      ["藍色","laam4 sik1","blue","今日個天好藍。","The sky is very blue today.",{type:"color",value:"#2f7de1",label:"blue"}],
+      ["紅色","hung4 sik1","red","呢個係紅色嘅袋。","This is a red bag.",{type:"color",value:"#df4b57",label:"red"}],
+      ["綠色","luk6 sik1","green","而家係綠燈。","The light is green now.",{type:"color",value:"#31a66a",label:"green"}]
+    ]},
+    {title:"動物同物件 — 先睇後講",cards:[
+      ["貓","maau1","cat","隻貓瞓緊覺。","The cat is sleeping.",{type:"emoji",value:"🐈",label:"a cat"}],
+      ["狗","gau2","dog","我帶隻狗去散步。","I take the dog for a walk.",{type:"emoji",value:"🐕",label:"a dog"}],
+      ["書","syu1","book","我睇緊呢本書。","I am reading this book.",{type:"emoji",value:"📕",label:"a book"}],
+      ["鎖匙","so2 si4","key","鎖匙喺邊度？","Where is the key?",{type:"emoji",value:"🔑",label:"a key"}],
+      ["手機","sau2 gei1","cellphone","手機喺個袋入面。","The cellphone is in the bag.",{type:"emoji",value:"📱",label:"a cellphone"}]
+    ]}
+  ]
+};
+
+Object.entries(EXTENDED_VISUAL_LESSONS).forEach(([subjectKey,lessons])=>{
+  if(DATA[subjectKey]) DATA[subjectKey].lessons.push(...lessons);
+});
+
 const SUBJECTS = {
   ja:[
     ["hiragana","あ Hiragana","Learn and trace the basic Japanese syllabary."],
@@ -943,6 +1020,8 @@ let subject = defaultSubjectForLanguage(activeLanguage);
 let lessonType = "new";
 let selected = {subject,title:"",cards:[]};
 let session = [], sessionIndex = 0, currentMode = "flash", revealed = false;
+let sentenceTargetWords=[], builtSentenceWords=[], builtSentenceAnswer=[];
+let selectedMatchButton=null, matchedPairIds=new Set();
 let inputDeck = [], inputIndex = 0;
 let drawing = false, drawContext = null, traceVisible = false;
 
@@ -1095,7 +1174,9 @@ function cardHelpMeaning(card){
 }
 
 function cardKey(card, s=selected.subject){
-  return `${s}|${card[0]}|${card[1]||""}|${card[2]||""}|${card[3]||""}|${card[4]||""}|${JSON.stringify(cardMedia(card)||{})}`;
+  const existingKey=`${s}|${card[0]}|${card[1]||""}|${card[2]||""}|${card[3]||""}|${card[4]||""}`;
+  const media=cardMedia(card);
+  return media ? `${existingKey}|${JSON.stringify(media)}` : existingKey;
 }
 function masteryOf(card, s=selected.subject){
   return competencyMastery(card,s);
@@ -1447,7 +1528,7 @@ function openMissed(){
   selected={
     subject:languageMissed[0]?.subject || defaultSubjectForLanguage(activeLanguage),
     title:"Missed Cards",
-    cards:languageMissed.map(x=>[x.front,x.back||"",x.meaning||"",x.example||"",x.exampleMeaning||""])
+    cards:languageMissed.map(x=>[x.front,x.back||"",x.meaning||"",x.example||"",x.exampleMeaning||"",x.media||null])
   };
   openPreview();
 }
@@ -1559,11 +1640,103 @@ function showJapanesePath(){
   document.getElementById("jpKataPct").textContent=k+"%";
   document.getElementById("jpKanjiPct").textContent=j+"%";
   document.getElementById("jpPathStart").onclick=()=>s.stage==="ja_n5_course"?openCourse("ja1"):openSubject(s.stage);
-  const items=[["Hiragana + words",h,h>=85],["Katakana + words",k,k>=80],["Intro Kanji",j,j>=70],["Japanese I — N5",normalizedCourseProgress("ja_n5_course"),false],["Japanese II — N4",normalizedCourseProgress("ja_n4_course"),false],["Japanese III — N3",normalizedCourseProgress("ja_n3_course"),false],["Japanese IV — N2",normalizedCourseProgress("ja_n2_course"),false]];
+  const items=[
+    {label:"Hiragana + words",detail:"Read, hear, and trace",value:h,done:h>=85,open:()=>openSubject("hiragana")},
+    {label:"Katakana + words",detail:"Loanwords and signs",value:k,done:k>=80,open:()=>openSubject("katakana")},
+    {label:"Intro Kanji",detail:"Useful characters in context",value:j,done:j>=70,open:()=>openSubject("intro_kanji")},
+    {label:"Japanese I — N5",detail:"Everyday foundations",value:normalizedCourseProgress("ja_n5_course"),open:()=>openCourse("ja1")},
+    {label:"Japanese II — N4",detail:"Connected conversation",value:normalizedCourseProgress("ja_n4_course"),open:()=>openCourse("ja2")},
+    {label:"Japanese III — N3",detail:"Intermediate Japanese",value:normalizedCourseProgress("ja_n3_course"),open:()=>openCourse("ja3")},
+    {label:"Japanese IV — N2",detail:"Nuance and advanced reading",value:normalizedCourseProgress("ja_n2_course"),open:()=>openCourse("ja4")}
+  ];
+  const stageIndexes={hiragana:0,katakana:1,intro_kanji:2,ja_n5_course:3};
+  const currentIndex=stageIndexes[s.stage] ?? 0;
   const box=document.getElementById("jpRoadmap"); box.innerHTML="";
-  items.forEach((x,i)=>{const r=document.createElement("div");r.className="pathStep";r.innerHTML=`<div class="pathIndex">${x[2]?"✓":i+1}</div><div><strong>${x[0]}</strong><div class="bar"><div class="fill" style="width:${Math.min(100,x[1])}%"></div></div></div><div>${x[1]}%</div>`;box.appendChild(r);});
+  box.style.setProperty("--path-progress",`${Math.max(8,Math.round((currentIndex/(items.length-1))*100))}%`);
+  items.forEach((item,i)=>{
+    const row=document.createElement("div");
+    row.className="keonPathNodeRow";
+    const button=document.createElement("button");
+    button.className=`keonPathNode${item.done?" done":i===currentIndex?" current":""}`;
+    button.textContent=item.done?"✓":i+1;
+    button.setAttribute("aria-label",`${item.label}, ${item.value}% mastery`);
+    button.onclick=item.open;
+    const copy=document.createElement("div");
+    copy.className="keonNodeCopy";
+    copy.innerHTML=`<strong>${item.label}</strong><span>${item.detail} · ${item.value}%</span>`;
+    row.append(button,copy);
+    box.appendChild(row);
+  });
   show("japanesePath");
 }
+
+function showFoundationHub(){
+  const foundationSets={
+    ja:{subtitle:"Practice scripts separately, then use them throughout the main course",items:[
+      ["hiragana","あ","Hiragana","Core sounds, tracing, and early words"],
+      ["katakana","カ","Katakana","Loanwords, signs, and modern vocabulary"],
+      ["intro_kanji","日","Kanji","Useful characters introduced through real words"]
+    ]},
+    pl:{subtitle:"Connect Polish spelling, useful speech, and sentence patterns",items:[
+      ["polish_pronunciation","Ą","Pronunciation","Special letters and sound patterns in real words"],
+      ["polish_basics","Cześć","Everyday Polish","Greetings and high-frequency useful speech"],
+      ["polish_foundations","Ja","Sentence Foundations","Core verbs, cases, and natural sentence patterns"]
+    ]},
+    es:{subtitle:"Build Mexican Spanish pronunciation and natural everyday communication",items:[
+      ["spanish_pronunciation","Ñ","Pronunciation","Sound patterns and Mexican speech habits"],
+      ["spanish_basics","Hola","Everyday Spanish","Greetings and high-frequency useful phrases"],
+      ["spanish_foundations","Yo","Sentence Foundations","Core verbs and natural sentence building"]
+    ]},
+    ko:{subtitle:"Learn Hangul first, then connect spelling to everyday Korean",items:[
+      ["korean_hangul","한","Hangul","Syllable blocks taught through real Korean words"],
+      ["korean_pronunciation","소리","Pronunciation","Sound changes and natural polite rhythm"],
+      ["korean_core","안녕","Everyday Korean","Useful phrases and beginner sentence patterns"]
+    ]},
+    vi:{subtitle:"Hear the tone and vowel system before building longer Vietnamese",items:[
+      ["vietnamese_pronunciation","ắ","Sounds & Tones","Tone and vowel awareness through meaningful words"],
+      ["vietnamese_core","Chào","Everyday Vietnamese","Useful phrases, questions, and simple sentences"]
+    ]},
+    tl:{subtitle:"Build natural Filipino speech, pronunciation, and Tagalog structure together",items:[
+      ["filipino_pronunciation","Po","Pronunciation & Politeness","Sound patterns, stress, po, and opo"],
+      ["filipino_core","Kumusta","Everyday Filipino","Useful phrases and natural sentence building"],
+      ["filipino_grammar","Ang","Grammar Foundations","Ang, ng, sa, and verb focus in context"]
+    ]},
+    zh:{subtitle:"Learn Pinyin and tones while gradually adding useful characters",items:[
+      ["mandarin_pronunciation","mā","Pinyin & Tones","Sound contrasts and tone recognition"],
+      ["mandarin_characters","字","Characters","High-frequency characters in useful words"],
+      ["mandarin_core","你好","Everyday Mandarin","Practical phrases and simple sentences"]
+    ]},
+    yue:{subtitle:"Learn Jyutping and tones while connecting speech to Cantonese writing",items:[
+      ["cantonese_pronunciation","si1","Jyutping & Tones","Six tone categories in meaningful speech"],
+      ["cantonese_characters","字","Characters","Common and Cantonese-specific written forms"],
+      ["cantonese_core","你好","Everyday Cantonese","Useful phrases and natural sentence patterns"]
+    ]}
+  };
+  const set=foundationSets[activeLanguage]||foundationSets.ja;
+  document.getElementById("foundationTitle").textContent=`${LANGUAGE_META[activeLanguage]?.label||"Language"} Foundations`;
+  document.getElementById("foundationSubtitle").textContent=set.subtitle;
+  const items=set.items.map(([subject,symbol,title,desc])=>({subject,symbol,title,desc,value:simpleSubjectComfort(subject)}));
+  const box=document.getElementById("foundationCards");
+  box.innerHTML="";
+  items.forEach(item=>{
+    const button=document.createElement("button");
+    button.className="keonCharacterCard";
+    button.innerHTML=`<div class="keonCharacterTop"><div class="keonCharacterSymbol">${item.symbol}</div><div class="keonCharacterCopy"><h3>${item.title}</h3><p>${item.desc}</p></div><strong>${item.value}%</strong></div><div class="bar"><div class="fill" style="width:${item.value}%"></div></div>`;
+    button.onclick=()=>openSubject(item.subject);
+    box.appendChild(button);
+  });
+  const pathButton=document.getElementById("foundationPathButton");
+  pathButton.onclick=()=>{
+    if(activeLanguage==="ja") showJapanesePath();
+    else if(activeLanguage==="pl") showPolishPath();
+    else if(["ko","vi","tl","zh","yue"].includes(activeLanguage)) showNewLanguagePath(activeLanguage);
+    else showCourseCatalog();
+  };
+  pathButton.textContent=activeLanguage==="es"?"View Mexican Spanish course path":"View complete learning path";
+  show("foundations");
+}
+
+function showCharactersHub(){ showFoundationHub(); }
 
 function polishLessonMastery(subjectKey,lessonIndex){
   const lesson=DATA[subjectKey]?.lessons?.[lessonIndex];
@@ -1884,9 +2057,15 @@ function buildSession(cards){
     const m=masteryOf(card,selected.subject);
     const due=dueForReview(card,selected.subject);
     const repeats=due?3:m<50?3:m<80?2:1;
-    const modes=isJapaneseWriting()?["flash","multi","draw"]:["flash","multi"];
-    for(let i=0;i<repeats;i++) result.push({card,mode:modes[i%modes.length]});
+    const modes=isJapaneseWriting()?["flash","multi","draw"]:["flash","multi","listen","build"];
+    for(let i=0;i<repeats;i++){
+      let mode=modes[i%modes.length];
+      if(mode==="build" && !/\s/.test(cardExample(card))) mode="listen";
+      result.push({card,mode});
+    }
   });
+  const matchCards=cards.filter(card=>cardMeaning(card)).slice(0,4);
+  if(!isJapaneseWriting() && matchCards.length===4) result.push({card:matchCards[0],mode:"match",matchCards});
   return result.sort(()=>Math.random()-.5);
 }
 function backFromPreview(){
@@ -1912,10 +2091,13 @@ function renderStudy(){
   currentMode=item.mode;
 
   document.getElementById("studyTitle").textContent=selected.title;
-  document.getElementById("sessionType").textContent=currentMode==="flash"?"🎴 Flashcard":currentMode==="multi"?"🎯 Multiple Choice":"✍️ Writing";
+  document.getElementById("sessionType").textContent=currentMode==="flash"?"🎴 Flashcard":currentMode==="multi"?"🎯 Multiple Choice":currentMode==="listen"?"🔊 Listening":currentMode==="build"?"🧩 Build a Sentence":currentMode==="match"?"↔ Match":"✍️ Writing";
   document.getElementById("flashArea").style.display=currentMode==="flash"?"block":"none";
   document.getElementById("multiArea").style.display=currentMode==="multi"?"block":"none";
   document.getElementById("drawArea").style.display=currentMode==="draw"?"block":"none";
+  document.getElementById("listenArea").style.display=currentMode==="listen"?"block":"none";
+  document.getElementById("buildArea").style.display=currentMode==="build"?"block":"none";
+  document.getElementById("matchArea").style.display=currentMode==="match"?"block":"none";
 
   if(currentMode==="flash"){
     const media=cardMedia(card);
@@ -1958,6 +2140,12 @@ function renderStudy(){
     }
   }else if(currentMode==="multi"){
     buildMultipleChoice(card);
+  }else if(currentMode==="listen"){
+    buildListening(card);
+  }else if(currentMode==="build"){
+    buildSentence(card);
+  }else if(currentMode==="match"){
+    buildMatching(item.matchCards || []);
   }else{
     traceVisible=false;
     document.getElementById("drawTarget").textContent=`Draw: ${card[1]}`;
@@ -2028,7 +2216,7 @@ function recordAnswer(card, correct){
   updateCompetency(card,correct,selected.subject,currentMode);
 
   if(!correct && !missed.some(x=>x.key===k)){
-    missed.push({key:k,front:card[0],back:card[1]||"",meaning:card[2]||"",example:card[3]||"",exampleMeaning:card[4]||"",subject:selected.subject});
+    missed.push({key:k,front:card[0],back:card[1]||"",meaning:card[2]||"",example:card[3]||"",exampleMeaning:card[4]||"",media:cardMedia(card),subject:selected.subject});
   }
   if(correct && masteryOf(card,selected.subject)>=75){
     missed=missed.filter(x=>x.key!==k);
@@ -2080,6 +2268,92 @@ function buildMultipleChoice(card){
     };
     choices.appendChild(b);
   });
+}
+
+function buildListening(card){
+  const choices=document.getElementById("listenChoices");
+  const feedback=document.getElementById("listenFeedback");
+  choices.innerHTML=""; feedback.textContent="";
+  document.getElementById("listenPlay").onclick=()=>speakTargetText(card[0],selected.subject);
+  let pool=allCards(selected.subject).filter(other=>other!==card && cardMeaning(other));
+  const options=[card];
+  while(options.length<4 && pool.length){
+    const index=Math.floor(Math.random()*pool.length);
+    options.push(pool.splice(index,1)[0]);
+  }
+  options.sort(()=>Math.random()-.5).forEach(option=>{
+    const button=document.createElement("button");
+    button.className="mcChoice"; button.textContent=cardMeaning(option);
+    button.onclick=()=>{
+      const correct=option===card;
+      recordAnswer(card,correct);
+      if(correct) button.classList.add("correct"); else button.classList.add("wrong");
+      feedback.textContent=correct?"Correct.":`${card[0]} means ${cardMeaning(card)}.`;
+      setTimeout(nextCard,900);
+    };
+    choices.appendChild(button);
+  });
+}
+
+function buildSentence(card){
+  const sentence=cardExample(card).replace(/[.!?。！？]+$/u,"").trim();
+  sentenceTargetWords=sentence.split(/\s+/).filter(Boolean);
+  builtSentenceWords=[...sentenceTargetWords].sort(()=>Math.random()-.5);
+  builtSentenceAnswer=[];
+  document.getElementById("buildMeaning").textContent=cardExampleMeaning(card) || cardMeaning(card);
+  document.getElementById("buildFeedback").textContent="";
+  renderSentenceBuilder();
+}
+function renderSentenceBuilder(){
+  const answer=document.getElementById("answerSlots"),bank=document.getElementById("wordBank");
+  answer.innerHTML=""; bank.innerHTML="";
+  builtSentenceWords.forEach((word,index)=>{
+    const button=document.createElement("button");button.className="wordToken";button.textContent=word;
+    button.onclick=()=>{builtSentenceWords.splice(index,1);builtSentenceAnswer.push(word);renderSentenceBuilder();};
+    bank.appendChild(button);
+  });
+  builtSentenceAnswer.forEach((word,index)=>{
+    const button=document.createElement("button");button.className="wordToken";button.textContent=word;
+    button.onclick=()=>{builtSentenceWords.push(word);builtSentenceAnswer.splice(index,1);renderSentenceBuilder();};
+    answer.appendChild(button);
+  });
+  if(!answer.children.length) answer.innerHTML="<span class='small'>Tap words below to build the sentence.</span>";
+}
+function checkBuiltSentence(){
+  const correct=builtSentenceAnswer.join(" ")===sentenceTargetWords.join(" ");
+  document.getElementById("buildFeedback").textContent=correct?"Correct.":`Try again: ${sentenceTargetWords.join(" ")}`;
+  recordAnswer(session[sessionIndex].card,correct);
+  if(correct) setTimeout(nextCard,900);
+}
+
+function buildMatching(cards){
+  const grid=document.getElementById("matchGrid");grid.innerHTML="";
+  selectedMatchButton=null;matchedPairIds=new Set();document.getElementById("matchFeedback").textContent="";
+  const entries=cards.flatMap((card,index)=>[
+    {text:card[0],pair:String(index),side:"target"},
+    {text:cardMeaning(card),pair:String(index),side:"meaning"}
+  ]).sort(()=>Math.random()-.5);
+  entries.forEach(entry=>{
+    const button=document.createElement("button");button.className="matchChoice";button.textContent=entry.text;
+    button.dataset.pair=entry.pair;button.dataset.side=entry.side;
+    button.onclick=()=>selectMatch(button,cards);
+    grid.appendChild(button);
+  });
+}
+function selectMatch(button,cards){
+  if(button.classList.contains("matched")) return;
+  if(!selectedMatchButton){selectedMatchButton=button;button.classList.add("selected");return;}
+  if(selectedMatchButton===button){button.classList.remove("selected");selectedMatchButton=null;return;}
+  const first=selectedMatchButton;first.classList.remove("selected");selectedMatchButton=null;
+  const correct=first.dataset.pair===button.dataset.pair && first.dataset.side!==button.dataset.side;
+  if(correct){
+    first.classList.add("matched");button.classList.add("matched");matchedPairIds.add(button.dataset.pair);
+    recordAnswer(cards[Number(button.dataset.pair)],true);
+    if(matchedPairIds.size===cards.length){document.getElementById("matchFeedback").textContent="All matched!";setTimeout(nextCard,900);}
+  }else{
+    button.classList.add("wrong");setTimeout(()=>button.classList.remove("wrong"),500);
+    document.getElementById("matchFeedback").textContent="Not quite—try another pair.";
+  }
 }
 
 function setupCanvas(){

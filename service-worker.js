@@ -1,4 +1,4 @@
-const CACHE_NAME = "keon-v42-visual-first";
+const CACHE_NAME = "keon-v46-all-languages";
 const FILES = [
   "./",
   "./index.html",
