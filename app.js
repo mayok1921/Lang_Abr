@@ -617,6 +617,95 @@ const INPUT = {
 
 Object.assign(INPUT, {"ja_n5_course":[["今日は大学へ行きます。九時から日本語の授業があります。","Today I am going to university. I have Japanese class from nine."],["昨日、友達とラーメンを食べました。とてもおいしかったです。","Yesterday I ate ramen with a friend. It was very delicious."]],"ja_n4_course":[["時間があったら、駅の近くの本屋へ行くつもりです。","If I have time, I plan to go to the bookstore near the station."],["先生に作文を直してもらったので、間違いがよく分かりました。","I had my teacher correct my essay, so I understood my mistakes well."]],"ja_n3_course":[["最近、日本語のニュースが少し分かるようになりました。一方で、速い会話はまだ難しいです。","Recently I have become able to understand some Japanese news. On the other hand, fast conversation is still difficult."],["天気予報によると、明日は雨らしいです。そのため、イベントは中止になるかもしれません。","According to the forecast, apparently it will rain tomorrow. Therefore, the event may be canceled."]],"ja_n2_course":[["技術の発展に伴って働き方も変化している。しかし、便利になったからといって、すべての問題が解決するわけではない。","As technology develops, ways of working are also changing. However, becoming more convenient does not mean every problem is solved."],["調査結果に基づいて判断する必要があるものの、数字だけでは分からない要因も考慮すべきだ。","Although decisions need to be based on survey results, factors that numbers alone cannot reveal should also be considered."]],"pl_a1_course":[["Mam dziś zajęcia o dziewiątej. Po zajęciach idę do biblioteki.","I have class at nine today. After class I am going to the library."],["Poproszę kawę i wodę. Ile to kosztuje?","I would like coffee and water. How much does it cost?"]],"pl_a2_course":[["Wczoraj byłem na uczelni do późna, bo musiałem skończyć projekt.","Yesterday I was at university until late because I had to finish a project."],["W weekend pojadę do Warszawy i spotkam się z kolegą.","On the weekend I will go to Warsaw and meet a friend."]],"pl_b1_course":[["Mimo że projekt był trudny, udało nam się skończyć go przed terminem.","Although the project was difficult, we managed to finish it before the deadline."],["Moim zdaniem to rozwiązanie jest dobre, ale nie do końca zgadzam się z założeniami.","In my opinion this solution is good, but I do not entirely agree with the assumptions."]],"pl_b2_course":[["Biorąc pod uwagę wyniki badań, można zauważyć, że nowe podejście poprawiło efektywność.","Taking the research results into account, one can observe that the new approach improved efficiency."],["Należy podkreślić, że są to wyniki wstępne; niemniej jednak wskazują one wyraźny trend.","It should be emphasized that these are preliminary results; nevertheless, they indicate a clear trend."]],"es_a1_course":[["Hoy tengo clase a las nueve. Después voy por unos tacos con un amigo.","Today I have class at nine. Afterwards I am going to get some tacos with a friend."],["¿Me da una botella de agua, por favor? Es para llevar.","Can I get a bottle of water, please? It is to go."]],"es_a2_course":[["Ayer fui al centro y compré un boleto. Había mucha gente y hacía calor.","Yesterday I went downtown and bought a ticket. There were many people and it was hot."],["Al rato voy a estudiar. Ahorita estoy terminando de comer.","Later I am going to study. Right now I am finishing eating."]],"es_b1_course":[["Aunque estaba cansado, terminé el reporte para que mi equipo pudiera revisarlo.","Although I was tired, I finished the report so my team could review it."],["La neta, pensé que el examen iba a estar más fácil, pero estuvo cañón.","Honestly, I thought the exam was going to be easier, but it was really tough."]],"es_b2_course":[["Tomando en cuenta el costo y el desempeño, se puede concluir que la segunda opción es más viable.","Taking cost and performance into account, it can be concluded that the second option is more feasible."],["A pesar de que los resultados son prometedores, cabe señalar que todavía falta validar el método.","Although the results are promising, it is worth noting that the method still needs to be validated."]]});
 
+// Visual-native lessons show a concrete meaning before any English translation.
+// Card slot 5 accepts {type:"color", value, label}, {type:"emoji", value, label},
+// or {type:"image", src, alt}. The same renderer works for every language.
+const VISUAL_FIRST_LESSONS = {
+  japanese_basics: {
+    title:"Colors — See It First",
+    cards:[
+      ["青い","あおい","blue","青い空がきれいです。","The blue sky is beautiful.",{type:"color",value:"#2f7de1",label:"blue"}],
+      ["赤い","あかい","red","赤い車です。","It is a red car.",{type:"color",value:"#df4b57",label:"red"}],
+      ["緑","みどり","green","緑のシャツを着ています。","I am wearing a green shirt.",{type:"color",value:"#31a66a",label:"green"}],
+      ["白い","しろい","white","白い猫がいます。","There is a white cat.",{type:"color",value:"#f4f1e8",label:"white"}],
+      ["黒い","くろい","black","黒いかばんです。","It is a black bag.",{type:"color",value:"#171821",label:"black"}]
+    ]
+  },
+  polish_basics: {
+    title:"Kolory — Najpierw zobacz",
+    cards:[
+      ["niebieski","","blue","To jest niebieski samochód.","This is a blue car.",{type:"color",value:"#2f7de1",label:"blue"}],
+      ["czerwony","","red","Mam czerwony plecak.","I have a red backpack.",{type:"color",value:"#df4b57",label:"red"}],
+      ["zielony","","green","Lubię zieloną herbatę.","I like green tea.",{type:"color",value:"#31a66a",label:"green"}]
+    ]
+  },
+  spanish_basics: {
+    title:"Colores — Primero observa",
+    cards:[
+      ["azul","","blue","El cielo está bien azul hoy.","The sky is really blue today.",{type:"color",value:"#2f7de1",label:"blue"}],
+      ["rojo","","red","Traigo una playera roja.","I’m wearing a red T-shirt.",{type:"color",value:"#df4b57",label:"red"}],
+      ["verde","","green","El semáforo está en verde.","The traffic light is green.",{type:"color",value:"#31a66a",label:"green"}]
+    ]
+  }
+};
+
+Object.entries(VISUAL_FIRST_LESSONS).forEach(([subjectKey, lesson])=>{
+  if(DATA[subjectKey]) DATA[subjectKey].lessons.push(lesson);
+});
+
+const VISUAL_OBJECT_LESSONS = {
+  japanese_basics: [
+    {title:"Animals — See It First",cards:[
+      ["猫","ねこ","cat","猫が寝ています。","The cat is sleeping.",{type:"emoji",value:"🐈",label:"a cat"}],
+      ["犬","いぬ","dog","犬と散歩します。","I walk with the dog.",{type:"emoji",value:"🐕",label:"a dog"}],
+      ["鳥","とり","bird","鳥が空を飛んでいます。","A bird is flying in the sky.",{type:"emoji",value:"🐦",label:"a bird"}],
+      ["魚","さかな","fish","魚を食べます。","I eat fish.",{type:"emoji",value:"🐟",label:"a fish"}]
+    ]},
+    {title:"Everyday Objects — See It First",cards:[
+      ["本","ほん","book","この本を読みます。","I read this book.",{type:"emoji",value:"📕",label:"a book"}],
+      ["鍵","かぎ","key","鍵はどこ？","Where is the key?",{type:"emoji",value:"🔑",label:"a key"}],
+      ["電話","でんわ","phone / telephone","あとで電話します。","I’ll call later.",{type:"emoji",value:"📱",label:"a phone"}],
+      ["水","みず","water","水をください。","Water, please.",{type:"emoji",value:"💧",label:"water"}],
+      ["電車","でんしゃ","train","電車で学校へ行きます。","I go to school by train.",{type:"emoji",value:"🚆",label:"a train"}]
+    ]},
+    {title:"Food — See It First",cards:[
+      ["りんご","ringo","apple","りんごを一つください。","One apple, please.",{type:"emoji",value:"🍎",label:"an apple"}],
+      ["パン","pan","bread","朝、パンを食べます。","I eat bread in the morning.",{type:"emoji",value:"🍞",label:"bread"}],
+      ["ご飯","ごはん","rice / meal","一緒にご飯を食べよう。","Let’s eat together.",{type:"emoji",value:"🍚",label:"a bowl of rice"}],
+      ["コーヒー","koohii","coffee","コーヒーをお願いします。","Coffee, please.",{type:"emoji",value:"☕",label:"coffee"}]
+    ]}
+  ],
+  polish_basics: [
+    {title:"Zwierzęta — Najpierw zobacz",cards:[
+      ["kot","","cat","Kot śpi na kanapie.","The cat is sleeping on the couch.",{type:"emoji",value:"🐈",label:"a cat"}],
+      ["pies","","dog","Idę na spacer z psem.","I’m going for a walk with the dog.",{type:"emoji",value:"🐕",label:"a dog"}],
+      ["ptak","","bird","Ptak siedzi na drzewie.","A bird is sitting in a tree.",{type:"emoji",value:"🐦",label:"a bird"}]
+    ]},
+    {title:"Przedmioty — Najpierw zobacz",cards:[
+      ["książka","","book","Czytam tę książkę.","I’m reading this book.",{type:"emoji",value:"📕",label:"a book"}],
+      ["klucz","","key","Gdzie jest mój klucz?","Where is my key?",{type:"emoji",value:"🔑",label:"a key"}],
+      ["telefon","","phone","Mam telefon w plecaku.","I have my phone in my backpack.",{type:"emoji",value:"📱",label:"a phone"}]
+    ]}
+  ],
+  spanish_basics: [
+    {title:"Animales — Primero observa",cards:[
+      ["gato","","cat","El gato está dormido.","The cat is asleep.",{type:"emoji",value:"🐈",label:"a cat"}],
+      ["perro","","dog","Voy a sacar al perro.","I’m going to take the dog out.",{type:"emoji",value:"🐕",label:"a dog"}],
+      ["pájaro","","bird","Hay un pájaro en el árbol.","There is a bird in the tree.",{type:"emoji",value:"🐦",label:"a bird"}]
+    ]},
+    {title:"Objetos cotidianos — Primero observa",cards:[
+      ["libro","","book","Estoy leyendo este libro.","I’m reading this book.",{type:"emoji",value:"📕",label:"a book"}],
+      ["llave","","key","¿Dónde está la llave?","Where is the key?",{type:"emoji",value:"🔑",label:"a key"}],
+      ["celular","","cellphone","Se me olvidó el celular.","I forgot my cellphone.",{type:"emoji",value:"📱",label:"a cellphone"}],
+      ["agua","","water","¿Me da una botella de agua?","Can I get a bottle of water?",{type:"emoji",value:"💧",label:"water"}]
+    ]}
+  ]
+};
+
+Object.entries(VISUAL_OBJECT_LESSONS).forEach(([subjectKey, lessons])=>{
+  if(DATA[subjectKey]) DATA[subjectKey].lessons.push(...lessons);
+});
+
 const SUBJECTS = {
   ja:[
     ["hiragana","あ Hiragana","Learn and trace the basic Japanese syllabary."],
@@ -970,6 +1059,33 @@ function cardExample(card){
 function cardExampleMeaning(card){
   return card[4] || "";
 }
+function cardMedia(card){
+  return card[5] || null;
+}
+function escapeHTML(value){
+  return String(value ?? "").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[char]));
+}
+function safeMediaUrl(value){
+  const url=String(value || "").trim();
+  if(/^https:\/\//i.test(url) || /^data:image\/(png|jpeg|webp|gif);base64,/i.test(url) || /^[a-z0-9_./-]+\.(png|jpe?g|webp|gif)$/i.test(url)) return url;
+  return "";
+}
+function cardMediaHTML(card, compact=false){
+  const media=cardMedia(card);
+  if(!media) return "";
+  const compactClass=compact?" compact":"";
+  if(media.type==="color"){
+    return `<div class="visualPrompt${compactClass}" role="img" aria-label="A color sample" data-visual-kind="color"><span class="colorSwatch" style="--swatch:${escapeHTML(media.value)}"></span></div>`;
+  }
+  if(media.type==="emoji"){
+    return `<div class="visualPrompt${compactClass}" role="img" aria-label="${escapeHTML(media.label || "Visual clue")}" data-visual-kind="emoji"><span class="visualEmoji">${escapeHTML(media.value)}</span></div>`;
+  }
+  if(media.type==="image"){
+    const src=safeMediaUrl(media.src);
+    if(src) return `<div class="visualPrompt${compactClass}" data-visual-kind="image"><img src="${escapeHTML(src)}" alt="${escapeHTML(media.alt || "Visual clue")}"></div>`;
+  }
+  return "";
+}
 function cardPrimaryAnswer(card, s=selected.subject){
   // Native-first: pronunciation/reading when present; otherwise meaning.
   return cardReading(card) || cardMeaning(card);
@@ -979,7 +1095,7 @@ function cardHelpMeaning(card){
 }
 
 function cardKey(card, s=selected.subject){
-  return `${s}|${card[0]}|${card[1]||""}|${card[2]||""}|${card[3]||""}|${card[4]||""}`;
+  return `${s}|${card[0]}|${card[1]||""}|${card[2]||""}|${card[3]||""}|${card[4]||""}|${JSON.stringify(cardMedia(card)||{})}`;
 }
 function masteryOf(card, s=selected.subject){
   return competencyMastery(card,s);
@@ -1578,12 +1694,14 @@ function openPreview(){
     selected.cards.forEach(card=>{
       const div=document.createElement("div");
       div.className="previewCard";
+      const media=cardMedia(card);
       div.innerHTML=`
-        <div class="previewMain">${card[0]} ${voiceButtonHTML(card[0],selected.subject)}</div>
-        <div class="small">Try to read or understand it first.</div>
+        ${media?cardMediaHTML(card,true):`<div class="previewMain">${escapeHTML(card[0])} ${voiceButtonHTML(card[0],selected.subject)}</div>`}
+        <div class="small">${media?"Name what you see in the target language.":"Try to read or understand it first."}</div>
         <div class="previewReveal" style="display:none">
-          ${cardReading(card)?`<div class="readingLine">${cardReading(card)}</div>`:""}
-          ${cardMeaning(card)?`<div class="small meaningHint">${cardMeaning(card)}</div>`:""}
+          ${media?`<div class="previewMain">${escapeHTML(card[0])} ${voiceButtonHTML(card[0],selected.subject)}</div>`:""}
+          ${cardReading(card)?`<div class="readingLine">${escapeHTML(cardReading(card))}</div>`:""}
+          ${cardMeaning(card)?`<div class="small meaningHint">${escapeHTML(cardMeaning(card))}</div>`:""}
           ${cardExample(card)?`<div class="exampleBox"><strong>${cardExample(card)} ${voiceButtonHTML(cardExample(card),selected.subject,"Hear example")}</strong>${cardExampleMeaning(card)?`<div class="small">${cardExampleMeaning(card)}</div>`:""}</div>`:""}
         </div>
       `;
@@ -1800,10 +1918,19 @@ function renderStudy(){
   document.getElementById("drawArea").style.display=currentMode==="draw"?"block":"none";
 
   if(currentMode==="flash"){
-    document.getElementById("front").innerHTML=`${card[0]} ${voiceButtonHTML(card[0],selected.subject)}`;
+    const media=cardMedia(card);
+    document.getElementById("front").innerHTML=media
+      ? cardMediaHTML(card)
+      : `${card[0]} ${voiceButtonHTML(card[0],selected.subject)}`;
     const back=document.getElementById("back");
-    back.textContent=cardReading(card) || cardMeaning(card);
+    back.innerHTML=media
+      ? `<div class="revealedTarget">${escapeHTML(card[0])} ${voiceButtonHTML(card[0],selected.subject)}</div>${cardReading(card)?`<div class="readingLine">${escapeHTML(cardReading(card))}</div>`:""}`
+      : escapeHTML(cardReading(card) || cardMeaning(card));
     back.style.display=revealed?"block":"none";
+    const hint=document.getElementById("studyHint");
+    if(hint) hint.textContent=media
+      ? "Look first. Recall the target-language word, then tap to reveal."
+      : "Try first, then tap the card to reveal.";
 
     const meaningBox=document.getElementById("flashMeaning");
     const meaningBtn=document.getElementById("flashMeaningBtn");
@@ -1916,7 +2043,14 @@ function buildMultipleChoice(card){
   const q=document.getElementById("mcQuestion");
   const choices=document.getElementById("mcChoices");
   const feedback=document.getElementById("mcFeedback");
-  q.textContent=card[0];
+  const media=cardMedia(card);
+  if(media){
+    q.innerHTML=cardMediaHTML(card,true);
+    q.setAttribute("aria-label","Choose the target-language word for this visual");
+  }else{
+    q.textContent=card[0];
+    q.removeAttribute("aria-label");
+  }
   feedback.textContent="";
   choices.innerHTML="";
 
@@ -1931,15 +2065,17 @@ function buildMultipleChoice(card){
   options.forEach(option=>{
     const b=document.createElement("button");
     b.className="mcChoice";
-    b.textContent=cardPrimaryAnswer(option, selected.subject);
+    b.textContent=media ? option[0] : cardPrimaryAnswer(option, selected.subject);
     b.onclick=()=>{
-      const correct=cardPrimaryAnswer(option, selected.subject)===cardPrimaryAnswer(card, selected.subject);
+      const optionAnswer=media ? option[0] : cardPrimaryAnswer(option, selected.subject);
+      const correctAnswer=media ? card[0] : cardPrimaryAnswer(card, selected.subject);
+      const correct=optionAnswer===correctAnswer;
       recordAnswer(card,correct);
       document.querySelectorAll(".mcChoice").forEach(btn=>{
-        if(btn.textContent===cardPrimaryAnswer(card, selected.subject)) btn.classList.add("correct");
+        if(btn.textContent===correctAnswer) btn.classList.add("correct");
       });
       if(!correct) b.classList.add("wrong");
-      feedback.textContent=correct?"Correct.":`${card[0]} → ${cardPrimaryAnswer(card, selected.subject)}`;
+      feedback.textContent=correct?"Correct.":media?`That visual is ${card[0]}.`:`${card[0]} → ${cardPrimaryAnswer(card, selected.subject)}`;
       setTimeout(nextCard,850);
     };
     choices.appendChild(b);

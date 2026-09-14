@@ -1,4 +1,4 @@
-const CACHE_NAME = "keon-v41-google-auth";
+const CACHE_NAME = "keon-v42-visual-first";
 const FILES = [
   "./",
   "./index.html",
