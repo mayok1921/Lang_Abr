@@ -1736,6 +1736,16 @@ function showFoundationHub(){
   };
   pathButton.textContent=activeLanguage==="es"?"View Mexican Spanish course path":"View complete learning path";
   show("foundations");
+  requestAnimationFrame(()=>{
+    box.querySelectorAll(".keonCharacterSymbol.wordSymbol").forEach(symbol=>{
+      let size=16;
+      symbol.style.fontSize=size+"px";
+      while(symbol.scrollWidth>symbol.clientWidth-8 && size>8){
+        size-=1;
+        symbol.style.fontSize=size+"px";
+      }
+    });
+  });
 }
 
 function showCharactersHub(){ showFoundationHub(); }
@@ -2335,6 +2345,7 @@ function buildMatching(cards){
     {text:card[0],pair:String(index),side:"target"},
     {text:cardMeaning(card),pair:String(index),side:"meaning"}
   ]).sort(()=>Math.random()-.5);
+  grid.classList.toggle("sentenceChoices",entries.some(entry=>Array.from(entry.text).length>34));
   entries.forEach(entry=>{
     const button=document.createElement("button");button.className="matchChoice";button.textContent=entry.text;
     button.dataset.pair=entry.pair;button.dataset.side=entry.side;

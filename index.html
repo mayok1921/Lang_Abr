@@ -276,6 +276,7 @@
     .keonNodeCopy{position:absolute;top:16px;width:155px}.keonPathNodeRow:nth-child(odd) .keonNodeCopy{left:90px}.keonPathNodeRow:nth-child(even) .keonNodeCopy{right:90px;text-align:right}.keonNodeCopy strong{display:block;font-size:14px}.keonNodeCopy span{font-size:11px;color:var(--muted)}
     .keonCharacterGrid{display:grid;gap:12px;margin:18px 0}.keonCharacterCard{border:1px solid var(--border);border-radius:24px;padding:17px;background:linear-gradient(145deg,rgba(139,124,255,.16),rgba(255,255,255,.05));color:var(--text);text-align:left;overflow:hidden}.keonCharacterTop{display:flex;align-items:center;gap:14px;min-width:0}.keonCharacterSymbol{width:62px;height:62px;min-width:62px;max-width:62px;overflow:hidden;border-radius:21px;display:grid;place-items:center;background:rgba(139,124,255,.2);font-size:31px;font-weight:850;line-height:1;text-align:center}.keonCharacterSymbol.wordSymbol{font-size:16px;letter-spacing:-.04em;padding:5px;box-sizing:border-box}.keonCharacterSymbol.longWordSymbol{font-size:12px;letter-spacing:-.055em}.keonCharacterCopy{flex:1;min-width:0}.keonCharacterCopy h3{margin:0 0 4px;overflow-wrap:anywhere}.keonCharacterCopy p{margin:0;color:var(--muted);font-size:13px;overflow-wrap:anywhere}.keonCharacterTop>strong{flex:0 0 auto}.keonCharacterCard .bar{margin-top:14px}
     @media(max-width:420px){.keonCharacterCard{padding:14px}.keonCharacterTop{gap:11px}.keonCharacterSymbol{width:54px;height:54px;min-width:54px;max-width:54px;border-radius:18px;font-size:27px}.keonCharacterSymbol.wordSymbol{font-size:14px}.keonCharacterSymbol.longWordSymbol{font-size:11px}.keonCharacterCopy h3{font-size:16px}.keonCharacterCopy p{font-size:12px}}
+    .keonCharacterSymbol,.keonCharacterSymbol.wordSymbol,.keonCharacterSymbol.longWordSymbol{white-space:nowrap;overflow-wrap:normal;word-break:keep-all;line-height:1;letter-spacing:-.025em}
     .exercisePrompt{max-width:520px;margin:12px auto;text-align:center}.exercisePrompt .voiceLaunch{width:84px;height:84px;border:0;border-radius:28px;background:linear-gradient(145deg,var(--accent2),var(--accent));color:white;font-size:34px;box-shadow:0 12px 28px rgba(108,92,255,.3)}
     .wordBank,.answerSlots{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;min-height:54px;margin:14px auto;max-width:620px}.wordToken{border:1px solid var(--border);border-radius:14px;padding:11px 14px;background:rgba(255,255,255,.07);color:var(--text)}.answerSlots{padding:12px;border-bottom:2px solid rgba(255,255,255,.15)}
     .matchGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;max-width:620px;margin:14px auto}.matchChoice{min-height:58px;border:1px solid var(--border);border-radius:16px;padding:10px;background:rgba(255,255,255,.07);color:var(--text)}.matchChoice.selected{background:rgba(139,124,255,.25);border-color:var(--accent)}.matchChoice.matched{opacity:.45;background:rgba(88,214,141,.16)}.matchChoice.wrong{border-color:var(--red);background:rgba(255,141,161,.14)}
@@ -331,6 +332,27 @@
       .keonCharacterCard{padding:12px}.keonCharacterTop{gap:8px}.keonCharacterSymbol{width:48px;height:48px;min-width:48px;max-width:48px;border-radius:16px}.keonCharacterSymbol.wordSymbol{font-size:12px}.keonCharacterSymbol.longWordSymbol{font-size:10px}
       .keonBottomNav{width:calc(100% - 16px);padding:6px}.keonNavItem{font-size:10px}
       .courseCard,.courseUnit{padding:13px}
+    }
+    /* Approved clean layouts for localized content. */
+    .keonCharacterSymbol{width:88px;height:58px;min-width:88px;max-width:88px;border-radius:18px}
+    .keonCharacterSymbol.wordSymbol,.keonCharacterSymbol.longWordSymbol{font-size:16px}
+    .keonTrail{padding:20px 12px 8px 0}
+    .keonTrail:before{left:38px;top:24px;bottom:32px;transform:none}
+    .keonPathNodeRow,.keonPathNodeRow:nth-child(odd),.keonPathNodeRow:nth-child(even){display:grid;grid-template-columns:76px minmax(0,1fr);gap:16px;align-items:center;justify-content:initial;margin-bottom:20px}
+    .keonNodeCopy,.keonPathNodeRow:nth-child(odd) .keonNodeCopy,.keonPathNodeRow:nth-child(even) .keonNodeCopy{position:static;width:auto;text-align:left}
+    .courseTop h3{display:flex;flex-wrap:wrap;align-items:center;gap:7px 9px}
+    .matchGrid.sentenceChoices{grid-template-columns:1fr}
+    .keonPathStats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+    @media(max-width:420px){
+      .keonCharacterSymbol{width:76px;height:54px;min-width:76px;max-width:76px}
+      .keonPathNodeRow,.keonPathNodeRow:nth-child(odd),.keonPathNodeRow:nth-child(even){grid-template-columns:64px minmax(0,1fr);gap:12px}
+      .keonPathNode{width:64px;height:64px;border-radius:23px}
+      .keonTrail:before{left:32px}
+      .keonPathStats{grid-template-columns:1fr}
+      .keonPathStat{display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left}
+    }
+    @media(max-width:340px){
+      .keonCharacterSymbol{width:70px;height:50px;min-width:70px;max-width:70px}
     }
   </style>
 </head>

@@ -1,4 +1,4 @@
-const CACHE_NAME = "keon-v48-responsive-language-ui";
+const CACHE_NAME = "keon-v50-clean-localized-layouts";
 const FILES = [
   "./",
   "./index.html",
