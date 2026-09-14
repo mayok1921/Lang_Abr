@@ -1023,7 +1023,7 @@ let session = [], sessionIndex = 0, currentMode = "flash", revealed = false;
 let sentenceTargetWords=[], builtSentenceWords=[], builtSentenceAnswer=[];
 let selectedMatchButton=null, matchedPairIds=new Set();
 let inputDeck = [], inputIndex = 0;
-let drawing = false, drawContext = null, traceVisible = false;
+let drawing = false, drawContext = null, traceVisible = false, currentDrawStage = "memory";
 
 let placementLanguage = null, placementIndex = 0, placementScore = 0;
 
@@ -1609,7 +1609,30 @@ function kanaComfort(subjectKey){
   if(!lessons.length) return 0;
   return Math.round(lessons.reduce((s,_,i)=>s+kanaLessonMastery(subjectKey,i),0)/lessons.length);
 }
-function kanaWords(subjectKey,lessonIndex){ return SMART_KANA_WORDS[subjectKey]?.[lessonIndex]||[]; }
+function unlockedKanaCharacters(subjectKey,lessonIndex){
+  const unlocked=new Set(["ー","・"," "]);
+  const lessons=DATA[subjectKey]?.lessons||[];
+  lessons.slice(0,lessonIndex+1).forEach(lesson=>lesson.cards.forEach(card=>{
+    Array.from(card[0]).forEach(character=>unlocked.add(character));
+  }));
+  return unlocked;
+}
+function kanaWordIsUnlocked(word,unlocked){
+  return Array.from(word).every(character=>unlocked.has(character));
+}
+function kanaWords(subjectKey,lessonIndex){
+  const groups=SMART_KANA_WORDS[subjectKey]||{};
+  const unlocked=unlockedKanaCharacters(subjectKey,lessonIndex);
+  const seen=new Set(), words=[];
+  for(let i=0;i<=lessonIndex;i++){
+    (groups[i]||[]).forEach(word=>{
+      if(kanaWordIsUnlocked(word[0],unlocked) && !seen.has(word[0])){
+        seen.add(word[0]); words.push(word);
+      }
+    });
+  }
+  return words;
+}
 function currentKanaStep(subjectKey){
   const lessons=DATA[subjectKey]?.lessons||[];
   for(let i=0;i<lessons.length;i++) if(kanaLessonMastery(subjectKey,i)<85) return i;
@@ -1738,9 +1761,9 @@ function showFoundationHub(){
   show("foundations");
   requestAnimationFrame(()=>{
     box.querySelectorAll(".keonCharacterSymbol.wordSymbol").forEach(symbol=>{
-      let size=16;
+      let size=20;
       symbol.style.fontSize=size+"px";
-      while(symbol.scrollWidth>symbol.clientWidth-8 && size>8){
+      while(symbol.scrollWidth>symbol.clientWidth-12 && size>16){
         size-=1;
         symbol.style.fontSize=size+"px";
       }
@@ -1838,9 +1861,9 @@ function renderLessons(){
         practice.innerHTML=`
           <div>
             <div class="courseNumber">${learned?"USE WHAT YOU KNOW":"UNLOCKS AT 60% MASTERY"}</div>
-            <strong>Words from this set</strong>
-            <p>${words.map(w=>`${w[0]} ${voiceButtonHTML(w[0],subject)}`).join(" • ")}</p>
-            <p class="small">${learned?"Try reading these before revealing pronunciation and meaning.":"Practice the kana set a little more first."}</p>
+            <strong>Words you can read so far</strong>
+            <p>${words.slice(-8).map(w=>`${w[0]} ${voiceButtonHTML(w[0],subject)}`).join(" • ")}</p>
+            <p class="small">${learned?"Every word uses only kana you have unlocked. Read first, then reveal pronunciation and meaning.":"Practice the newest kana set a little more first."}</p>
           </div>
           <button class="btn secondary smartWordsBtn" ${learned?"":"disabled"}>${learned?"Practice Words":"Locked"}</button>`;
         if(learned) practice.querySelector(".smartWordsBtn").onclick=()=>openKanaWordPractice(subject,i);
@@ -2063,6 +2086,12 @@ function startRecommended(){
 function isJapaneseWriting(){
   return activeLanguage==="ja" && ["hiragana","katakana","kanji"].includes(selected.subject);
 }
+function isKanaWriting(){ return ["hiragana","katakana"].includes(selected.subject); }
+function drawStageFor(card){
+  if(!isKanaWriting()) return "memory";
+  const value=masteryOf(card,selected.subject);
+  return value<45?"full":value<75?"partial":"memory";
+}
 function buildSession(cards){
   const result=[];
   cards.forEach(card=>{
@@ -2073,7 +2102,7 @@ function buildSession(cards){
     for(let i=0;i<repeats;i++){
       let mode=modes[i%modes.length];
       if(mode==="build" && !/\s/.test(cardExample(card))) mode="listen";
-      result.push({card,mode});
+      result.push({card,mode,drawStage:mode==="draw"?drawStageFor(card):null});
     }
   });
   const matchCards=cards.filter(card=>cardMeaning(card)).slice(0,4);
@@ -2159,13 +2188,17 @@ function renderStudy(){
   }else if(currentMode==="match"){
     buildMatching(item.matchCards || []);
   }else{
-    traceVisible=false;
-    document.getElementById("drawTarget").textContent=`Draw: ${card[1]}`;
+    currentDrawStage=item.drawStage||drawStageFor(card);
+    const stageLabels={full:"Full trace",partial:"Finish the character",memory:"Draw from memory"};
+    traceVisible=currentDrawStage!=="memory";
+    document.getElementById("drawTarget").textContent=`${stageLabels[currentDrawStage]} · ${card[1]}`;
     document.getElementById("drawAnswer").textContent=`Answer: ${card[0]}`;
     document.getElementById("drawAnswer").style.display="none";
-    document.getElementById("traceChar").textContent=card[0];
-    document.getElementById("traceChar").style.display="none";
-    document.getElementById("traceBtn").textContent="Show Trace Guide";
+    const trace=document.getElementById("traceChar");
+    trace.textContent=card[0];
+    trace.classList.toggle("partialTrace",currentDrawStage==="partial");
+    trace.style.display=traceVisible?"flex":"none";
+    document.getElementById("traceBtn").textContent=traceVisible?"Hide Guide":"Show Full Trace Guide";
     resetDrawingScore();
     setTimeout(()=>{setupCanvas();clearCanvas();},30);
   }
@@ -2611,8 +2644,11 @@ function checkDrawing(){
 
 function toggleTrace(){
   traceVisible=!traceVisible;
-  document.getElementById("traceChar").style.display=traceVisible?"flex":"none";
-  document.getElementById("traceBtn").textContent=traceVisible?"Hide Trace Guide":"Show Trace Guide";
+  const trace=document.getElementById("traceChar");
+  if(traceVisible && currentDrawStage==="memory") trace.classList.remove("partialTrace");
+  else trace.classList.toggle("partialTrace",currentDrawStage==="partial");
+  trace.style.display=traceVisible?"flex":"none";
+  document.getElementById("traceBtn").textContent=traceVisible?"Hide Guide":"Show Full Trace Guide";
 }
 function toggleDrawAnswer(){
   const el=document.getElementById("drawAnswer");

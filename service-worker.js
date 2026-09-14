@@ -1,4 +1,4 @@
-const CACHE_NAME = "keon-v50-clean-localized-layouts";
+const CACHE_NAME = "keon-v51-kana-learning-progression";
 const FILES = [
   "./",
   "./index.html",

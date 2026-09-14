@@ -166,6 +166,7 @@
       position:absolute;inset:0;display:none;align-items:center;justify-content:center;
       font-size:190px;font-weight:800;color:#111827;opacity:.14;pointer-events:none;
     }
+    .traceChar.partialTrace{clip-path:inset(0 48% 46% 0);opacity:.2}
     .drawScore{
       max-width:460px;margin:12px auto;padding:13px;border-radius:16px;border:1px solid var(--border);
       background:rgba(255,255,255,.08);text-align:center;font-weight:800;
@@ -334,8 +335,8 @@
       .courseCard,.courseUnit{padding:13px}
     }
     /* Approved clean layouts for localized content. */
-    .keonCharacterSymbol{width:88px;height:58px;min-width:88px;max-width:88px;border-radius:18px}
-    .keonCharacterSymbol.wordSymbol,.keonCharacterSymbol.longWordSymbol{font-size:16px}
+    .keonCharacterSymbol{width:112px;height:60px;min-width:112px;max-width:112px;border-radius:18px}
+    .keonCharacterSymbol.wordSymbol,.keonCharacterSymbol.longWordSymbol{font-size:20px}
     .keonTrail{padding:20px 12px 8px 0}
     .keonTrail:before{left:38px;top:24px;bottom:32px;transform:none}
     .keonPathNodeRow,.keonPathNodeRow:nth-child(odd),.keonPathNodeRow:nth-child(even){display:grid;grid-template-columns:76px minmax(0,1fr);gap:16px;align-items:center;justify-content:initial;margin-bottom:20px}
@@ -344,7 +345,7 @@
     .matchGrid.sentenceChoices{grid-template-columns:1fr}
     .keonPathStats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
     @media(max-width:420px){
-      .keonCharacterSymbol{width:76px;height:54px;min-width:76px;max-width:76px}
+      .keonCharacterSymbol{width:104px;height:56px;min-width:104px;max-width:104px}
       .keonPathNodeRow,.keonPathNodeRow:nth-child(odd),.keonPathNodeRow:nth-child(even){grid-template-columns:64px minmax(0,1fr);gap:12px}
       .keonPathNode{width:64px;height:64px;border-radius:23px}
       .keonTrail:before{left:32px}
@@ -352,7 +353,7 @@
       .keonPathStat{display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left}
     }
     @media(max-width:340px){
-      .keonCharacterSymbol{width:70px;height:50px;min-width:70px;max-width:70px}
+      .keonCharacterSymbol{width:96px;height:52px;min-width:96px;max-width:96px}
     }
   </style>
 </head>
