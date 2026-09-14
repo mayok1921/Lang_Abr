@@ -1721,7 +1721,9 @@ function showFoundationHub(){
   items.forEach(item=>{
     const button=document.createElement("button");
     button.className="keonCharacterCard";
-    button.innerHTML=`<div class="keonCharacterTop"><div class="keonCharacterSymbol">${item.symbol}</div><div class="keonCharacterCopy"><h3>${item.title}</h3><p>${item.desc}</p></div><strong>${item.value}%</strong></div><div class="bar"><div class="fill" style="width:${item.value}%"></div></div>`;
+    const symbolLength=Array.from(item.symbol).length;
+    const symbolClass=symbolLength>5?" wordSymbol longWordSymbol":symbolLength>2?" wordSymbol":"";
+    button.innerHTML=`<div class="keonCharacterTop"><div class="keonCharacterSymbol${symbolClass}">${item.symbol}</div><div class="keonCharacterCopy"><h3>${item.title}</h3><p>${item.desc}</p></div><strong>${item.value}%</strong></div><div class="bar"><div class="fill" style="width:${item.value}%"></div></div>`;
     button.onclick=()=>openSubject(item.subject);
     box.appendChild(button);
   });
