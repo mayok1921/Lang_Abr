@@ -140,9 +140,11 @@ const DATA = {
   korean_hangul: {
     language:"ko", name:"Hangul Foundations", category:"reading",
     lessons:[
-      {title:"Basic Vowels",cards:[["ㅏ","a","a sound","아","a syllable"],["ㅓ","eo","eo sound","어","eo syllable"],["ㅗ","o","o sound","오","o syllable"],["ㅜ","u","u sound","우","u syllable"],["ㅡ","eu","eu sound","으","eu syllable"],["ㅣ","i","i sound","이","i syllable"]]},
-      {title:"Core Consonants",cards:[["ㄱ","g/k","g or k-like sound","가","ga"],["ㄴ","n","n sound","나","na"],["ㄷ","d/t","d or t-like sound","다","da"],["ㄹ","r/l","r/l-like sound","라","ra"],["ㅁ","m","m sound","마","ma"],["ㅂ","b/p","b or p-like sound","바","ba"],["ㅅ","s","s sound","사","sa"],["ㅇ","silent/ng","silent initially; ng finally","아 / 강","a / gang"]]},
-      {title:"More Consonants",cards:[["ㅈ","j","j sound","자","ja"],["ㅊ","ch","ch sound","차","cha"],["ㅋ","k","strong k","카","ka"],["ㅌ","t","strong t","타","ta"],["ㅍ","p","strong p","파","pa"],["ㅎ","h","h sound","하","ha"]]},
+      {title:"Vowels · Set 1",cards:[["ㅏ","a","a sound","아","a syllable"],["ㅓ","eo","eo sound","어","eo syllable"],["ㅗ","o","o sound","오","o syllable"],["ㅜ","u","u sound","우","u syllable"],["ㅡ","eu","eu sound","으","eu syllable"]]},
+      {title:"Vowels · Set 2",cards:[["ㅣ","i","i sound","이","i syllable"],["ㅐ","ae","ae sound","애","ae syllable"],["ㅔ","e","e sound","에","e syllable"],["ㅑ","ya","ya sound","야","ya syllable"],["ㅕ","yeo","yeo sound","여","yeo syllable"]]},
+      {title:"Consonants · Set 1",cards:[["ㄱ","g/k","g or k-like sound","가","ga"],["ㄴ","n","n sound","나","na"],["ㄷ","d/t","d or t-like sound","다","da"],["ㄹ","r/l","r/l-like sound","라","ra"],["ㅁ","m","m sound","마","ma"]]},
+      {title:"Consonants · Set 2",cards:[["ㅂ","b/p","b or p-like sound","바","ba"],["ㅅ","s","s sound","사","sa"],["ㅇ","silent/ng","silent initially; ng finally","아 / 강","a / gang"],["ㅈ","j","j sound","자","ja"],["ㅎ","h","h sound","하","ha"]]},
+      {title:"Aspirated Consonants",cards:[["ㅊ","ch","ch sound","차","cha"],["ㅋ","k","strong k","카","ka"],["ㅌ","t","strong t","타","ta"],["ㅍ","p","strong p","파","pa"]]},
       {title:"Syllable Blocks",cards:[["가","ga","ga","가다","to go"],["나","na","na","나라","country"],["마","ma","ma","마음","heart / mind"],["한","han","han","한국","Korea"],["국","guk","guk","한국","Korea"]]},
       {title:"Batchim Preview",cards:[["한","han","final ㄴ","한국","Korea"],["밥","bap","final ㅂ","밥","rice / meal"],["집","jip","final ㅂ","집","house"],["물","mul","final ㄹ","물","water"],["한국","hanguk","final ㄱ","한국","Korea"]]}
     ]
@@ -783,6 +785,23 @@ Object.entries(EXTENDED_VISUAL_LESSONS).forEach(([subjectKey,lessons])=>{
   if(DATA[subjectKey]) DATA[subjectKey].lessons.push(...lessons);
 });
 
+// Concrete vocabulary stays visual-first. The target-language label is primary;
+// English remains a learner-controlled reveal.
+const PURPLE_VISUALS = {
+  japanese_basics:["紫","むらさき","purple","紫の花です。","It is a purple flower."],
+  polish_basics:["fioletowy","","purple","To jest fioletowy kwiat.","This is a purple flower."],
+  spanish_basics:["morado","","purple","La flor es morada.","The flower is purple."],
+  korean_core:["보라색","borasaek","purple","보라색 꽃이에요.","It is a purple flower."],
+  vietnamese_core:["màu tím","","purple","Đây là một bông hoa màu tím.","This is a purple flower."],
+  filipino_core:["lila","","purple","Lila ang bulaklak.","The flower is purple."],
+  mandarin_core:["紫色","zǐsè","purple","这是一朵紫色的花。","This is a purple flower."],
+  cantonese_core:["紫色","zi2 sik1","purple","呢朵花係紫色。","This flower is purple."]
+};
+Object.entries(PURPLE_VISUALS).forEach(([subjectKey,card])=>{
+  const lesson=DATA[subjectKey]?.lessons?.find(item=>item.cards.some(entry=>cardMedia(entry)?.type==="color"));
+  if(lesson && !lesson.cards.some(entry=>cardMeaning(entry)==="purple")) lesson.cards.push([...card,{type:"color",value:"#7d43c7",label:"purple"}]);
+});
+
 const SUBJECTS = {
   ja:[
     ["hiragana","あ Hiragana","Learn and trace the basic Japanese syllabary."],
@@ -1349,6 +1368,9 @@ function renderHome(){
   });
 
   const rec=getRecommendation();
+  const meta=LANGUAGE_META[activeLanguage]||{label:languageLabel(activeLanguage)};
+  document.getElementById("homeCourseName").textContent=meta.label||languageLabel(activeLanguage);
+  document.getElementById("homeCourseLevel").textContent=activeLanguage==="ja"?"Foundation to JLPT N2":"Foundation to advanced practical use";
   document.getElementById("recommendTitle").textContent=rec.title;
   document.getElementById("recommendReason").textContent=rec.reason;
 
@@ -1357,6 +1379,8 @@ function renderHome(){
   const ring = document.getElementById("continueRing");
   ring.style.setProperty("--value", recAvg + "%");
   document.getElementById("continueRingText").textContent = recAvg + "%";
+  const preview=document.getElementById("continuePreview");
+  preview.innerHTML=lessonCards.slice(0,5).map(card=>`<span class="keonContinueGlyph">${escapeHTML(card[0])}</span>`).join("");
 
   const langStats = getLanguageStats(activeLanguage);
   document.getElementById("homeCompleted").textContent = langStats.completed;
@@ -1365,13 +1389,12 @@ function renderHome(){
 
   const actions = document.getElementById("homeActions");
   actions.innerHTML = "";
-  HOME_ACTIONS[activeLanguage].forEach(action=>{
-    const tile = document.createElement("div");
-    tile.className = "tile";
+  HOME_ACTIONS[activeLanguage].forEach((action,index)=>{
+    const tile = document.createElement("button");
+    tile.className = "keonPlanCard"+(index===0?" primary":"");
     tile.innerHTML = `
-      <div class="eyebrow">${action.eyebrow}</div>
-      <h3>${action.title}</h3>
-      <p>${action.desc}</p>
+      <div class="keonPlanTop"><div class="keonPlanIcon">${index+1}</div><div><div class="courseNumber">${action.eyebrow}</div><h3>${action.title}</h3><p>${action.desc}</p></div><div class="keonPlanArrow">›</div></div>
+      <div class="keonPlanMeta"><span>${index===0?"Recommended next":"Course section"}</span><span>${index<2?"Available":"Build toward this"}</span></div>
     `;
     tile.onclick = ()=>openHomeAction(action.key);
     actions.appendChild(tile);
@@ -1512,7 +1535,7 @@ function renderSubjects(){
   });
   const missedTile=document.createElement("div");
   missedTile.className="tile";
-  missedTile.innerHTML="<div class='eyebrow'>Review</div><h3>🔥 Missed Cards</h3><p>Review cards you have struggled with.</p>";
+  missedTile.innerHTML="<div class='eyebrow'>Review</div><h3>Missed Cards</h3><p>Review cards you have struggled with.</p>";
   missedTile.onclick=openMissed;
   grid.appendChild(missedTile);
 }
@@ -1638,10 +1661,34 @@ function currentKanaStep(subjectKey){
   for(let i=0;i<lessons.length;i++) if(kanaLessonMastery(subjectKey,i)<85) return i;
   return Math.max(0,lessons.length-1);
 }
+function kanaSetUnlocked(subjectKey,lessonIndex){
+  if(lessonIndex===0) return true;
+  return kanaLessonMastery(subjectKey,lessonIndex-1)>=70;
+}
+function kanaReviewCards(subjectKey,lessonIndex){
+  return allCards(subjectKey,lessonIndex).slice(-10);
+}
+const CONTROLLED_FOUNDATIONS = new Set([
+  "hiragana","katakana","korean_hangul","polish_pronunciation",
+  "mandarin_pronunciation","mandarin_characters","cantonese_pronunciation",
+  "cantonese_characters","vietnamese_pronunciation","filipino_pronunciation"
+]);
+function isControlledFoundation(subjectKey){ return CONTROLLED_FOUNDATIONS.has(subjectKey); }
+function foundationLessonMastery(subjectKey,lessonIndex){
+  const lesson=DATA[subjectKey]?.lessons?.[lessonIndex];
+  return lesson?averageMastery(lesson.cards,subjectKey):0;
+}
+function foundationSetUnlocked(subjectKey,lessonIndex){
+  if(!isControlledFoundation(subjectKey) || lessonIndex===0) return true;
+  return foundationLessonMastery(subjectKey,lessonIndex-1)>=70;
+}
+function foundationReviewCards(subjectKey,lessonIndex){
+  return allCards(subjectKey,lessonIndex).slice(-10);
+}
 function openKanaWordPractice(subjectKey,lessonIndex){
   const cards=kanaWords(subjectKey,lessonIndex).map(w=>[w[0],w[1],w[2],w[0],w[2]]);
   if(!cards.length) return;
-  subject=subjectKey; selected={subject:subjectKey,title:`${DATA[subjectKey].lessons[lessonIndex].title} — Words You Can Read`,cards};
+  subject=subjectKey; selected={subject:subjectKey,title:`${DATA[subjectKey].lessons[lessonIndex].title} — Words You Can Read`,cards,practiceKind:"kanaWords"};
   openPreview();
 }
 function introKanjiComfort(){
@@ -1835,24 +1882,45 @@ function renderLessons(){
   }
 
   data.lessons.forEach((lesson,i)=>{
+    const kanaSubject=subject==="hiragana" || subject==="katakana";
+    const controlled=isControlledFoundation(subject);
+    const locked=controlled && !foundationSetUnlocked(subject,i);
     const cards=lessonType==="new"?lesson.cards:allCards(subject,i);
     const avg=averageMastery(cards,subject);
     const row=document.createElement("div");
-    row.className="lessonCard";
+    row.className=`lessonCard${locked?" lockedLesson":""}`;
     row.innerHTML=`
-      <div class="statusDot">${avg>=90?"✅":avg>=70?"🟣":"⭕"}</div>
+      <div class="statusDot">${locked?"🔒":avg>=90?"✅":avg>=70?"🟣":"⭕"}</div>
       <div>
-        <strong>${lessonType==="new"?lesson.title:`Review through ${lesson.title}`}</strong>
-        <p>${cards.map(c=>c[0]).join(" • ")}</p>
+        <strong>${locked?`Set ${i+1} — Locked`:lessonType==="new"&&controlled?`${lesson.title} — Learn ${lesson.cards.length}`:lessonType==="new"?lesson.title:`Quick review through ${lesson.title}`}</strong>
+        <p>${locked?"Complete the previous learn and short-review step to unlock this set.":cards.map(c=>c[0]).join(" • ")}</p>
         <div class="bar"><div class="fill" style="width:${avg}%"></div></div>
       </div>
-      <div>${avg}%</div>`;
-    row.onclick=()=>{
-      selected={subject,title:lessonType==="new"?lesson.title:`Review through ${lesson.title}`,cards};
+      <div>${locked?"":avg+"%"}</div>`;
+    row.setAttribute("aria-disabled",locked?"true":"false");
+    if(!locked) row.onclick=()=>{
+      selected={subject,title:lessonType==="new"?lesson.title:`Quick review through ${lesson.title}`,cards,practiceKind:kanaSubject?(lessonType==="new"?"kanaLearn":"kanaReview"):controlled?(lessonType==="new"?"foundationLearn":"foundationReview"):null};
       openPreview();
     };
     list.appendChild(row);
-    if((subject==="hiragana" || subject==="katakana") && lessonType==="new"){
+    if(kanaSubject && lessonType==="new" && !locked){
+      const setMastery=kanaLessonMastery(subject,i);
+      const reviewReady=setMastery>=55;
+      const review=document.createElement("div");
+      review.className="smartWordCard kanaReviewCard";
+      review.innerHTML=`
+        <div>
+          <div class="courseNumber">${reviewReady?"SHORT REVIEW":"UNLOCKS AT 55% MASTERY"}</div>
+          <strong>Review the kana learned so far</strong>
+          <p>${reviewReady?kanaReviewCards(subject,i).map(c=>c[0]).join(" • "):"Finish the five new kana once, then complete a short review."}</p>
+        </div>
+        <button class="btn secondary kanaReviewBtn" ${reviewReady?"":"disabled"}>${reviewReady?"Start Quick Review":"Locked"}</button>`;
+      if(reviewReady) review.querySelector(".kanaReviewBtn").onclick=()=>{
+        const reviewCards=kanaReviewCards(subject,i);
+        selected={subject,title:`Quick Review — ${lesson.title}`,cards:reviewCards,practiceKind:"kanaReview"};
+        openPreview();
+      };
+      list.appendChild(review);
       const words=kanaWords(subject,i);
       if(words.length){
         const learned=kanaLessonMastery(subject,i)>=60;
@@ -1869,6 +1937,20 @@ function renderLessons(){
         if(learned) practice.querySelector(".smartWordsBtn").onclick=()=>openKanaWordPractice(subject,i);
         list.appendChild(practice);
       }
+    }
+    if(controlled && !kanaSubject && lessonType==="new" && !locked){
+      const setMastery=foundationLessonMastery(subject,i);
+      const reviewReady=setMastery>=55;
+      const review=document.createElement("div");
+      review.className="smartWordCard foundationReviewCard";
+      review.innerHTML=`
+        <div><div class="courseNumber">${reviewReady?"SHORT REVIEW":"UNLOCKS AT 55% MASTERY"}</div><strong>Review what you have learned so far</strong><p>${reviewReady?foundationReviewCards(subject,i).map(c=>c[0]).join(" • "):"Complete this small set once, then reinforce it before moving on."}</p></div>
+        <button class="btn secondary foundationReviewBtn" ${reviewReady?"":"disabled"}>${reviewReady?"Start Quick Review":"Locked"}</button>`;
+      if(reviewReady) review.querySelector(".foundationReviewBtn").onclick=()=>{
+        selected={subject,title:`Quick Review — ${lesson.title}`,cards:foundationReviewCards(subject,i),practiceKind:"foundationReview"};
+        openPreview();
+      };
+      list.appendChild(review);
     }
 
     if((subject==="polish_pronunciation" || subject==="polish_basics") && lessonType==="new"){
@@ -1893,7 +1975,17 @@ function renderLessons(){
 }
 function openPreview(){
   document.getElementById("previewTitle").textContent=selected.title;
-  document.getElementById("previewText").textContent=`${selected.cards.length} cards. Practice adapts by repeating lower-mastery cards more often.`;
+  document.getElementById("previewText").textContent=selected.practiceKind==="kanaLearn"
+    ? `${selected.cards.length} new kana. Learn their sound, recognize them, listen, write with guidance, then review.`
+    : selected.practiceKind==="kanaReview"
+      ? `${selected.cards.length} unlocked kana. This short review prepares the next set.`
+      : selected.practiceKind==="kanaWords"
+        ? `${selected.cards.length} readable words using only kana introduced so far. Try the Japanese first, then reveal help.`
+        : selected.practiceKind==="foundationLearn"
+          ? `${selected.cards.length} new items. Learn a small set, listen, practice, then complete the short review.`
+          : selected.practiceKind==="foundationReview"
+            ? `${selected.cards.length} previously introduced items. This review reinforces them before the next set.`
+        : `${selected.cards.length} cards. Practice adapts by repeating lower-mastery cards more often.`;
   const cards=document.getElementById("previewCards");
   cards.innerHTML="";
   if(!selected.cards.length){
@@ -1905,12 +1997,12 @@ function openPreview(){
       const media=cardMedia(card);
       div.innerHTML=`
         ${media?cardMediaHTML(card,true):`<div class="previewMain">${escapeHTML(card[0])} ${voiceButtonHTML(card[0],selected.subject)}</div>`}
-        <div class="small">${media?"Name what you see in the target language.":"Try to read or understand it first."}</div>
+        <div class="small">${media?"Look first, then recall the target-language word.":"Try to read or understand it first."}</div>
         <div class="previewReveal" style="display:none">
           ${media?`<div class="previewMain">${escapeHTML(card[0])} ${voiceButtonHTML(card[0],selected.subject)}</div>`:""}
           ${cardReading(card)?`<div class="readingLine">${escapeHTML(cardReading(card))}</div>`:""}
-          ${cardMeaning(card)?`<div class="small meaningHint">${escapeHTML(cardMeaning(card))}</div>`:""}
-          ${cardExample(card)?`<div class="exampleBox"><strong>${cardExample(card)} ${voiceButtonHTML(cardExample(card),selected.subject,"Hear example")}</strong>${cardExampleMeaning(card)?`<div class="small">${cardExampleMeaning(card)}</div>`:""}</div>`:""}
+          ${cardExample(card)?`<div class="exampleBox"><strong>${cardExample(card)} ${voiceButtonHTML(cardExample(card),selected.subject,"Hear example")}</strong></div>`:""}
+          <div class="previewEnglish" style="display:none">${cardMeaning(card)?`<div class="flashMeaning">${escapeHTML(cardMeaning(card))}</div>`:""}${cardExampleMeaning(card)?`<div class="small exampleBox">${escapeHTML(cardExampleMeaning(card))}</div>`:""}</div>
         </div>
       `;
       const reveal=document.createElement("button");
@@ -1924,6 +2016,25 @@ function openPreview(){
         reveal.textContent=hidden?"Hide":"Reveal";
       };
       div.appendChild(reveal);
+      if(media){
+        const english=document.createElement("button");
+        english.className="miniMeaningButton";
+        english.textContent="English translation";
+        english.style.display="none";
+        english.onclick=(event)=>{
+          event.stopPropagation();
+          const translation=div.querySelector(".previewEnglish");
+          const hidden=translation.style.display==="none";
+          translation.style.display=hidden?"block":"none";
+          english.textContent=hidden?"Hide English":"English translation";
+        };
+        const originalReveal=reveal.onclick;
+        reveal.onclick=(event)=>{
+          originalReveal(event);
+          english.style.display=div.querySelector(".previewReveal").style.display==="none"?"none":"inline-block";
+        };
+        div.appendChild(english);
+      }
       cards.appendChild(div);
     });
   }
@@ -2083,12 +2194,13 @@ function startRecommended(){
   openPreview();
 }
 
-function isJapaneseWriting(){
-  return activeLanguage==="ja" && ["hiragana","katakana","kanji"].includes(selected.subject);
-}
 function isKanaWriting(){ return ["hiragana","katakana"].includes(selected.subject); }
+function isKanaCharacterPractice(){ return isKanaWriting() && selected.practiceKind!=="kanaWords"; }
+function isJapaneseWriting(){
+  return ["kanji","korean_hangul","mandarin_characters","cantonese_characters"].includes(selected.subject) || isKanaCharacterPractice();
+}
 function drawStageFor(card){
-  if(!isKanaWriting()) return "memory";
+  if(!isJapaneseWriting()) return "memory";
   const value=masteryOf(card,selected.subject);
   return value<45?"full":value<75?"partial":"memory";
 }
@@ -2107,6 +2219,9 @@ function buildSession(cards){
   });
   const matchCards=cards.filter(card=>cardMeaning(card)).slice(0,4);
   if(!isJapaneseWriting() && matchCards.length===4) result.push({card:matchCards[0],mode:"match",matchCards});
+  if(isJapaneseWriting()){
+    cards.slice().sort(()=>Math.random()-.5).slice(0,Math.min(3,cards.length)).forEach(card=>result.push({card,mode:"listen"}));
+  }
   return result.sort(()=>Math.random()-.5);
 }
 function backFromPreview(){
@@ -2132,7 +2247,7 @@ function renderStudy(){
   currentMode=item.mode;
 
   document.getElementById("studyTitle").textContent=selected.title;
-  document.getElementById("sessionType").textContent=currentMode==="flash"?"🎴 Flashcard":currentMode==="multi"?"🎯 Multiple Choice":currentMode==="listen"?"🔊 Listening":currentMode==="build"?"🧩 Build a Sentence":currentMode==="match"?"↔ Match":"✍️ Writing";
+  document.getElementById("sessionType").textContent=currentMode==="flash"?"Learn":currentMode==="multi"?"Choose":currentMode==="listen"?"Listen":currentMode==="build"?"Build a sentence":currentMode==="match"?"Match":"Write";
   document.getElementById("flashArea").style.display=currentMode==="flash"?"block":"none";
   document.getElementById("multiArea").style.display=currentMode==="multi"?"block":"none";
   document.getElementById("drawArea").style.display=currentMode==="draw"?"block":"none";
@@ -2203,6 +2318,8 @@ function renderStudy(){
     setTimeout(()=>{setupCanvas();clearCanvas();},30);
   }
   document.getElementById("studyProgress").textContent=`Step ${sessionIndex+1} of ${session.length} • Mastery ${masteryOf(card,selected.subject)}%`;
+  document.getElementById("studyProgressFill").style.width=`${Math.round((sessionIndex+1)/session.length*100)}%`;
+  document.getElementById("studyProgressCount").textContent=`${sessionIndex+1} / ${session.length}`;
 }
 
 function toggleFlashExample(){
@@ -2287,7 +2404,9 @@ function buildMultipleChoice(card){
   feedback.textContent="";
   choices.innerHTML="";
 
-  let pool=allCards(selected.subject).filter(c=>c[0]!==card[0]);
+  const limitedPool=isKanaWriting() || ["foundationLearn","foundationReview"].includes(selected.practiceKind);
+  const kanaChoicePool=limitedPool?selected.cards:allCards(selected.subject);
+  let pool=kanaChoicePool.filter(c=>c[0]!==card[0]);
   let options=[card];
   while(options.length<4 && pool.length){
     const i=Math.floor(Math.random()*pool.length);
@@ -2300,6 +2419,8 @@ function buildMultipleChoice(card){
     b.className="mcChoice";
     b.textContent=media ? option[0] : cardPrimaryAnswer(option, selected.subject);
     b.onclick=()=>{
+      document.querySelectorAll(".mcChoice").forEach(btn=>btn.classList.remove("selected"));
+      b.classList.add("selected");
       const optionAnswer=media ? option[0] : cardPrimaryAnswer(option, selected.subject);
       const correctAnswer=media ? card[0] : cardPrimaryAnswer(card, selected.subject);
       const correct=optionAnswer===correctAnswer;
@@ -2320,7 +2441,8 @@ function buildListening(card){
   const feedback=document.getElementById("listenFeedback");
   choices.innerHTML=""; feedback.textContent="";
   document.getElementById("listenPlay").onclick=()=>speakTargetText(card[0],selected.subject);
-  let pool=allCards(selected.subject).filter(other=>other!==card && cardMeaning(other));
+  const kanaListening=isJapaneseWriting() || ["foundationLearn","foundationReview"].includes(selected.practiceKind);
+  let pool=(kanaListening?selected.cards:allCards(selected.subject)).filter(other=>other!==card && (kanaListening||cardMeaning(other)));
   const options=[card];
   while(options.length<4 && pool.length){
     const index=Math.floor(Math.random()*pool.length);
@@ -2328,12 +2450,12 @@ function buildListening(card){
   }
   options.sort(()=>Math.random()-.5).forEach(option=>{
     const button=document.createElement("button");
-    button.className="mcChoice"; button.textContent=cardMeaning(option);
+    button.className="mcChoice"; button.textContent=kanaListening?option[0]:cardMeaning(option);
     button.onclick=()=>{
       const correct=option===card;
       recordAnswer(card,correct);
       if(correct) button.classList.add("correct"); else button.classList.add("wrong");
-      feedback.textContent=correct?"Correct.":`${card[0]} means ${cardMeaning(card)}.`;
+      feedback.textContent=correct?"Correct.":kanaListening?`That sound is ${card[0]} (${card[1]}).`:`${card[0]} means ${cardMeaning(card)}.`;
       setTimeout(nextCard,900);
     };
     choices.appendChild(button);
