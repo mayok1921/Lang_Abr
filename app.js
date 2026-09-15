@@ -1030,6 +1030,22 @@ let stats = JSON.parse(localStorage.getItem(STATS_KEY) || "{}");
 let mastery = JSON.parse(localStorage.getItem(MASTERY_KEY) || "{}");
 let missed = JSON.parse(localStorage.getItem(MISSED_KEY) || "[]");
 
+// One-time reset for the new automatic Kana curriculum. Other languages and
+// settings are intentionally preserved.
+const KANA_FLOW_VERSION="2";
+if(localStorage.getItem("keonKanaFlowVersion")!==KANA_FLOW_VERSION){
+  const kanaKey=key=>key.startsWith("hiragana|")||key.startsWith("katakana|");
+  Object.keys(stats).filter(kanaKey).forEach(key=>delete stats[key]);
+  Object.keys(mastery).filter(kanaKey).forEach(key=>delete mastery[key]);
+  Object.keys(competencies).filter(kanaKey).forEach(key=>delete competencies[key]);
+  missed=missed.filter(item=>!["hiragana","katakana"].includes(item.subject));
+  localStorage.setItem("keonKanaFlowVersion",KANA_FLOW_VERSION);
+  localStorage.setItem(STATS_KEY,JSON.stringify(stats));
+  localStorage.setItem(MASTERY_KEY,JSON.stringify(mastery));
+  localStorage.setItem(COMPETENCY_KEY,JSON.stringify(competencies));
+  localStorage.setItem(MISSED_KEY,JSON.stringify(missed));
+}
+
 let setupLanguages = [...(settings.languages || ["ja"])];
 let setupLevels = {...(settings.levels || {ja:"none"})};
 let setupGoals = [...(settings.goals || ["conversation"])];
@@ -1542,6 +1558,10 @@ function renderSubjects(){
 
 function openSubject(key){
   subject=key;
+  if(["hiragana","katakana"].includes(key)){
+    startAutomaticKanaCourse(key);
+    return;
+  }
   lessonType="new";
   renderLessons();
   show("lessons");
@@ -1658,7 +1678,7 @@ function kanaWords(subjectKey,lessonIndex){
 }
 function currentKanaStep(subjectKey){
   const lessons=DATA[subjectKey]?.lessons||[];
-  for(let i=0;i<lessons.length;i++) if(kanaLessonMastery(subjectKey,i)<85) return i;
+  for(let i=0;i<lessons.length;i++) if(kanaLessonMastery(subjectKey,i)<70) return i;
   return Math.max(0,lessons.length-1);
 }
 function kanaSetUnlocked(subjectKey,lessonIndex){
@@ -1667,6 +1687,38 @@ function kanaSetUnlocked(subjectKey,lessonIndex){
 }
 function kanaReviewCards(subjectKey,lessonIndex){
   return allCards(subjectKey,lessonIndex).slice(-10);
+}
+function kanaAdaptiveCards(subjectKey,lessonIndex){
+  const current=DATA[subjectKey]?.lessons?.[lessonIndex]?.cards||[];
+  const earlier=(DATA[subjectKey]?.lessons||[]).slice(0,lessonIndex).flatMap(lesson=>lesson.cards);
+  const reinforcement=earlier
+    .slice()
+    .sort((a,b)=>masteryOf(a,subjectKey)-masteryOf(b,subjectKey))
+    .slice(0,Math.min(3,earlier.length));
+  return [...current,...reinforcement];
+}
+function startAutomaticKanaCourse(subjectKey){
+  subject=subjectKey;
+  const lessonIndex=currentKanaStep(subjectKey);
+  const lesson=DATA[subjectKey]?.lessons?.[lessonIndex];
+  if(!lesson) return;
+  const currentMastery=kanaLessonMastery(subjectKey,lessonIndex);
+  const reviewing=currentMastery>=45;
+  const cards=kanaAdaptiveCards(subjectKey,lessonIndex);
+  selected={
+    subject:subjectKey,
+    title:`${DATA[subjectKey].name} · ${lesson.title}`,
+    cards,
+    practiceKind:"kanaAuto",
+    kanaLessonIndex:lessonIndex
+  };
+  session=buildSession(cards);
+  sessionIndex=0;
+  revealed=false;
+  show("study");
+  renderStudy();
+  const label=document.getElementById("sessionType");
+  if(label) label.textContent=reviewing?"Learn + review":"New set";
 }
 const CONTROLLED_FOUNDATIONS = new Set([
   "hiragana","katakana","korean_hangul","polish_pronunciation",
@@ -2189,6 +2241,10 @@ function getRecommendation(){
 function startRecommended(){
   const rec=getRecommendation();
   subject=rec.subject;
+  if(["hiragana","katakana"].includes(subject)){
+    startAutomaticKanaCourse(subject);
+    return;
+  }
   const lesson=DATA[subject].lessons[rec.lessonIndex];
   selected={subject,title:rec.title,cards:lesson.cards};
   openPreview();
@@ -2239,6 +2295,13 @@ function startMixedSession(){
   revealed=false;
   show("study");
   renderStudy();
+}
+function exitStudy(){
+  if(selected.practiceKind==="kanaAuto"){
+    showJapanesePath();
+    return;
+  }
+  show("preview");
 }
 function renderStudy(){
   if(!session.length) return;
@@ -2351,6 +2414,11 @@ function flipCard(){
 }
 function nextCard(){
   if(!session.length) return;
+  if(sessionIndex===session.length-1 && selected.practiceKind==="kanaAuto"){
+    save();
+    startAutomaticKanaCourse(selected.subject);
+    return;
+  }
   sessionIndex=(sessionIndex+1)%session.length;
   revealed=false;
   renderStudy();
